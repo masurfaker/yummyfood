@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Выбор блюд</title>
+    <title>Оформление заказа</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,8 +22,16 @@
             margin-bottom: 20px;
         }
         .dish-item {
-            margin-left: 20px;
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 5px;
+            padding-left: 20px;
+        }
+        .dish-item input {
+            width: 60px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
         }
         .form-group {
             margin-bottom: 15px;
@@ -74,7 +82,7 @@
 <body>
     <h1>Выбор блюд</h1>
 
-    <form id="orderForm" action="mailto:stassser@gmail.com" method="post" enctype="text/plain" onsubmit="showOrderSummary(event)">
+    <form id="orderForm" onsubmit="sendOrder(event)">
         <div class="form-group">
             <label for="name">Имя:</label>
             <input type="text" id="name" name="name" required>
@@ -97,50 +105,50 @@
 
         <div class="dish-list">
             <div class="section-title">Завтраки</div>
-            <div class="dish-item"><input type="number" name="Блины кура с овощами" min="0" value="0"> Блины кура с овощами</div>
-            <div class="dish-item"><input type="number" name="Блины кура в сливках" min="0" value="0"> Блины кура в сливках</div>
-            <div class="dish-item"><input type="number" name="Блины с йогуртом и медом" min="0" value="0"> Блины с йогуртом и медом</div>
-            <div class="dish-item"><input type="number" name="Блины с сыром и ветчиной" min="0" value="0"> Блины с сыром и ветчиной</div>
-            <div class="dish-item"><input type="number" name="Блины с творогом и йогуртом" min="0" value="0"> Блины с творогом и йогуртом</div>
-            <div class="dish-item"><input type="number" name="Драники с йогуртом" min="0" value="0"> Драники с йогуртом</div>
-            <div class="dish-item"><input type="number" name="Омлет с вялеными томатами" min="0" value="0"> Омлет с вялеными томатами</div>
-            <div class="dish-item"><input type="number" name="Пэнкейки с кленовым сиропом и йогуртом" min="0" value="0"> Пэнкейки с кленовым сиропом и йогуртом</div>
-            <div class="dish-item"><input type="number" name="Сырники" min="0" value="0"> Сырники</div>
+            <div class="dish-item">Блины кура с овощами <input type="number" name="Блины кура с овощами" min="0" value="0"></div>
+            <div class="dish-item">Блины кура в сливках <input type="number" name="Блины кура в сливках" min="0" value="0"></div>
+            <div class="dish-item">Блины с йогуртом и медом <input type="number" name="Блины с йогуртом и медом" min="0" value="0"></div>
+            <div class="dish-item">Блины с сыром и ветчиной <input type="number" name="Блины с сыром и ветчиной" min="0" value="0"></div>
+            <div class="dish-item">Блины с творогом и йогуртом <input type="number" name="Блины с творогом и йогуртом" min="0" value="0"></div>
+            <div class="dish-item">Драники с йогуртом <input type="number" name="Драники с йогуртом" min="0" value="0"></div>
+            <div class="dish-item">Омлет с вялеными томатами <input type="number" name="Омлет с вялеными томатами" min="0" value="0"></div>
+            <div class="dish-item">Пэнкейки с кленовым сиропом и йогуртом <input type="number" name="Пэнкейки с кленовым сиропом и йогуртом" min="0" value="0"></div>
+            <div class="dish-item">Сырники <input type="number" name="Сырники" min="0" value="0"></div>
         </div>
 
         <div class="dish-list">
             <div class="section-title">Супы</div>
-            <div class="dish-item"><input type="number" name="Брокколи кремсуп" min="0" value="0"> Брокколи кремсуп</div>
-            <div class="dish-item"><input type="number" name="Грибной кремсуп" min="0" value="0"> Грибной кремсуп</div>
-            <div class="dish-item"><input type="number" name="Кремсуп цветная капуста" min="0" value="0"> Кремсуп цветная капуста</div>
-            <div class="dish-item"><input type="number" name="Куриный кремсуп" min="0" value="0"> Куриный кремсуп</div>
-            <div class="dish-item"><input type="number" name="Овощной кремсуп" min="0" value="0"> Овощной кремсуп</div>
-            <div class="dish-item"><input type="number" name="Томатный кремсуп" min="0" value="0"> Томатный кремсуп</div>
-            <div class="dish-item"><input type="number" name="Тыквенный кремсуп" min="0" value="0"> Тыквенный кремсуп</div>
-            <div class="dish-item"><input type="number" name="Чечевичный кремсуп" min="0" value="0"> Чечевичный кремсуп</div>
+            <div class="dish-item">Брокколи кремсуп <input type="number" name="Брокколи кремсуп" min="0" value="0"></div>
+            <div class="dish-item">Грибной кремсуп <input type="number" name="Грибной кремсуп" min="0" value="0"></div>
+            <div class="dish-item">Кремсуп цветная капуста <input type="number" name="Кремсуп цветная капуста" min="0" value="0"></div>
+            <div class="dish-item">Куриный кремсуп <input type="number" name="Куриный кремсуп" min="0" value="0"></div>
+            <div class="dish-item">Овощной кремсуп <input type="number" name="Овощной кремсуп" min="0" value="0"></div>
+            <div class="dish-item">Томатный кремсуп <input type="number" name="Томатный кремсуп" min="0" value="0"></div>
+            <div class="dish-item">Тыквенный кремсуп <input type="number" name="Тыквенный кремсуп" min="0" value="0"></div>
+            <div class="dish-item">Чечевичный кремсуп <input type="number" name="Чечевичный кремсуп" min="0" value="0"></div>
         </div>
 
         <div class="dish-list">
             <div class="section-title">Основные блюда</div>
-            <div class="dish-item"><input type="number" name="Бефстроганов с пюре" min="0" value="0"> Бефстроганов с пюре</div>
-            <div class="dish-item"><input type="number" name="Греча с овощами и говядиной" min="0" value="0"> Греча с овощами и говядиной</div>
-            <div class="dish-item"><input type="number" name="Жульен с пюре" min="0" value="0"> Жульен с пюре</div>
-            <div class="dish-item"><input type="number" name="Котлеты из форели с молодой стручковой фасолью" min="0" value="0"> Котлеты из форели с молодой стручковой фасолью</div>
-            <div class="dish-item"><input type="number" name="Креветки с цуккини и рисом" min="0" value="0"> Креветки с цуккини и рисом</div>
-            <div class="dish-item"><input type="number" name="Куриная грудка с пюре из цветной капусты" min="0" value="0"> Куриная грудка с пюре из цветной капусты</div>
-            <div class="dish-item"><input type="number" name="Куриные котлеты с перцами" min="0" value="0"> Куриные котлеты с перцами</div>
-            <div class="dish-item"><input type="number" name="Миньон стейк с пюре" min="0" value="0"> Миньон стейк с пюре</div>
-            <div class="dish-item"><input type="number" name="Овощи запеченные с мясом" min="0" value="0"> Овощи запеченные с мясом</div>
-            <div class="dish-item"><input type="number" name="Паста карбонара" min="0" value="0"> Паста карбонара</div>
-            <div class="dish-item"><input type="number" name="Паста с креветками в сливочном песто" min="0" value="0"> Паста с креветками в сливочном песто</div>
-            <div class="dish-item"><input type="number" name="Паста с курой в сливочном соусе песто" min="0" value="0"> Паста с курой в сливочном соусе песто</div>
-            <div class="dish-item"><input type="number" name="Паста с уткой" min="0" value="0"> Паста с уткой</div>
-            <div class="dish-item"><input type="number" name="Печень в сметанном соусе с пюре" min="0" value="0"> Печень в сметанном соусе с пюре</div>
-            <div class="dish-item"><input type="number" name="Рататуй" min="0" value="0"> Рататуй</div>
-            <div class="dish-item"><input type="number" name="Свинина в барбекю с пюре" min="0" value="0"> Свинина в барбекю с пюре</div>
-            <div class="dish-item"><input type="number" name="Свинина в кислосладком соусе с овощами" min="0" value="0"> Свинина в кислосладком соусе с овощами</div>
-            <div class="dish-item"><input type="number" name="Сибас на пару с цукини" min="0" value="0"> Сибас на пару с цукини</div>
-            <div class="dish-item"><input type="number" name="Форель стейк с цитроне и брокколи" min="0" value="0"> Форель стейк с цитроне и брокколи</div>
+            <div class="dish-item">Бефстроганов с пюре <input type="number" name="Бефстроганов с пюре" min="0" value="0"></div>
+            <div class="dish-item">Греча с овощами и говядиной <input type="number" name="Греча с овощами и говядиной" min="0" value="0"></div>
+            <div class="dish-item">Жульен с пюре <input type="number" name="Жульен с пюре" min="0" value="0"></div>
+            <div class="dish-item">Котлеты из форели с молодой стручковой фасолью <input type="number" name="Котлеты из форели с молодой стручковой фасолью" min="0" value="0"></div>
+            <div class="dish-item">Креветки с цуккини и рисом <input type="number" name="Креветки с цуккини и рисом" min="0" value="0"></div>
+            <div class="dish-item">Куриная грудка с пюре из цветной капусты <input type="number" name="Куриная грудка с пюре из цветной капусты" min="0" value="0"></div>
+            <div class="dish-item">Куриные котлеты с перцами <input type="number" name="Куриные котлеты с перцами" min="0" value="0"></div>
+            <div class="dish-item">Миньон стейк с пюре <input type="number" name="Миньон стейк с пюре" min="0" value="0"></div>
+            <div class="dish-item">Овощи запеченные с мясом <input type="number" name="Овощи запеченные с мясом" min="0" value="0"></div>
+            <div class="dish-item">Паста карбонара <input type="number" name="Паста карбонара" min="0" value="0"></div>
+            <div class="dish-item">Паста с креветками в сливочном песто <input type="number" name="Паста с креветками в сливочном песто" min="0" value="0"></div>
+            <div class="dish-item">Паста с курой в сливочном соусе песто <input type="number" name="Паста с курой в сливочном соусе песто" min="0" value="0"></div>
+            <div class="dish-item">Паста с уткой <input type="number" name="Паста с уткой" min="0" value="0"></div>
+            <div class="dish-item">Печень в сметанном соусе с пюре <input type="number" name="Печень в сметанном соусе с пюре" min="0" value="0"></div>
+            <div class="dish-item">Рататуй <input type="number" name="Рататуй" min="0" value="0"></div>
+            <div class="dish-item">Свинина в барбекю с пюре <input type="number" name="Свинина в барбекю с пюре" min="0" value="0"></div>
+            <div class="dish-item">Свинина в кислосладком соусе с овощами <input type="number" name="Свинина в кислосладком соусе с овощами" min="0" value="0"></div>
+            <div class="dish-item">Сибас на пару с цукини <input type="number" name="Сибас на пару с цукини" min="0" value="0"></div>
+            <div class="dish-item">Форель стейк с цитроне и брокколи <input type="number" name="Форель стейк с цитроне и брокколи" min="0" value="0"></div>
         </div>
 
         <div class="form-group">
@@ -160,32 +168,41 @@
     </div>
 
     <script>
-        function showOrderSummary(event) {
+        function sendOrder(event) {
             event.preventDefault();
             const form = document.getElementById('orderForm');
             const formData = new FormData(form);
-            let summary = '<ul>';
+            let customerSummary = 'Ваш заказ:\n';
+            let fullSummary = 'Полный заказ:\n';
+
+            // Формируем данные для заказчика (только > 0)
             for (let [name, value] of formData.entries()) {
                 if (name !== 'comment' && name !== 'email' && name !== 'name' && name !== 'contactType' && name !== 'contact') {
                     if (parseInt(value) > 0) {
-                        summary += `<li>${name}: ${value} шт.</li>`;
-                    } else {
-                        summary += `<li>${name}: 0 шт.</li>`;
+                        customerSummary += `${name}: ${value} шт.\n`;
                     }
+                    fullSummary += `${name}: ${value} шт.\n`;
                 } else if (name === 'comment' && value) {
-                    summary += `<li>Комментарий: ${value}</li>`;
+                    customerSummary += `Комментарий: ${value}\n`;
+                    fullSummary += `Комментарий: ${value}\n`;
                 }
             }
-            summary += `<li>Имя: ${formData.get('name')}</li>`;
-            summary += `<li>Контакт: ${formData.get('contactType')}: ${formData.get('contact')}</li>`;
-            summary += `<li>Email: ${formData.get('email')}</li>`;
-            summary += '</ul>';
+            customerSummary += `Имя: ${formData.get('name')}\nКонтакт: ${formData.get('contactType')}: ${formData.get('contact')}\n`;
+            fullSummary += `Имя: ${formData.get('name')}\nКонтакт: ${formData.get('contactType')}: ${formData.get('contact')}\n`;
 
-            document.getElementById('orderSummary').innerHTML = summary;
+            // Отображаем заказ в модальном окне (только > 0)
+            let displaySummary = customerSummary.replace(/\n/g, '<br>');
+            document.getElementById('orderSummary').innerHTML = `<ul>${displaySummary.split('<br>').map(item => `<li>${item}</li>`).join('')}</ul>`;
             document.getElementById('orderModal').style.display = 'block';
 
-            // Отправка данных на почту (простая форма mailto)
-            form.submit();
+            // Формируем и отправляем письмо заказчику
+            const customerMailto = `mailto:${formData.get('email')}?subject=Ваш заказ&body=${encodeURIComponent(customerSummary)}`;
+            form.action = customerMailto;
+            form.submit(); // Автоматическая отправка через почтовый клиент заказчику
+
+            // Формируем и отправляем полное письмо на ваш email
+            const adminMailto = `mailto:stassser@gmail.com?subject=Новый заказ (полная информация)&body=${encodeURIComponent(fullSummary)}`;
+            window.location.href = adminMailto; // Открываем почтовый клиент для отправки вам
         }
 
         document.querySelector('.close').addEventListener('click', function() {
