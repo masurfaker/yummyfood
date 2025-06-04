@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Оформление заказа</title>
+    <title>Выбор блюд</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,15 +11,18 @@
             margin: 0 auto;
             padding: 20px;
         }
-        .section-title {
+        .section-box {
             background-color: #f0f0f0;
-            padding: 10px;
+            padding: 15px;
             border-radius: 10px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-        .dish-list {
             margin-bottom: 20px;
+        }
+        .section-title {
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            margin: -15px -15px 15px -15px;
+            font-weight: bold;
         }
         .dish-item {
             display: flex;
@@ -103,7 +106,7 @@
             <input type="email" id="email" name="email" required>
         </div>
 
-        <div class="dish-list">
+        <div class="section-box">
             <div class="section-title">Завтраки</div>
             <div class="dish-item">Блины кура с овощами <input type="number" name="Блины кура с овощами" min="0" value="0"></div>
             <div class="dish-item">Блины кура в сливках <input type="number" name="Блины кура в сливках" min="0" value="0"></div>
@@ -116,7 +119,7 @@
             <div class="dish-item">Сырники <input type="number" name="Сырники" min="0" value="0"></div>
         </div>
 
-        <div class="dish-list">
+        <div class="section-box">
             <div class="section-title">Супы</div>
             <div class="dish-item">Брокколи кремсуп <input type="number" name="Брокколи кремсуп" min="0" value="0"></div>
             <div class="dish-item">Грибной кремсуп <input type="number" name="Грибной кремсуп" min="0" value="0"></div>
@@ -128,7 +131,7 @@
             <div class="dish-item">Чечевичный кремсуп <input type="number" name="Чечевичный кремсуп" min="0" value="0"></div>
         </div>
 
-        <div class="dish-list">
+        <div class="section-box">
             <div class="section-title">Основные блюда</div>
             <div class="dish-item">Бефстроганов с пюре <input type="number" name="Бефстроганов с пюре" min="0" value="0"></div>
             <div class="dish-item">Греча с овощами и говядиной <input type="number" name="Греча с овощами и говядиной" min="0" value="0"></div>
@@ -191,29 +194,3 @@
             fullSummary += `Имя: ${formData.get('name')}\nКонтакт: ${formData.get('contactType')}: ${formData.get('contact')}\n`;
 
             // Отображаем заказ в модальном окне (только > 0)
-            let displaySummary = customerSummary.replace(/\n/g, '<br>');
-            document.getElementById('orderSummary').innerHTML = `<ul>${displaySummary.split('<br>').map(item => `<li>${item}</li>`).join('')}</ul>`;
-            document.getElementById('orderModal').style.display = 'block';
-
-            // Формируем и отправляем письмо заказчику
-            const customerMailto = `mailto:${formData.get('email')}?subject=Ваш заказ&body=${encodeURIComponent(customerSummary)}`;
-            form.action = customerMailto;
-            form.submit(); // Автоматическая отправка через почтовый клиент заказчику
-
-            // Формируем и отправляем полное письмо на ваш email
-            const adminMailto = `mailto:stassser@gmail.com?subject=Новый заказ (полная информация)&body=${encodeURIComponent(fullSummary)}`;
-            window.location.href = adminMailto; // Открываем почтовый клиент для отправки вам
-        }
-
-        document.querySelector('.close').addEventListener('click', function() {
-            document.getElementById('orderModal').style.display = 'none';
-        });
-
-        window.addEventListener('click', function(event) {
-            if (event.target == document.getElementById('orderModal')) {
-                document.getElementById('orderModal').style.display = 'none';
-            }
-        });
-    </script>
-</body>
-</html>
