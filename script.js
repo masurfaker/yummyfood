@@ -42,10 +42,56 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     // Письмо клиенту
-    emailjs.send("service_p7e7ykn", "template_customer", customerParams);
+    
+// Отправка письма клиенту
+emailjs.send("service_p7e7ykn", "template_customer", {
+  name,
+  email,
+  filteredOrder,
+  comment,
+  contactMethod,
+  contactValue
+}, "u7NXPBbhemkcB7EGM")
+.then(() => console.log("Письмо клиенту отправлено"));
+
+// Отправка письма админу (полный заказ)
+emailjs.send("service_p7e7ykn", "template_admin", {
+  name,
+  email,
+  fullOrder: orderList.join("
+"),
+  comment,
+  contactMethod,
+  contactValue
+}, "u7NXPBbhemkcB7EGM")
+.then(() => console.log("Письмо админу отправлено"));
+
 
     // Письмо владельцу
-    emailjs.send("service_p7e7ykn", "template_owner", adminParams);
+    
+// Отправка письма клиенту
+emailjs.send("service_p7e7ykn", "template_customer", {
+  name,
+  email,
+  filteredOrder,
+  comment,
+  contactMethod,
+  contactValue
+}, "u7NXPBbhemkcB7EGM")
+.then(() => console.log("Письмо клиенту отправлено"));
+
+// Отправка письма админу (полный заказ)
+emailjs.send("service_p7e7ykn", "template_admin", {
+  name,
+  email,
+  fullOrder: orderList.join("
+"),
+  comment,
+  contactMethod,
+  contactValue
+}, "u7NXPBbhemkcB7EGM")
+.then(() => console.log("Письмо админу отправлено"));
+
 
     popup.innerText = `Спасибо за заказ, ${name}!\n\n${filteredOrder}`;
     popup.style.display = "block";
