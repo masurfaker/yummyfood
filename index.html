@@ -194,3 +194,34 @@
             fullSummary += `Имя: ${formData.get('name')}\nКонтакт: ${formData.get('contactType')}: ${formData.get('contact')}\n`;
 
             // Отображаем заказ в модальном окне (только > 0)
+            let displaySummary = customerSummary.replace(/\n/g, '<br>');
+            document.getElementById('orderSummary').innerHTML = `<ul>${displaySummary.split('<br>').map(item => `<li>${item}</li>`).join('')}</ul>`;
+            document.getElementById('orderModal').style.display = 'block';
+
+            // Автоматическая отправка письма заказчику (только > 0)
+            const customerMailto = `mailto:${formData.get('email')}?subject=Ваш заказ&body=${encodeURIComponent(customerSummary)}`;
+            form.action = customerMailto;
+            form.submit(); // Автоматическая отправка через почтовый клиент
+
+            // Автоматическая отправка полной информации на ваш email
+            const adminMailto = `mailto:stassser@gmail.com?subject=Новый заказ (полная информация)&body=${encodeURIComponent(fullSummary)}`;
+            const adminForm = document.createElement('form');
+            adminForm.method = 'post';
+            adminForm.action = adminMailto;
+            document.body.appendChild(adminForm);
+            adminForm.submit(); // Автоматическая отправка через почтовый клиент
+            document.body.removeChild(adminForm);
+        }
+
+        document.querySelector('.close').addEventListener('click', function() {
+            document.getElementById('orderModal').style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target == document.getElementById('orderModal')) {
+                document.getElementById('orderModal').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
