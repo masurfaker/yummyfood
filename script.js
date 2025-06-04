@@ -1,65 +1,47 @@
-
-document.getElementById("order-form").addEventListener("submit", function (e) {
+document.getElementById('orderForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
+    let hasSelection = false;
+    let fullOrder = '';
+    let filteredOrder = '';
 
-    const order = {};
-    const filteredOrder = {};
-    let hasItems = false;
-
-    formData.forEach((value, key) => {
-        if (key.startsWith("dish_")) {
-            const name = key.replace("dish_", "");
-            order[name] = value;
-            if (parseInt(value) > 0) {
-                filteredOrder[name] = value;
-                hasItems = true;
+    for (const [key, value] of formData.entries()) {
+        if (!isNaN(value) && value !== '' && key !== 'name' && key !== 'email' && key !== 'comment' && key !== 'contact_type' && key !== 'contact_value') {
+            const qty = parseInt(value);
+            fullOrder += `${key}: ${qty}\n`;
+            if (qty > 0) {
+                hasSelection = true;
+                filteredOrder += `${key}: ${qty}\n`;
             }
-        } else {
-            order[key] = value;
         }
-    });
+    }
 
-    if (!hasItems) {
-        alert("Выберите хотя бы одно блюдо.");
+    if (!hasSelection) {
+        alert('Выберите хотя бы одно блюдо.');
         return;
     }
 
-    const serviceID = "service_p7e7ykn";
-    const templateAdmin = "template_admin"; // шаблон для тебя
-    const templateClient = "template_client"; // шаблон для клиента
-    const publicKey = "u7NXPBbhemkcB7EGM";
+    const data = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        comment: formData.get('comment'),
+        contact: `${formData.get('contact_type')}: ${formData.get('contact_value')}`,
+        fullOrder,
+        filteredOrder
+    };
 
-    // Отправка администратору (вся форма)
-    emailjs.send(serviceID, templateAdmin, {
-        name: order.name,
-        email: order.email,
-        contact_type: order.contact_type,
-        contact_value: order.contact_value,
-        order: JSON.stringify(order, null, 2),
-        comment: order.comment || "—"
-    }, publicKey).then(() => {
-        console.log("Отправлено админу");
-    }, (err) => {
-        alert("Ошибка при отправке админу: " + JSON.stringify(err));
-    });
-
-    // Отправка клиенту (только отфильтрованные)
-    emailjs.send(serviceID, templateClient, {
-        name: order.name,
-        email: order.email,
-        contact_type: order.contact_type,
-        contact_value: order.contact_value,
-        filteredOrder: Object.entries(filteredOrder).map(
-            ([k, v]) => `${k}: ${v}`
-        ).join("\n"),
-        comment: order.comment || "—"
-    }, publicKey).then(() => {
-        alert("Заявка отправлена успешно!");
-        form.reset();
-    }, (err) => {
-        alert("Ошибка при отправке клиенту: " + JSON.stringify(err));
-    });
+    emailjs.send('service_p7e7ykn', 'admin_template', data)
+        .then(() => {
+            return emailjs.send('service_p7e7ykn', 'client_template', data);
+        })
+        .then(() => {
+            alert('Заявка успешно отправлена!');
+            form.reset();
+        })
+        .catch(err => {
+            console.error(err);
+            alert('Ошибка при отправке. Попробуйте позже.');
+        });
 });
