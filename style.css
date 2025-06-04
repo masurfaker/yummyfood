@@ -1,40 +1,113 @@
+
 body {
-  font-family: Arial, sans-serif;
-  padding: 20px;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f8f8;
+  color: #333;
 }
+
 .form-container {
-  max-width: 600px;
-  margin: auto;
-}
-.menu-section {
-  border: 1px solid #ccc;
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
   border-radius: 12px;
-  padding: 10px;
-  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px 40px;
 }
+
+h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #222;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+textarea,
+select {
+  width: 100%;
+  padding: 10px 15px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+select {
+  appearance: none;
+}
+
+.contact-block {
+  display: flex;
+  gap: 10px;
+}
+
+.menu-section {
+  background: #f0f0f0;
+  border-radius: 10px;
+  padding: 15px 20px;
+  margin: 20px 0;
+}
+
 .menu-section h2 {
   margin-top: 0;
+  font-size: 20px;
+  background: #e0e0e0;
+  padding: 10px;
+  border-radius: 6px;
 }
+
 .item {
   display: flex;
   justify-content: space-between;
-  margin: 5px 0;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
 }
-input[type="number"] {
-  width: 60px;
+
+.item:last-child {
+  border-bottom: none;
 }
+
 textarea {
-  width: 100%;
-  margin-top: 10px;
+  resize: vertical;
+  min-height: 80px;
 }
-button {
-  margin-top: 15px;
-  padding: 10px 20px;
-}
-.popup {
-  margin-top: 20px;
-  padding: 10px;
-  background: #e0ffe0;
-  border: 1px solid #0a0;
+
+button[type="submit"] {
+  background: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
   border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+}
+
+button[type="submit"]:hover {
+  background: #45a049;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-width: 90%;
+  text-align: left;
+}
+
+.popup h2 {
+  margin-top: 0;
+  font-size: 22px;
+  color: #333;
 }
