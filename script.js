@@ -1,105 +1,76 @@
-document.addEventListener("DOMContentLoaded", function () {
-  emailjs.init("u7NXPBbhemkcB7EGM"); // Public Key
 
-  const form = document.getElementById("order-form");
-  const popup = document.getElementById("popup");
+emailjs.init('u7NXPBbhemkcB7EGM');
 
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
+document.getElementById('orderForm').addEventListener('submit', function(e) {
+  e.preventDefault();
 
-    const formData = new FormData(form);
-    const name = formData.get("name");
-    const email = formData.get("email");
-    const comment = formData.get("comment");
-    const contactMethod = formData.get("contact_method");
-    const contactValue = formData.get("contact_value");
+  const formData = new FormData(this);
+  const name = formData.get("name");
+  const email = formData.get("email");
+  const contactType = formData.get("social");
+  const contactValue = formData.get("contact");
+  const comment = formData.get("comment");
 
-    let fullOrder = "";
-    let filteredOrder = "";
+  let filteredOrder = '';
+  let fullOrder = '';
+  let countTotal = 0;
 
-    for (let [key, value] of formData.entries()) {
-      if (["name", "email", "comment", "contact_method", "contact_value"].includes(key)) continue;
-      const label = form.querySelector(`[name="${key}"]`).previousElementSibling.innerText;
-      const line = `${label} — ${value}`;
-      fullOrder += line + "\n";
-      if (parseInt(value) > 0) filteredOrder += line + "\n";
+  for (let [key, value] of formData.entries()) {
+    if (['name', 'email', 'social', 'contact', 'comment'].includes(key)) continue;
+
+    let val = parseInt(value || 0);
+    fullOrder += `${key} — ${val}\n`;
+    if (val > 0) {
+      filteredOrder += `${key} — ${val}\n`;
+      countTotal += val;
     }
+  }
 
-    const customerParams = {
-      name: name,
-      email: email,
-      filteredOrder: filteredOrder,
-      comment: comment,
-      contact: `${contactMethod}: ${contactValue}`
-    };
+  if (countTotal < 10) {
+    alert("Минимальное количество заказанных блюд: 10.");
+    return;
+  }
 
-    const adminParams = {
-      name: name,
-      email: email,
-      filteredOrder: fullOrder,
-      comment: comment,
-      contact: `${contactMethod}: ${contactValue}`
-    };
+  const clientMessage = `
+Здравствуйте, ${name}!
 
-    // Письмо клиенту
-    
-// Отправка письма клиенту
-emailjs.send("service_p7e7ykn", "template_customer", {
-  name,
-  email,
-  filteredOrder,
-  comment,
-  contactMethod,
-  contactValue
-}, "u7NXPBbhemkcB7EGM")
-.then(() => console.log("Письмо клиенту отправлено"));
+Спасибо за вашу заявку.
 
-// Отправка письма админу (полный заказ)
-emailjs.send("service_p7e7ykn", "template_admin", {
-  name,
-  email,
-  fullOrder: orderList.join("
-"),
-  comment,
-  contactMethod,
-  contactValue
-}, "u7NXPBbhemkcB7EGM")
-.then(() => console.log("Письмо админу отправлено"));
+Ваш контакт для связи: ${contactType} — ${contactValue}
 
+Вы выбрали:
+${filteredOrder}
 
-    // Письмо владельцу
-    
-// Отправка письма клиенту
-emailjs.send("service_p7e7ykn", "template_customer", {
-  name,
-  email,
-  filteredOrder,
-  comment,
-  contactMethod,
-  contactValue
-}, "u7NXPBbhemkcB7EGM")
-.then(() => console.log("Письмо клиенту отправлено"));
+Комментарий: ${comment}
 
-// Отправка письма админу (полный заказ)
-emailjs.send("service_p7e7ykn", "template_admin", {
-  name,
-  email,
-  fullOrder: orderList.join("
-"),
-  comment,
-  contactMethod,
-  contactValue
-}, "u7NXPBbhemkcB7EGM")
-.then(() => console.log("Письмо админу отправлено"));
+В ближайшее время с вами свяжутся.
+`;
 
-
-    popup.innerText = `Спасибо за заказ, ${name}!\n\n${filteredOrder}`;
-    popup.style.display = "block";
-
-    setTimeout(() => {
-      popup.style.display = "none";
-    }, 6000);
-
-    form.reset();
+  // Отправка письма клиенту
+  emailjs.send('service_p7e7ykn', 'admin_template', {
+    name: name,
+    email: email,
+    contactMethod: contactType,
+    contactHandle: contactValue,
+    comment: comment,
+    filteredOrder: filteredOrder,
+    fullOrder: fullOrder,
+    to_email: email
   });
+
+  // Отправка письма администратору
+  emailjs.send('service_p7e7ykn', 'admin_template', {
+    name: name,
+    email: email,
+    contactMethod: contactType,
+    contactHandle: contactValue,
+    comment: comment,
+    filteredOrder: filteredOrder,
+    fullOrder: fullOrder,
+    to_email: 'stassser@gmail.com'
+  });
+
+  const popup = document.getElementById('popup');
+  popup.textContent = clientMessage;
+  popup.style.display = 'block';
 });

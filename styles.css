@@ -1,0 +1,61 @@
+
+body {
+  font-family: sans-serif;
+  background-color: #ffffff;
+  padding: 20px;
+  color: #333;
+}
+
+.form-block, .dish {
+  margin-bottom: 10px;
+}
+
+input, select, textarea {
+  background: #f5f0e6;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.menu-section {
+  background: #f9f5ef;
+  padding: 15px;
+  border-radius: 10px;
+  margin: 20px 0;
+}
+
+.section-title {
+  font-weight: bold;
+  background: #e8dcc7;
+  padding: 10px;
+  border-radius: 7px;
+  margin-bottom: 10px;
+}
+
+.dish {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+button {
+  background: #d8bfa3;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#popup {
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff4e3;
+  padding: 20px;
+  border: 2px solid #d1c1ae;
+  border-radius: 10px;
+  display: none;
+}
