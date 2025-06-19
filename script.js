@@ -1,76 +1,75 @@
+// Инициализация EmailJS
+emailjs.init("u7NXPBbhemkcB7EGM");
 
-emailjs.init('u7NXPBbhemkcB7EGM');
-
-document.getElementById('orderForm').addEventListener('submit', function(e) {
+document.getElementById("orderForm").addEventListener("submit", async function(e){
   e.preventDefault();
 
-  const formData = new FormData(this);
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const contactType = formData.get("social");
-  const contactValue = formData.get("contact");
-  const comment = formData.get("comment");
+  const form = e.target;
+  const fd = new FormData(form);
 
-  let filteredOrder = '';
-  let fullOrder = '';
-  let countTotal = 0;
+  // базовые поля
+  const name          = fd.get("name").trim();
+  const email         = fd.get("email").trim();
+  const contact_type  = fd.get("contact_type");
+  const contact_value = fd.get("contact_value").trim();
+  const comment       = fd.get("comment").trim();
 
-  for (let [key, value] of formData.entries()) {
-    if (['name', 'email', 'social', 'contact', 'comment'].includes(key)) continue;
+  // формируем заказы
+  let fullOrder = "";
+  let filtered  = "";
+  let totalQty  = 0;
 
-    let val = parseInt(value || 0);
-    fullOrder += `${key} — ${val}\n`;
-    if (val > 0) {
-      filteredOrder += `${key} — ${val}\n`;
-      countTotal += val;
+  for (let [key,val] of fd.entries()){
+    if(["name","email","contact_type","contact_value","comment"].includes(key)) continue;
+    const q = parseInt(val)||0;
+    fullOrder += `${key} — ${q}\n`;
+    if(q>0){
+      filtered += `${key} — ${q}\n`;
+      totalQty += q;
     }
   }
 
-  if (countTotal < 10) {
-    alert("Минимальное количество заказанных блюд: 10.");
+  if(totalQty===0){
+    alert("Выберите хотя бы одно блюдо 😊");
     return;
   }
 
-  const clientMessage = `
-Здравствуйте, ${name}!
+  // параметры для EmailJS
+  const adminParams = {
+    name,
+    email,
+    contact_type,
+    contact_value,
+    comment,
+    Order: fullOrder          // дОЛЖЕН совпасть c {{Order}} в template_admin
+  };
 
-Спасибо за вашу заявку.
+  const clientParams = {
+    name,
+    email,
+    comment,
+    contactMethod: contact_type, // {{contactMethod}}
+    contactvalue: contact_value, // {{contactvalue}}
+    filteredOrder: filtered      // {{filteredOrder}} в template_customer
+  };
 
-Ваш контакт для связи: ${contactType} — ${contactValue}
+  try{
+    await emailjs.send("service_p7e7ykn","template_admin",adminParams);
+    await emailjs.send("service_p7e7ykn","template_customer",clientParams);
 
-Вы выбрали:
-${filteredOrder}
-
-Комментарий: ${comment}
-
-В ближайшее время с вами свяжутся.
-`;
-
-  // Отправка письма клиенту
-  emailjs.send('service_p7e7ykn', 'admin_template', {
-    name: name,
-    email: email,
-    contactMethod: contactType,
-    contactHandle: contactValue,
-    comment: comment,
-    filteredOrder: filteredOrder,
-    fullOrder: fullOrder,
-    to_email: email
-  });
-
-  // Отправка письма администратору
-  emailjs.send('service_p7e7ykn', 'admin_template', {
-    name: name,
-    email: email,
-    contactMethod: contactType,
-    contactHandle: contactValue,
-    comment: comment,
-    filteredOrder: filteredOrder,
-    fullOrder: fullOrder,
-    to_email: 'stassser@gmail.com'
-  });
-
-  const popup = document.getElementById('popup');
-  popup.textContent = clientMessage;
-  popup.style.display = 'block';
+    // показываем всплывашку
+    const popup = document.getElementById("popup");
+    popup.textContent =
+      `${name}! Благодарим за заявку.\n\n` +
+      `Ваш контакт: ${contact_type} — ${contact_value}\n\n` +
+      `Вы выбрали:\n${filtered}\n` +
+      (comment ? `Комментарий: ${comment}\n\n` : '') +
+      `Мы скоро свяжемся с вами.`;
+    popup.style.display="block";
+    setTimeout(()=>popup.style.display="none",8000);
+    form.reset();
+  }catch(err){
+    console.error("EmailJS error:",err);
+    alert("Ошибка при отправке письма. Проверьте консоль.");
+  }
 });
