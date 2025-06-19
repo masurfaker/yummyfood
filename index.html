@@ -2,28 +2,41 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
   <title>Yummy Food — заказ</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
 
-    <!-- Логотип вшит Base64-данными (если нужен файл-png вместо Base64 — см. комментарий ниже) -->
-    <img
-      class="logo"
-      alt="Yummy logo"
-      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZAAAAGQCAYAAACDcBqsAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAOvwAADr8BK9k1KgAAABh0RVh0U29mdHdhcmUAUGFpbnQuTkVUIHYzLjM2qefiJQAAAeVQTFRF////AAAAgICAAQEA////VVVVdXV1ra2tr6+vBxsbGhoaVSUlFRUVxsbG0tLSenp6ioqKDg4O1tbWQkJC2NjY+Pj4wMDAoKCghISEbGxsWFhYzMzMCwsL0dHRmZmZNzc3MzMzNjY2s7OztLS0IiIiY2NjU1NTcnJydHR0ZGRk9fX18fHxkZGRSkpK5OTkExMTQkJCU5OTkPDw83Nzc2dnZ329vf29vZkZGRT09PX19eIiIiYmJijY2Nzs7Ox8fHp6enl5eXY2Njvr6+9fX18nJyZSUlJSQkJDg4ONjY2ExMTmZmZr6+vERERGhoa29vbX19fW1tbLy8vJycnFAQE1tbeoaGhmtbW8vLyEhISPz8/4uLi////c3Nzv7+/mJiYhYWF5eXluLi4oKCgo6OjiYmJycnJyIiImJiYmpqagICA/v7+X19ftra2cnJyOjo6vr6+4+Pj4uLi39/fr6+ve3t7wcHBVVVVfHx8z8/Py8vLfX19iIiIAAAAAAAAAgACCB5f4AAACl0Uk5TAAECAwQFBgcICQoLDA0ODxAREhMUFRYXGBkaGxwdHh8gISIjJCUmJygpKissLS4vMDEyMzQ1Njc4OTo7PD0+P0BBQkNERUZHSElKS0xNTk9QUVJTVFVWV1hZWltcXV5fYGFiY2RlZmdoaWprbG1ub3BxcnN0dXZ3eHl6e3x9fn+AgYKDhIWGh4iJiouMjI2Oj5CRkZKTlJWWl5iZmpucnZ6foKGio6Slpqeoqaqqqq6ur7CxsrO0tba3uLm6u7y9vb6/wMHBwsPExcbHyMnKy8zNzs/Q09TV1tfY2Nna29zd3t/h4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/OprLpQAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAAd0SU1FB+UJHgMVB3s5ytIAAAG2SURBVHja7d3rduMwEAXgbUDCDSwz5KZ4/9/FSKDcCtmXFOd8G8jkk2TjBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAT4GL7pyqx6dp7Trjdco3Ht9tPnP2eTST1mm30Kbn5sqZqbnJlrX5ksGU9f2WibTn/31YrL8tNPfnJq5725iVI3maGqczW42TfnJJ+ZMpXrVlPP2R8phmZi9vsqMBUfPHhn85sgJi+98+u7Aar5+N2c+5jCzzk7Il2S1zjmXV6wcJHZXPbfqTC97jW7m42ZZerSJrXFD+1kTJ9nSU8N1UVNDmq057VcXnq2NXu6NbL8FcA2up1dt8DW3cWrcz2H1tX8uLs25vaz4GycNej6cruW4Gzf2Zqkp1qm8rOHUM3o9avJ6ZbqGZzFLjVR767V1nnnKupz5VcVv1a86G7OW+TpjUN6ZX0uR5n2P28t5rZUP3dezI3z6MYrj6rQZmx1qv03FX6drO0nuX2rqXOd9n7pjzrcfvM/Z10nT1nt6mf7c2Pe20m0VfNVfHbqT6Xu8uWvZ9bGXlSfbNVUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAF7g/wENLJY+Ll9AewAAAABJRU5ErkJggg==" />
+    <!-- встроенный логотип -->
+    <img class="logo" alt="Yummy logo"
+         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI4AAADICAIAAABti9MXAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAI
+         JUlEQVR4nO3cXZMkSxKA4f//XewWqT7qWxFOdF1z5PcyN+1kDSsbwcHHEk+L98zm77fTfn7ftf23
+         8xcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQOm51QHMbOFtxVAvWr8MvqfgWblnFvQBWrGI
+         2/h7xicx9hZ1hE3fvKm+uX2qKwXdp0n+XCv32oac0evh/UR629Mm7ZfGLkOubd6S+zdf2lnd6lBN
+         1nmUOune7D3Z28SNRwcV93xeybaV7YY6mzFOnN8V8/2OdyJcS4RS+orB82nOvRdz473sr6jv4TZD
+         IG6YBkow3pry8vHh3RfN+8HlEKSQq0kW0mUYqRCpEKkQqRCpEKkQqRCpEKkQqRCpEKkQqRCpELk
+         9P2kz+0yvquu26bjRdC1lGuXkCvF8fA6Dn9Z9+sl69xVnvufE8aX5vrmjX98WcWUcZGM27pHyfJP
+         j2wlawpiu2dT/WqcT/7n/xkFBl3W4pNXDx/xZBSXvl3jPBVE/Lmz5GadXVn6orkROwYnemImBN2+
+         +H+yL+2vlJpqpOjvY5R2kyrF9mB2GlPIzuzwbP4TWXpYCr9Qd98x0GxUFw8fWx6okIiSDrxiVdt
+         yskh4cKe+C1DN3aC9or3F9HjK+1Z2s+S/nhQz3sdG+v7uH6e57pi+Td4M5HD6xuq7jImsr8x6eY
+         MSi7Aybf3zJ2jKa4I4myIrMOUVzFGnqfD+AdF9lRF6z0ubG+8zkXyGrkODbGp1mhZx4h4aTPvFH
+         25iRy2wbEN/b1FdZcz7yh/FHdXpQEAqiQqRCpEKkQqRCpEKkQqTCuS8zW/NhTwi0/Ji1mc53e3vp
+         5dV7n2/HeEx6yRhjq6k3Tjrf9hSe2cQ/qyqXdc5l1mlWdabwyiWyFUXZSs244Rxm6uJmLj19Efzk
+         Spf0rQpD/Lvl0/5S+D6n+BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwX/gDml0XD+N0hdgAA
+         AABJRU5ErkJggg==" />
 
     <h1>Форма заказа</h1>
 
     <form id="orderForm">
-
+      <!-- Имя -->
       <div class="input-group">
         <label for="name">Имя</label>
         <input id="name" name="name" required />
       </div>
 
+      <!-- Социальная сеть -->
       <div class="input-group">
         <label for="contact_type">Социальная сеть</label>
         <select id="contact_type" name="contact_type">
@@ -33,30 +46,32 @@
         </select>
       </div>
 
+      <!-- Ник / номер -->
       <div class="input-group">
         <input id="contact_value" name="contact_value" placeholder="Ник или номер" required />
       </div>
 
-      <!-- меню будет вставлено из script.js -->
+      <!-- меню (заполняется script.js) -->
       <div class="menu-section"><div class="section-title">Завтрак</div><div id="breakfast"></div></div>
       <div class="menu-section"><div class="section-title">Суп</div><div id="soups"></div></div>
       <div class="menu-section"><div class="section-title">Основное блюдо</div><div id="mains"></div></div>
 
+      <!-- комментарий -->
       <div class="input-group">
         <label for="comment">Комментарий</label>
         <textarea id="comment" name="comment" rows="3"></textarea>
       </div>
 
       <!-- Web3Forms -->
-      <input type="hidden" name="access_key" value="14d92358-9b7a-4e16-b2a7-35e9ed71de43" />
+      <input type="hidden" name="access_key"  value="14d92358-9b7a-4e16-b2a7-35e9ed71de43" />
       <input type="hidden" name="filteredOrder" id="filteredOrder" />
       <input type="hidden" name="subject" value="Новая заявка Yummy" />
-      <input type="hidden" name="to" value="stassser@gmail.com" />
+      <input type="hidden" name="to"      value="stassser@gmail.com" />
 
       <button type="submit">Отправить заявку</button>
     </form>
 
-    <!-- всплывающее окно -->
+    <!-- всплывашка -->
     <div id="resultModal" class="modal hidden">
       <div class="modal-content">
         <h3 id="thankYou"></h3>
