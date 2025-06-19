@@ -9,33 +9,36 @@ body{
   box-shadow:0 0 10px rgba(0,0,0,.1);
 }
 h1{ text-align:center; margin:12px 0 24px; color:#444 }
-.logo{ max-width:140px; display:block; margin:0 auto 18px; }
+.logo{ max-width:140px; display:block; margin:0 auto 18px }
 .menu-section{
   margin-bottom:24px; padding:14px;
   background:#ececec; border-radius:10px;
 }
 .section-title{
-  background:#d0d0d0; padding:6px 10px;
-  border-radius:6px; font-weight:700;
-  text-align:center; margin:-14px -14px 12px;
+  background:#d0d0d0; padding:6px 10px; border-radius:6px;
+  font-weight:700; text-align:center; margin:-14px -14px 12px;
 }
 .menu-item{
-  display:flex; justify-content:space-between;
-  align-items:center; margin:6px 0; font-size:15px;
+  display:flex; justify-content:space-between; align-items:center;
+  margin:6px 0; font-size:15px;
 }
-.menu-item input[type=number]{
-  width:48px; font-size:16px; padding:4px;
-}
-.input-group{ margin-bottom:16px; }
+.menu-item input[type=number]{ width:48px; font-size:16px; padding:4px }
+.input-group{ margin-bottom:16px }
 .input-group label{ display:block; margin-bottom:5px; font-weight:500 }
-.input-group input, .input-group select, .input-group textarea{
-  width:100%; font-size:16px; padding:8px;
-  box-sizing:border-box;
+.input-group input,
+.input-group select,
+.input-group textarea{
+  width:100%; font-size:16px; padding:8px; box-sizing:border-box;
+}
+/* селект — меньше скругление и общий стиль */
+select{
+  border:1px solid #ccc; border-radius:4px;
+  background:#fff; color:#333; font-family:inherit; appearance:none;
 }
 button{
   width:100%; background:#444; color:#fff;
-  padding:12px; font-size:17px;
-  border:none; border-radius:6px; cursor:pointer;
+  padding:12px; font-size:17px; border:none;
+  border-radius:6px; cursor:pointer;
 }
 button:hover{ background:#222 }
 .modal{
@@ -44,8 +47,7 @@ button:hover{ background:#222 }
 }
 .modal.hidden{ display:none }
 .modal-content{
-  background:#fff; padding:22px;
-  border-radius:8px; text-align:center;
+  background:#fff; padding:22px; text-align:center; border-radius:8px;
 }
 .modal-content pre{
   text-align:left; white-space:pre-line;
