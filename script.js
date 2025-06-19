@@ -1,15 +1,15 @@
 /* --- списки блюд --- */
-const breakfast = [
+const breakfast=[
  "Блины кура овощи","Блины кура сливки","Блины с йогуртом и медом",
  "Блины с сыром и ветчиной","Блины с творогом и йогуртом","Драники с йогуртом",
  "Йогурт с гранолой и тыквенными семечками","Омлет с вялеными томатами",
  "Пенкейки с кленовым сиропом и йогуртом","Сырники"
 ];
-const soups = [
+const soups=[
  "Брокколи кремсуп","Грибной кремсуп","Кресуп цветная капуста","Куриный кремсуп",
  "Овощной кремсуп","Томатный кремсуп","Тыквенный кремсуп","Чечевичный кремсуп"
 ];
-const mains = [
+const mains=[
  "Бифстроганов с пюре и маринованными огурцами","Греча с овощами и говядиной",
  "Жульен с пюре","Креветки с цуккини и рисом","Куриная грудка с пюре",
  "Куриные котлеты с перцами","Миньон стейк с пюре","Овощи запеченые с мясом",
@@ -20,7 +20,7 @@ const mains = [
  "Сибас на пару с цукини и чесночным соусом","Форель стейк с цитроне и брокколи"
 ];
 
-/* --- отрисовка меню --- */
+/* --- генерация строк меню --- */
 function draw(list,id){
   const box=document.getElementById(id);
   list.forEach(name=>{
@@ -32,7 +32,7 @@ function draw(list,id){
 }
 draw(breakfast,"breakfast"); draw(soups,"soups"); draw(mains,"mains");
 
-/* --- отправка формы --- */
+/* --- обработчик отправки --- */
 document.getElementById("orderForm").addEventListener("submit",async e=>{
   e.preventDefault();
   const f=e.target, fd=new FormData(f);
@@ -52,8 +52,7 @@ document.getElementById("orderForm").addEventListener("submit",async e=>{
 
   try{
     const res=await fetch("https://api.web3forms.com/submit",{
-      method:"POST",
-      headers:{ "Content-Type":"application/json" },
+      method:"POST",headers:{ "Content-Type":"application/json" },
       body:JSON.stringify(payload)
     }).then(r=>r.json());
 
@@ -62,9 +61,7 @@ document.getElementById("orderForm").addEventListener("submit",async e=>{
       document.getElementById("resultText").textContent=`Ваш заказ:\\n${list}\\nВ ближайшее время с вами свяжутся.\\nБлагодарим, что выбрали YUMMY!`;
       document.getElementById("resultModal").classList.remove("hidden");
       f.reset();
-    } else {
-      alert("Ошибка Web3Forms: "+res.message);
-    }
-  }catch(err){ alert("Ошибка сети. Попробуйте позже."); }
+    }else{ alert("Ошибка Web3Forms: "+res.message); }
+  }catch(err){ alert("Сеть недоступна, попробуйте позже."); }
 });
 document.getElementById("closeModal").onclick=()=>document.getElementById("resultModal").classList.add("hidden");
