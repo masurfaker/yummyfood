@@ -2,105 +2,53 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
+  <title>Тестовая форма заказа</title>
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Форма заказа еды</title>
-
-  <!-- СТИЛИ -->
   <link rel="stylesheet" href="styles.css">
-
-  <!-- EmailJS SDK + инициализация -->
   <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
-    (function () {
-      emailjs.init("u7NXPBbhemkcB7EGM");      /* ← твой Public Key */
-    })();
+    (function(){ emailjs.init("u7NXPBbhemkcB7EGM"); })();  // Public Key
   </script>
 </head>
 <body>
+  <form id="orderForm">
+    <h2>Тестовая форма заказа</h2>
 
-<form id="orderForm">
-  <h2>Форма заказа еды</h2>
+    <label>Имя
+      <input type="text" name="name" required>
+    </label>
+    <label>Email
+      <input type="email" name="email" required>
+    </label>
+    <label>Контакт (Telegram/WhatsApp/Zalo)
+      <select name="contact_type">
+        <option value="Telegram">Telegram</option>
+        <option value="WhatsApp">WhatsApp</option>
+        <option value="Zalo">Zalo</option>
+      </select>
+    </label>
+    <label>Контакт ник/номер
+      <input type="text" name="contact_value" required>
+    </label>
 
-  <label>Имя
-    <input type="text" name="name" required>
-  </label>
+    <!-- Меню (пример нескольких) -->
+    <div class="menu-section">
+      <div class="section-title">Завтраки</div>
+      <label><span>Сырники</span><input type="number" name="Сырники" min="0" value="0"></label>
+      <label><span>Пенкейки с кленовым сиропом и йогуртом</span><input type="number" name="Пенкейки с кленовым сиропом и йогуртом" min="0" value="0"></label>
+      <label><span>Блины кура сливки</span><input type="number" name="Блины кура сливки" min="0" value="0"></label>
+    </div>
+    <!-- добавь остальные категории аналогично -->
 
-  <label>Email
-    <input type="email" name="email" required>
-  </label>
+    <label>Комментарий
+      <textarea name="comment"></textarea>
+    </label>
 
-  <label>Тип контакта
-    <select name="contact_type">
-      <option value="Telegram">Telegram</option>
-      <option value="WhatsApp">WhatsApp</option>
-      <option value="Zalo">Zalo</option>
-    </select>
-  </label>
+    <button type="submit">Отправить заявку</button>
+  </form>
 
-  <label>Контакт (ник / номер)
-    <input type="text" name="contact_value" required>
-  </label>
+  <div id="popup"></div>
 
-  <!-- ЗАВТРАКИ -->
-  <div class="menu-section">
-    <div class="section-title">Завтраки</div>
-    <label><span>Сырники</span><input type="number" name="Сырники" min="0"></label>
-    <label><span>Пенкейки с кленовым сиропом и йог.</span><input type="number" name="Пенкейки с кленовым сиропом и йог." min="0"></label>
-    <label><span>Блины кура сливки</span><input type="number" name="Блины кура сливки" min="0"></label>
-    <label><span>Блины с творогом и йогуртом</span><input type="number" name="Блины с творогом и йогуртом" min="0"></label>
-    <label><span>Блины с сыром и ветчиной</span><input type="number" name="Блины с сыром и ветчиной" min="0"></label>
-    <label><span>Блины кура овощи</span><input type="number" name="Блины кура овощи" min="0"></label>
-    <label><span>Блины с йогуртом и медом</span><input type="number" name="Блины с йогуртом и медом" min="0"></label>
-    <label><span>Драники с йогуртом</span><input type="number" name="Драники с йогуртом" min="0"></label>
-    <label><span>Омлет с вялеными томатами</span><input type="number" name="Омлет с вялеными томатами" min="0"></label>
-  </div>
-
-  <!-- СУПЫ -->
-  <div class="menu-section">
-    <div class="section-title">Супы</div>
-    <label><span>Грибной кремсуп</span><input type="number" name="Грибной кремсуп" min="0"></label>
-    <label><span>Тыквенный кремсуп</span><input type="number" name="Тыквенный кремсуп" min="0"></label>
-    <label><span>Чечевичный кремсуп</span><input type="number" name="Чечевичный кремсуп" min="0"></label>
-    <label><span>Овощной кремсуп</span><input type="number" name="Овощной кремсуп" min="0"></label>
-    <label><span>Томатный кремсуп</span><input type="number" name="Томатный кремсуп" min="0"></label>
-    <label><span>Куриный кремсуп</span><input type="number" name="Куриный кремсуп" min="0"></label>
-    <label><span>Брокколи кремсуп</span><input type="number" name="Брокколи кремсуп" min="0"></label>
-    <label><span>Кресуп цветная капуста</span><input type="number" name="Кресуп цветная капуста" min="0"></label>
-  </div>
-
-  <!-- ОСНОВНЫЕ БЛЮДА -->
-  <div class="menu-section">
-    <div class="section-title">Основные блюда</div>
-    <label><span>Свинина в кислосладком соусе с овощами</span><input type="number" name="Свинина в кислосладком соусе с овощами" min="0"></label>
-    <label><span>Куриная грудка с пюре из цветной кап.</span><input type="number" name="Куриная грудка с пюре из цветной кап." min="0"></label>
-    <label><span>Рататуй</span><input type="number" name="Рататуй" min="0"></label>
-    <label><span>Паста с креветками в сливочном соусе песто</span><input type="number" name="Паста с креветками в сливочном соусе песто" min="0"></label>
-    <label><span>Паста с курой в сливочном соусе песто</span><input type="number" name="Паста с курой в сливочном соусе песто" min="0"></label>
-    <label><span>Котлеты из форели с фасолью</span><input type="number" name="Котлеты из форели с фасолью" min="0"></label>
-    <label><span>Котлеты куриные с перцами</span><input type="number" name="Котлеты куриные с перцами" min="0"></label>
-    <label><span>Сибас на пару с цукини и чесночным соусом</span><input type="number" name="Сибас на пару с цукини и чесночным соусом" min="0"></label>
-    <label><span>Бифстроганов с пюре</span><input type="number" name="Бифстроганов с пюре" min="0"></label>
-    <label><span>Свинина в барбекю с пюре</span><input type="number" name="Свинина в барбекю с пюре" min="0"></label>
-    <label><span>Жульен с пюре</span><input type="number" name="Жульен с пюре" min="0"></label>
-    <label><span>Миньон стейк с пюре</span><input type="number" name="Миньон стейк с пюре" min="0"></label>
-    <label><span>Форель стейк с цитроне и брокколи</span><input type="number" name="Форель стейк с цитроне и брокколи" min="0"></label>
-    <label><span>Креветки с цуккини и рисом</span><input type="number" name="Креветки с цуккини и рисом" min="0"></label>
-    <label><span>Греча с овощами и говядиной</span><input type="number" name="Греча с овощами и говядиной" min="0"></label>
-    <label><span>Печень в сметанном соусе и пюре</span><input type="number" name="Печень в сметанном соусе и пюре" min="0"></label>
-    <label><span>Карбонара</span><input type="number" name="Карбонара" min="0"></label>
-    <label><span>Паста с уткой</span><input type="number" name="Паста с уткой" min="0"></label>
-  </div>
-
-  <label>Комментарий
-    <textarea name="comment" rows="4"></textarea>
-  </label>
-
-  <button type="submit">Отправить заявку</button>
-</form>
-
-<!-- всплывающее окно -->
-<div id="popup"></div>
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
