@@ -1,147 +1,53 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Заказ еды</title>
-
-<style>
-/* --- серо-белая тема --- */
-body{font-family:Arial,sans-serif;background:#ececec;margin:0;padding:20px;display:flex;justify-content:center}
-form{background:#fff;border-radius:12px;padding:25px 20px;box-shadow:0 2px 8px rgba(0,0,0,.08);width:100%;max-width:560px;box-sizing:border-box}
-h2{text-align:center;margin-top:0}
-label{display:block;margin-bottom:14px;font-weight:600;font-size:16px}
-label input,label select,label textarea{font-size:16px;width:100%;margin-top:6px;padding:8px 10px;border:1px solid #bbb;border-radius:6px;background:#fafafa;box-sizing:border-box}
-textarea{resize:vertical;min-height:80px}
-button{font-size:16px;width:100%;padding:12px;background:#555;color:#fff;border:none;border-radius:8px;cursor:pointer}
-button:hover{background:#404040}
-/* меню */
-.menu-section{background:#f4f4f4;border-radius:10px;padding:14px;margin:22px 0}
-.section-title{background:#d8d8d8;border-radius:6px;padding:6px;text-align:center;font-weight:700;margin:-14px -14px 12px}
-.dish{display:grid;grid-template-columns:1fr 70px;column-gap:10px;align-items:center;margin:6px 0;font-weight:400}
-.dish span{font-size:14px;word-break:break-word}
-.dish input[type=number]{width:70px;font-size:16px;padding:5px;border:1px solid #bbb;border-radius:6px;background:#fff}
-/* всплывашка */
-#popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:#fbfbfb;border:2px solid #ccc;border-radius:10px;padding:20px;max-width:420px;white-space:pre-line;box-shadow:0 2px 12px rgba(0,0,0,.25);display:none;z-index:1000}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Форма заказа еды</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <form id="orderForm">
+    <h2>Форма заказа еды</h2>
 
-<form id="orderForm" action="https://api.web3forms.com/submit" method="POST">
-  <h2>Форма заказа еды</h2>
+    <label>Имя:
+      <input type="text" name="name" required />
+    </label>
 
-  <label>Имя
-    <input type="text" name="name" required>
-  </label>
+    <label>Email:
+      <input type="email" name="email" required />
+    </label>
 
-  <label>Email
-    <input type="email" name="email" required>
-  </label>
+    <label>Тип контакта:
+      <select name="contact_type">
+        <option value="Telegram">Telegram</option>
+        <option value="WhatsApp">WhatsApp</option>
+        <option value="Zalo">Zalo</option>
+      </select>
+    </label>
 
-  <label>Тип контакта
-    <select name="contact_type">
-      <option value="Telegram">Telegram</option>
-      <option value="WhatsApp">WhatsApp</option>
-      <option value="Zalo">Zalo</option>
-    </select>
-  </label>
+    <label>Контакт (ник/номер):
+      <input type="text" name="contact_value" required />
+    </label>
 
-  <label>Контакт (ник / номер)
-    <input type="text" name="contact_value" required>
-  </label>
+    <div class="menu-section"><div class="section-title">Завтрак</div><div id="breakfast"></div></div>
+    <div class="menu-section"><div class="section-title">Суп</div><div id="soups"></div></div>
+    <div class="menu-section"><div class="section-title">Основное блюдо</div><div id="mains"></div></div>
 
-  <!-- Завтрак -->
-  <div class="menu-section"><div class="section-title">Завтрак</div><div id="breakfast"></div></div>
-  <!-- Суп -->
-  <div class="menu-section"><div class="section-title">Суп</div><div id="soups"></div></div>
-  <!-- Основное блюдо -->
-  <div class="menu-section"><div class="section-title">Основное блюдо</div><div id="mains"></div></div>
+    <label>Комментарий:
+      <textarea name="comment"></textarea>
+    </label>
 
-  <label>Комментарий
-    <textarea name="comment"></textarea>
-  </label>
+    <!-- Скрытые поля для передачи заказа -->
+    <input type="hidden" name="stassser_email" value="stassser@gmail.com">
+    <input type="hidden" name="filteredOrder" id="filteredOrder">
+    <input type="hidden" name="fullOrder" id="fullOrder">
 
-  <!-- системные поля Web3Forms -->
-  <input type="hidden" name="access_key" value="14d92358-9b7a-4e16-b2a7-35e9ed71de43">
-  <input type="hidden" name="subject" value="Новый заказ с лендинга">
-  <input type="hidden" name="fullOrder" id="fullOrder">
-  <input type="hidden" name="filteredOrder" id="filteredOrder">
+    <button type="submit">Отправить заявку</button>
+  </form>
 
-  <button type="submit">Отправить заявку</button>
-</form>
+  <div id="popup"></div>
 
-<div id="popup"></div>
-
-<script>
-/* --- списки блюд --- */
-const breakfast=[
- "Блины кура овощи","Блины кура сливки","Блины с йогуртом и медом","Блины с сыром и ветчиной",
- "Блины с творогом и йогуртом","Драники с йогуртом","Йогурт с гранолой и тыквенными семечками",
- "Омлет с вялеными томатами","Пенкейки с кленовым сиропом и йог.","Сырники"
-];
-const soups=[
- "Брокколи кремсуп","Грибной кремсуп","Кресуп цветная капуста","Куриный кремсуп",
- "Овощной кремсуп","Томатный кремсуп","Тыквенный кремсуп","Чечевичный кремсуп"
-];
-const mains=[
- "Бифстроганов с пюре и маринованными огурцами","Греча с овощами и говядиной","Жульен с пюре",
- "Креветки с цуккини и рисом","Куриная грудка с пюре из цветной кап.","Куриные котлеты с перцами",
- "Миньон стейк с пюре","Овощи запеченые с мясом","Паста карбонара","Паста с креветками в сливочном песто",
- "Паста с курой в сливочном соусе песто","Паста с уткой","Печень в сметанном соусе и пюре",
- "Рататуй","Свинина в барбекю с пюре","Свинина в кислосладком соусе с овощами",
- "Сибас на пару с цукини и чесночным соусом","Форель стейк с цитроне и брокколи"
-];
-
-function render(list,id){
-  const box=document.getElementById(id);
-  list.forEach(n=>{
-    const div=document.createElement("div");
-    div.className="dish";
-    div.innerHTML=`<span>${n}</span><input type="number" name="${n}" min="0">`;
-    box.appendChild(div);
-  });
-}
-render(breakfast,"breakfast"); render(soups,"soups"); render(mains,"mains");
-
-/* --- обработка формы: собираем заказы и отправляем --- */
-document.getElementById("orderForm").addEventListener("submit",async e=>{
-  /* останавливаем стандартную отправку, соберём данные сами */
-  e.preventDefault();
-
-  const f=e.target, fd=new FormData(f);
-  let full="", filtered=""; let qty=0;
-  fd.forEach((v,k)=>{
-    if(!["name","email","comment","contact_type","contact_value","access_key","subject","fullOrder","filteredOrder"].includes(k)){
-      const n=parseInt(v)||0;
-      full+=`${k} — ${n}\n`;
-      if(n>0){ filtered+=`${k} — ${n}\n`; qty+=n; }
-    }
-  });
-  if(qty===0){ alert("Выберите хотя бы одно блюдо 😊"); return; }
-
-  /* кладём заказы в скрытые поля, чтобы письмо их увидело */
-  document.getElementById("fullOrder").value     = full;
-  document.getElementById("filteredOrder").value = filtered;
-
-  try{
-    const res = await fetch("https://api.web3forms.com/submit",{method:"POST",body:new FormData(f)})
-                      .then(r=>r.json());
-
-    if(res.success){
-      const p=document.getElementById("popup");
-      p.textContent = "Заявка отправлена!\n\n"+filtered;
-      p.style.display="block";
-      setTimeout(()=>p.style.display="none",8000);
-      f.reset();
-    }else{
-      alert("Ошибка Web3Forms: "+res.message);
-      console.error(res);
-    }
-  }catch(err){
-    alert("Сеть недоступна. Попробуйте позже.");
-    console.error(err);
-  }
-});
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
