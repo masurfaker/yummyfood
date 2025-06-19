@@ -1,52 +1,60 @@
-emailjs.init("u7NXPBbhemkcB7EGM");      // Public Key
+/* 1. Инициализируем EmailJS */
+emailjs.init("u7NXPBbhemkcB7EGM");   // Public Key
 
+/* 2. Обработчик отправки формы */
 document.getElementById("orderForm").addEventListener("submit", async e=>{
   e.preventDefault();
-  const f=new FormData(e.target);
+  const fd = new FormData(e.target);
 
-  const name=f.get("name").trim();
-  const email=f.get("email").trim();
-  const cType=f.get("contact_type");
-  const cVal =f.get("contact_value").trim();
-  const comment=f.get("comment").trim();
+  const name   = fd.get("name").trim();
+  const email  = fd.get("email").trim();
+  const cType  = fd.get("contact_type");
+  const cValue = fd.get("contact_value").trim();
+  const comment= fd.get("comment").trim();
 
-  let full="",filtered="",qty=0;
-  f.forEach((v,k)=>{
+  /* собираем заказ */
+  let full="", filtered=""; let qty=0;
+  fd.forEach((v,k)=>{
     if(!["name","email","contact_type","contact_value","comment"].includes(k)){
       const n=parseInt(v)||0;
-      full+=`${k} — ${n}\n`;
-      if(n>0){filtered+=`${k} — ${n}\n`;qty+=n;}
+      full += `${k} — ${n}\n`;
+      if(n>0){ filtered += `${k} — ${n}\n`; qty+=n; }
     }
   });
-  if(qty===0){alert("Выберите хотя бы одно блюдо");return;}
+  if(qty===0){ alert("Выберите хотя бы одно блюдо"); return; }
 
-  const admin={
-    name,email,
+  /* параметры в шаблоны */
+  const adminParams={
+    name,
+    email,
     contact_type:cType,
-    contact_value:cVal,
+    contact_value:cValue,
     comment,
-    Order:full
+    Order:full                 //  {{Order}}
   };
-  const client={
-    name,email,
+  const clientParams={
+    name,
+    email,
     comment,
-    contactMethod:cType,
-    contactvalue:cVal,
-    filteredOrder:filtered
+    contactMethod:cType,       //  {{contactMethod}}
+    contactvalue:cValue,       //  {{contactvalue}}
+    filteredOrder:filtered     //  {{filteredOrder}}
   };
 
   try{
-    /* реальные Template ID */
-    await emailjs.send("service_p7e7ykn","template_hwcno8p",admin);
-    await emailjs.send("service_p7e7ykn","template_a4vqdxr",client);
+    /* реальные ID шаблонов */
+    await emailjs.send("service_p7e7ykn","hwcno8p", adminParams);  // admin
+    await emailjs.send("service_p7e7ykn","a4vqdxr", clientParams); // customer
 
-    const p=document.getElementById("popup");
-    p.textContent=
-      `${name}, спасибо!\n\nКонтакт: ${cType} — ${cVal}\n\n`+
-      `Вы выбрали:\n${filtered}`+
+    /* всплывашка */
+    const pop=document.getElementById("popup");
+    pop.textContent=
+      `${name}, спасибо за заявку!\n\n` +
+      `Контакт: ${cType} — ${cValue}\n\n` +
+      `Вы выбрали:\n${filtered}` +
       (comment?`\nКомментарий: ${comment}`:"");
-    p.style.display="block";
-    setTimeout(()=>p.style.display="none",8000);
+    pop.style.display="block";
+    setTimeout(()=>pop.style.display="none",8000);
     e.target.reset();
 
   }catch(err){
