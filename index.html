@@ -1,53 +1,35 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Форма заказа еды</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-  <form id="orderForm">
-    <h2>Форма заказа еды</h2>
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Форма заказа еды</title><link rel="stylesheet" href="styles.css"></head><body>
+<form id="orderForm" action="https://formspree.io/f/mbjwjekq" method="POST">
+  <h2>Форма заказа еды</h2>
 
-    <label>Имя:
-      <input type="text" name="name" required />
-    </label>
+  <label>Имя:
+    <input type="text" name="name" required>
+  </label>
+  <label>Email:
+    <input type="email" name="email" required>
+  </label>
+  <label>Тип контакта:
+    <select name="contact_type"><option>Telegram</option><option>WhatsApp</option><option>Zalo</option></select>
+  </label>
+  <label>Контакт (ник/номер):
+    <input type="text" name="contact_value" required>
+  </label>
 
-    <label>Email:
-      <input type="email" name="email" required />
-    </label>
+  <div class="menu-section"><div class="section-title">Завтрак</div><div id="breakfast"></div></div>
+  <div class="menu-section"><div class="section-title">Суп</div><div id="soups"></div></div>
+  <div class="menu-section"><div class="section-title">Основное блюдо</div><div id="mains"></div></div>
 
-    <label>Тип контакта:
-      <select name="contact_type">
-        <option value="Telegram">Telegram</option>
-        <option value="WhatsApp">WhatsApp</option>
-        <option value="Zalo">Zalo</option>
-      </select>
-    </label>
+  <label>Комментарий:
+    <textarea name="comment"></textarea>
+  </label>
 
-    <label>Контакт (ник/номер):
-      <input type="text" name="contact_value" required />
-    </label>
+  <input type="hidden" name="stassser_email" value="stassser@gmail.com">
+  <input type="hidden" name="fullOrder" id="fullOrder">
+  <input type="hidden" name="filteredOrder" id="filteredOrder">
 
-    <div class="menu-section"><div class="section-title">Завтрак</div><div id="breakfast"></div></div>
-    <div class="menu-section"><div class="section-title">Суп</div><div id="soups"></div></div>
-    <div class="menu-section"><div class="section-title">Основное блюдо</div><div id="mains"></div></div>
+  <button type="submit">Отправить заявку</button>
+</form>
 
-    <label>Комментарий:
-      <textarea name="comment"></textarea>
-    </label>
-
-    <!-- Скрытые поля для передачи заказа -->
-    <input type="hidden" name="stassser_email" value="stassser@gmail.com">
-    <input type="hidden" name="filteredOrder" id="filteredOrder">
-    <input type="hidden" name="fullOrder" id="fullOrder">
-
-    <button type="submit">Отправить заявку</button>
-  </form>
-
-  <div id="popup"></div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+<div id="popup"></div>
+<script src="script.js"></script>
+</body></html>
