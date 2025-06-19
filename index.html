@@ -2,92 +2,53 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YUMMY — Форма заказа</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Форма заказа — Yummy</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
-    <img src="logo.PNG" alt="YUMMY Logo" class="logo" />
+    <img class="logo" src="logo.PNG" alt="Yummy logo" />
+
+    <h1 class="form-title">Форма заказа</h1>
 
     <form id="orderForm">
-      <div class="input-group">
-        <input type="text" name="name" id="name" placeholder="Имя" required />
-        <input type="text" name="contactHandle" id="contactHandle" placeholder="Ник или номер" required />
-        <select name="contactMethod" id="contactMethod" required>
-          <option value="" disabled selected hidden>Выберите социальную сеть</option>
+      <div class="form-group">
+        <label for="name">Имя:</label>
+        <input type="text" id="name" name="name" required minlength="1" />
+      </div>
+
+      <div class="form-group">
+        <label for="contactMethod">Выберите социальную сеть:</label>
+        <select id="contactMethod" name="contactMethod" required>
+          <option value="" disabled selected hidden>Выберите</option>
           <option value="Telegram">Telegram</option>
           <option value="Zalo">Zalo</option>
           <option value="WhatsApp">WhatsApp</option>
         </select>
       </div>
 
-      <!-- Раздел: Завтрак -->
-      <div class="section">
-        <div class="section-title">Завтрак</div>
-        <div class="dish-list">
-          <label>Блины кура овощи <input type="number" name="Блины кура овощи" min="0" /></label>
-          <label>Блины кура сливки <input type="number" name="Блины кура сливки" min="0" /></label>
-          <label>Блины с йогуртом и медом <input type="number" name="Блины с йогуртом и медом" min="0" /></label>
-          <label>Блины с сыром и ветчиной <input type="number" name="Блины с сыром и ветчиной" min="0" /></label>
-          <label>Блины с творогом и йогуртом <input type="number" name="Блины с творогом и йогуртом" min="0" /></label>
-          <label>Драники с йогуртом <input type="number" name="Драники с йогуртом" min="0" /></label>
-          <label>Йогурт с гранолой и тыквенными семечками <input type="number" name="Йогурт с гранолой и тыквенными семечками" min="0" /></label>
-          <label>Омлет с вялеными томатами <input type="number" name="Омлет с вялеными томатами" min="0" /></label>
-          <label>Пенкейки с кленовым сиропом и йогуртом <input type="number" name="Пенкейки с кленовым сиропом и йогуртом" min="0" /></label>
-          <label>Сырники <input type="number" name="Сырники" min="0" /></label>
-        </div>
+      <div class="form-group">
+        <label for="contactHandle">Контакт (ник/номер):</label>
+        <input type="text" id="contactHandle" name="contactHandle" required />
       </div>
 
-      <!-- Раздел: Суп -->
-      <div class="section">
-        <div class="section-title">Суп</div>
-        <div class="dish-list">
-          <label>Брокколи кремсуп <input type="number" name="Брокколи кремсуп" min="0" /></label>
-          <label>Грибной кремсуп <input type="number" name="Грибной кремсуп" min="0" /></label>
-          <label>Кресуп цветная капуста <input type="number" name="Кресуп цветная капуста" min="0" /></label>
-          <label>Куриный кремсуп <input type="number" name="Куриный кремсуп" min="0" /></label>
-          <label>Овощной кремсуп <input type="number" name="Овощной кремсуп" min="0" /></label>
-          <label>Томатный кремсуп <input type="number" name="Томатный кремсуп" min="0" /></label>
-          <label>Тыквенный кремсуп <input type="number" name="Тыквенный кремсуп" min="0" /></label>
-          <label>Чечевичный кремсуп <input type="number" name="Чечевичный кремсуп" min="0" /></label>
-        </div>
+      <!-- Разделы с блюдами будут вставлены сюда через JS -->
+      <div id="menuSections"></div>
+
+      <div class="form-group">
+        <label for="comment">Комментарий:</label>
+        <textarea id="comment" name="comment" rows="3"></textarea>
       </div>
 
-      <!-- Раздел: Основное блюдо -->
-      <div class="section">
-        <div class="section-title">Основное блюдо</div>
-        <div class="dish-list">
-          <label>Бифстроганов с пюре и маринованными огурцами <input type="number" name="Бифстроганов с пюре и маринованными огурцами" min="0" /></label>
-          <label>Греча с овощами и говядиной <input type="number" name="Греча с овощами и говядиной" min="0" /></label>
-          <label>Жульен с пюре <input type="number" name="Жульен с пюре" min="0" /></label>
-          <label>Креветки с цуккини и рисом <input type="number" name="Креветки с цуккини и рисом" min="0" /></label>
-          <label>Куриная грудка с пюре <input type="number" name="Куриная грудка с пюре" min="0" /></label>
-          <label>Куриные котлеты с перцами <input type="number" name="Куриные котлеты с перцами" min="0" /></label>
-          <label>Миньон стейк с пюре <input type="number" name="Миньон стейк с пюре" min="0" /></label>
-          <label>Овощи запеченые с мясом <input type="number" name="Овощи запеченые с мясом" min="0" /></label>
-          <label>Паста карбонара <input type="number" name="Паста карбонара" min="0" /></label>
-          <label>Паста с креветками в сливочном песто <input type="number" name="Паста с креветками в сливочном песто" min="0" /></label>
-          <label>Паста с курой в сливочном соусе песто <input type="number" name="Паста с курой в сливочном соусе песто" min="0" /></label>
-          <label>Паста с уткой <input type="number" name="Паста с уткой" min="0" /></label>
-          <label>Печень в сметанном соусе с пюре <input type="number" name="Печень в сметанном соусе с пюре" min="0" /></label>
-          <label>Рататуй <input type="number" name="Рататуй" min="0" /></label>
-          <label>Свинина в барбекю с пюре <input type="number" name="Свинина в барбекю с пюре" min="0" /></label>
-          <label>Свинина в кислосладком соусе с овощами <input type="number" name="Свинина в кислосладком соусе с овощами" min="0" /></label>
-          <label>Сибас на пару с цукини и чесночным соусом <input type="number" name="Сибас на пару с цукини и чесночным соусом" min="0" /></label>
-          <label>Форель стейк с цитроне и брокколи <input type="number" name="Форель стейк с цитроне и брокколи" min="0" /></label>
-        </div>
-      </div>
-
-      <textarea id="comment" name="comment" placeholder="Комментарий к заказу"></textarea>
       <button type="submit">Отправить заявку</button>
     </form>
+  </div>
 
-    <div id="popup" class="popup" style="display: none;">
-      <div class="popup-content">
-        <p id="popup-message"></p>
-        <button onclick="closePopup()">Закрыть</button>
-      </div>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <p id="popupMessage"></p>
+      <button onclick="closePopup()">Закрыть</button>
     </div>
   </div>
 
