@@ -1,62 +1,67 @@
-document.getElementById("orderForm").addEventListener("submit", function (e) {
+/* --- списки блюд --- */
+const breakfast=[
+ "Блины кура овощи","Блины кура сливки","Блины с йогуртом и медом",
+ "Блины с сыром и ветчиной","Блины с творогом и йогуртом","Драники с йогуртом",
+ "Йогурт с гранолой и тыквенными семечками","Омлет с вялеными томатами",
+ "Пенкейки с кленовым сиропом и йогуртом","Сырники"
+];
+const soups=[
+ "Брокколи кремсуп","Грибной кремсуп","Кресуп цветная капуста","Куриный кремсуп",
+ "Овощной кремсуп","Томатный кремсуп","Тыквенный кремсуп","Чечевичный кремсуп"
+];
+const mains=[
+ "Бифстроганов с пюре и маринованными огурцами","Греча с овощами и говядиной",
+ "Жульен с пюре","Креветки с цуккини и рисом","Куриная грудка с пюре",
+ "Куриные котлеты с перцами","Миньон стейк с пюре","Овощи запеченые с мясом",
+ "Паста карбонара","Паста с креветками в сливочном песто",
+ "Паста с курой в сливочном соусе песто","Паста с уткой",
+ "Печень в сметанном соусе с пюре","Рататуй",
+ "Свинина в барбекю с пюре","Свинина в кислосладком соусе с овощами",
+ "Сибас на пару с цукини и чесночным соусом","Форель стейк с цитроне и брокколи"
+];
+
+/* --- генерация строк меню --- */
+function draw(list,id){
+  const box=document.getElementById(id);
+  list.forEach(name=>{
+    const div=document.createElement("div");
+    div.className="menu-item";
+    div.innerHTML=`<span>${name}</span><input type="number" name="${name}" min="0">`;
+    box.appendChild(div);
+  });
+}
+draw(breakfast,"breakfast"); draw(soups,"soups"); draw(mains,"mains");
+
+/* --- обработчик отправки --- */
+document.getElementById("orderForm").addEventListener("submit",async e=>{
   e.preventDefault();
+  const f=e.target, fd=new FormData(f);
 
-  const name = document.getElementById("name").value.trim();
-  const contactHandle = document.getElementById("contactHandle").value.trim();
-  const contactMethod = document.getElementById("contactMethod").value;
-  const comment = document.getElementById("comment").value.trim();
-
-  if (!name || !contactHandle || !contactMethod) {
-    alert("Пожалуйста, заполните все поля.");
-    return;
-  }
-
-  const inputs = document.querySelectorAll(".dish-list input[type='number']");
-  let orderedItems = [];
-
-  inputs.forEach((input) => {
-    const qty = parseInt(input.value);
-    if (qty > 0) {
-      orderedItems.push(`${input.name} — ${qty}`);
+  let filtered="", list="", n=1, items=0;
+  fd.forEach((v,k)=>{
+    if(!["name","contact_type","contact_value","comment","access_key","subject","filteredOrder","to"].includes(k)){
+      const q=parseInt(v)||0;
+      if(q>0){ filtered+=`${k} — ${q}\\n`; list+=`${n++}. ${k} — ${q}\\n`; items+=q; }
     }
   });
+  if(items===0){ alert("Выберите хотя бы одно блюдо."); return; }
 
-  if (orderedItems.length === 0) {
-    alert("Пожалуйста, выберите хотя бы одно блюдо.");
-    return;
-  }
+  document.getElementById("filteredOrder").value=filtered;
 
-  const fullOrder = orderedItems.join("\n");
+  const payload=Object.fromEntries(fd.entries());
 
-  // Подготовка письма
-  const payload = {
-    access_key: "14d92358-9b7a-4e16-b2a7-35e9ed71de43",
-    name,
-    contactHandle,
-    contactMethod,
-    comment,
-    order: fullOrder,
-    reply_to: "stassser@gmail.com",
-  };
+  try{
+    const res=await fetch("https://api.web3forms.com/submit",{
+      method:"POST",headers:{ "Content-Type":"application/json" },
+      body:JSON.stringify(payload)
+    }).then(r=>r.json());
 
-  fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.success) {
-        document.getElementById("popup-message").innerText = `${name}! Ваша заявка отправлена!\n\nВаш заказ:\n${fullOrder}\n\nВ ближайшее время с вами свяжутся.\n\nБлагодарим, что выбрали YUMMY!`;
-        document.getElementById("popup").style.display = "flex";
-        document.getElementById("orderForm").reset();
-      } else {
-        alert("Ошибка при отправке. Повторите позже.");
-      }
-    })
-    .catch(() => alert("Ошибка отправки. Проверьте подключение."));
+    if(res.success){
+      document.getElementById("thankYou").textContent=`${fd.get("name")}! Ваша заявка отправлена!`;
+      document.getElementById("resultText").textContent=`Ваш заказ:\\n${list}\\nВ ближайшее время с вами свяжутся.\\nБлагодарим, что выбрали YUMMY!`;
+      document.getElementById("resultModal").classList.remove("hidden");
+      f.reset();
+    }else{ alert("Ошибка Web3Forms: "+res.message); }
+  }catch(err){ alert("Сеть недоступна, попробуйте позже."); }
 });
-
-function closePopup() {
-  document.getElementById("popup").style.display = "none";
-}
+document.getElementById("closeModal").onclick=()=>document.getElementById("resultModal").classList.add("hidden");
