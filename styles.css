@@ -1,97 +1,87 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #ececec;
-  margin: 0;
-  padding: 20px;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
+body{
+  font-family:Arial,sans-serif;
+  background:#ececec;
+  margin:0;
+  padding:20px;
+  display:flex;
+  justify-content:center;
 }
-form {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 520px;
-  box-shadow: 0 2px 8px rgba(0,0,0,.1);
+#orderForm{
+  background:#fff;
+  border-radius:12px;
+  padding:25px 20px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  width:100%;
+  max-width:540px;
 }
-h2 {
-  text-align: center;
-  margin-top: 0;
+
+h2{text-align:center;margin-top:0}
+
+label{display:block;margin-bottom:14px;font-weight:600;font-size:16px}
+label input,label select,label textarea{
+  font-size:16px;
+  margin-top:6px;
+  width:100%;
+  padding:8px 10px;
+  border:1px solid #bbb;
+  border-radius:6px;
+  background:#fafafa;
 }
-label {
-  display: block;
-  margin-bottom: 12px;
-  font-size: 16px;
+
+textarea{resize:vertical;min-height:80px}
+button{
+  margin-top:15px;width:100%;padding:12px;font-size:16px;
+  background:#555;color:#fff;border:none;border-radius:8px;cursor:pointer
 }
-label input,
-label select,
-label textarea {
-  font-size: 16px;
-  width: 100%;
-  margin-top: 6px;
-  padding: 8px;
-  border: 1px solid #bbb;
-  border-radius: 6px;
-  background: #fafafa;
+button:hover{background:#404040}
+
+/* меню */
+.menu-section{
+  background:#f4f4f4;
+  border-radius:10px;
+  padding:12px 14px 8px;
+  margin:20px 0;
 }
-textarea {
-  resize: vertical;
-  min-height: 80px;
+.section-title{
+  background:#d8d8d8;
+  padding:6px;
+  border-radius:6px;
+  text-align:center;
+  font-weight:700;
+  margin:-12px -14px 12px;
 }
-button {
-  font-size: 16px;
-  width: 100%;
-  padding: 12px;
-  background: #555;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
+.menu-section label{
+  display:grid;
+  grid-template-columns:1fr 70px;
+  column-gap:10px;
+  align-items:center;
+  margin:6px 0;
+  font-weight:400;
 }
-button:hover {
-  background: #444;
+.menu-section span{
+  word-break:break-word;
 }
-.menu-section {
-  margin: 20px 0;
-  background: #f4f4f4;
-  padding: 12px;
-  border-radius: 8px;
+.menu-section input[type=number]{
+  width:70px;
+  font-size:16px;             /* >=16px чтобы iOS не зумировал */
+  padding:5px;
+  border:1px solid #bbb;
+  border-radius:6px;
+  background:#fff;
 }
-.section-title {
-  background: #d8d8d8;
-  text-align: center;
-  padding: 6px;
-  border-radius: 6px;
-  margin: -12px -12px 12px;
-}
-.menu-section label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
-}
-.menu-section span {
-  flex: 1;
-  margin-right: 10px;
-  word-break: break-word;
-}
-.menu-section input[type="number"] {
-  width: 65px;
-  font-size: 16px;
-  padding: 5px;
-}
-#popup {
-  display: none;
-  position: fixed;
-  background: #f9f9f9;
-  padding: 20px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  white-space: pre-line;
-  max-width: 90%;
-  z-index: 1000;
+
+/* всплывашка */
+#popup{
+  display:none;
+  position:fixed;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  background:#fbfbfb;
+  border:2px solid #ccc;
+  border-radius:10px;
+  padding:20px;
+  max-width:420px;
+  white-space:pre-line;
+  box-shadow:0 2px 12px rgba(0,0,0,.2);
+  z-index:1000;
 }
