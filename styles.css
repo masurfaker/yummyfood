@@ -1,66 +1,31 @@
-/* ===== БАЗА ==================================================== */
-body{
-  font-family:Arial,sans-serif;
-  background:#f5f5f5;
-  margin:0;
-  padding:0;
-  overflow-x:hidden;          /* 1. запрещаем горизонтальный скролл */
-}
-html{overflow-x:hidden;}      /*  ← на всякий случай для iOS */
+/* ===== базовые стили ===== */
+html,body{margin:0;padding:0;overflow-x:hidden;font-family:Arial,sans-serif;background:#f5f5f5}
 
-/* ===== КАРТОЧКА ФОРМЫ ========================================== */
-.container{
-  max-width:700px;
-  margin:20px auto;
-  background:#fff;
-  border-radius:12px;
-  padding:20px;
-  box-shadow:0 0 8px rgba(0,0,0,.1);
-}
+/* ===== карточка формы */
+.container{max-width:700px;margin:20px auto;background:#fff;border-radius:12px;padding:20px;box-shadow:0 0 6px rgba(0,0,0,.1)}
 
-/* ===== ЛОГОТИП ================================================= */
-.logo{
-  width:100%;
-  height:auto;
-  display:block;
-  margin:0 auto 24px;
-  border-radius:8px;
-}
+/* ===== логотип (ширина 100 % контейнера) */
+.logo{width:100%;height:auto;border-radius:8px;display:block;margin:0 auto 24px}
 
-/* ===== ИНПУТЫ ================================================== */
+/* ===== элементы формы */
 .input-block{margin-bottom:16px}
-.input-block label{display:block;margin-bottom:6px;font-weight:500}
-.input-block input,
-.input-block select,
-.input-block textarea{
-  width:100%;
-  padding:10px;
-  font-size:16px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  box-sizing:border-box;
-}
+label{display:block;margin-bottom:6px;font-weight:500;font-size:16px}
+input[type="text"],select,textarea{
+  width:100%;padding:10px;font-size:16px;border:1px solid #ccc;border-radius:6px;box-sizing:border-box}
+select{appearance:none;background:#fff;color:#333;margin-bottom:12px}
 
-/* 2. Отступ после селекта соц-сети */
-#contactMethod{margin-bottom:12px}
-
-/* селект — меньшее скругление */
-select{appearance:none;background:#fff;color:#333;border-radius:6px}
-
-/* ===== МЕНЮ ==================================================== */
+/* ===== меню */
 .menu-section{margin:20px 0;padding:16px;background:#f3f1ed;border-radius:12px}
-.section-title{background:#e1ded9;padding:6px 10px;border-radius:8px;
-               font-weight:700;font-size:18px;margin-bottom:12px}
+.section-title{background:#e1ded9;padding:6px 10px;border-radius:8px;font-weight:700;font-size:18px;margin-bottom:12px}
 .dish{display:flex;justify-content:space-between;align-items:center;margin:6px 0;font-size:15px}
 .dish input{width:60px;text-align:center;border:1px solid #ccc;border-radius:6px;padding:6px}
 
-/* ===== КНОПКА ================================================== */
-button{width:100%;background:#555;color:#fff;padding:14px;font-size:18px;border:none;border-radius:8px;cursor:pointer}
+/* ===== кнопка */
+button{width:100%;background:#555;color:#fff;border:none;padding:14px;font-size:18px;border-radius:8px;cursor:pointer}
 button:hover{background:#222}
 
-/* ===== ВСПЛЫВАШКА ============================================== */
-.popup{position:fixed;inset:0;background:rgba(0,0,0,.5);
-       display:flex;justify-content:center;align-items:center}
+/* ===== всплывающее окно */
+.popup{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:center}
 .popup.hidden{display:none}
-.popup-content{background:#fff;padding:20px;border-radius:12px;text-align:center;max-width:90%}
-.popup-content pre{text-align:left;white-space:pre-line;font-size:15px;line-height:1.3;margin:15px 0}
+.popup-content{background:#fff;padding:20px;border-radius:12px;max-width:90%;text-align:center}
+.popup-content pre{white-space:pre-line;text-align:left;font-size:15px;line-height:1.3;margin:15px 0}
