@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0">
+  <title>Yummy Food — заказ</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Yummy Logo" class="logo">
+    <h1>Форма заказа</h1>
+    <form id="orderForm">
+      <div class="input-group">
+        <label>Имя</label>
+        <input type="text" name="name" required>
+      </div>
+      <div class="input-group">
+        <label>Соц-сеть</label>
+        <select name="contact_type">
+          <option value="Telegram">Telegram</option>
+          <option value="WhatsApp">WhatsApp</option>
+          <option value="Zalo">Zalo</option>
+        </select>
+        <input type="text" name="contact_value" placeholder="Ник или номер" required>
+      </div>
+      <div class="menu-section"><div class="section-title">Завтрак</div><div id="breakfast"></div></div>
+      <div class="menu-section"><div class="section-title">Суп</div><div id="soups"></div></div>
+      <div class="menu-section"><div class="section-title">Основное блюдо</div><div id="mains"></div></div>
+      <div class="input-group">
+        <label>Комментарий</label>
+        <textarea name="comment" rows="3"></textarea>
+      </div>
+      <input type="hidden" name="access_key"  value="14d92358-9b7a-4e16-b2a7-35e9ed71de43">
+      <input type="hidden" name="filteredOrder" id="filteredOrder">
+      <input type="hidden" name="subject" value="Новая заявка с лендинга">
+      <input type="hidden" name="to" value="stassser@gmail.com">
+      <button type="submit">Отправить заявку</button>
+    </form>
+    <div id="resultModal" class="modal hidden">
+      <div class="modal-content">
+        <h3 id="thankYou"></h3>
+        <pre id="resultText"></pre>
+        <button id="closeModal">Закрыть</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
