@@ -1,76 +1,70 @@
+const breakfast = [
+ "Блины кура овощи","Блины кура сливки","Блины с йогуртом и медом","Блины с сыром и ветчиной",
+ "Блины с творогом и йогуртом","Драники с йогуртом","Йогурт с гранолой и тыквенными семечками",
+ "Омлет с вялеными томатами","Пенкейки с кленовым сиропом и йог.","Сырники"
+];
+const soups = [
+ "Брокколи кремсуп","Грибной кремсуп","Кресуп цветная капуста","Куриный кремсуп",
+ "Овощной кремсуп","Томатный кремсуп","Тыквенный кремсуп","Чечевичный кремсуп"
+];
+const mains = [
+ "Бифстроганов с пюре и маринованными огурцами","Греча с овощами и говядиной","Жульен с пюре",
+ "Креветки с цуккини и рисом","Куриная грудка с пюре из цветной кап.","Куриные котлеты с перцами",
+ "Миньон стейк с пюре","Овощи запеченые с мясом","Паста карбонара","Паста с креветками в сливочном песто",
+ "Паста с курой в сливочном соусе песто","Паста с уткой","Печень в сметанном соусе и пюре",
+ "Рататуй","Свинина в барбекю с пюре","Свинина в кислосладком соусе с овощами",
+ "Сибас на пару с цукини и чесночным соусом","Форель стейк с цитроне и брокколи"
+];
 
-emailjs.init('u7NXPBbhemkcB7EGM');
+function render(list,id){
+  const box = document.getElementById(id);
+  list.forEach(n=>{
+    const div = document.createElement("div");
+    div.className = "dish";
+    div.innerHTML = `<span>${n}</span><input type="number" name="${n}" min="0">`;
+    box.appendChild(div);
+  });
+}
+render(breakfast,"breakfast");
+render(soups,"soups");
+render(mains,"mains");
 
-document.getElementById('orderForm').addEventListener('submit', function(e) {
+document.getElementById("orderForm").addEventListener("submit", async e => {
   e.preventDefault();
+  const f = e.target, fd = new FormData(f);
 
-  const formData = new FormData(this);
-  const name = formData.get("name");
-  const email = formData.get("email");
-  const contactType = formData.get("social");
-  const contactValue = formData.get("contact");
-  const comment = formData.get("comment");
-
-  let filteredOrder = '';
-  let fullOrder = '';
-  let countTotal = 0;
-
-  for (let [key, value] of formData.entries()) {
-    if (['name', 'email', 'social', 'contact', 'comment'].includes(key)) continue;
-
-    let val = parseInt(value || 0);
-    fullOrder += `${key} — ${val}\n`;
-    if (val > 0) {
-      filteredOrder += `${key} — ${val}\n`;
-      countTotal += val;
+  let full = "", filtered = "";
+  let qty = 0;
+  fd.forEach((v,k)=>{
+    if(!["name","email","comment","contact_type","contact_value","stassser_email","filteredOrder","fullOrder"].includes(k)){
+      const n = parseInt(v) || 0;
+      full += `${k} — ${n}\n`;
+      if(n>0){ filtered += `${k} — ${n}\n`; qty+=n; }
     }
-  }
-
-  if (countTotal < 10) {
-    alert("Минимальное количество заказанных блюд: 10.");
-    return;
-  }
-
-  const clientMessage = `
-Здравствуйте, ${name}!
-
-Спасибо за вашу заявку.
-
-Ваш контакт для связи: ${contactType} — ${contactValue}
-
-Вы выбрали:
-${filteredOrder}
-
-Комментарий: ${comment}
-
-В ближайшее время с вами свяжутся.
-`;
-
-  // Отправка письма клиенту
-  emailjs.send('service_p7e7ykn', 'admin_template', {
-    name: name,
-    email: email,
-    contactMethod: contactType,
-    contactHandle: contactValue,
-    comment: comment,
-    filteredOrder: filteredOrder,
-    fullOrder: fullOrder,
-    to_email: email
   });
+  if(qty === 0){ alert("Выберите хотя бы одно блюдо."); return; }
 
-  // Отправка письма администратору
-  emailjs.send('service_p7e7ykn', 'admin_template', {
-    name: name,
-    email: email,
-    contactMethod: contactType,
-    contactHandle: contactValue,
-    comment: comment,
-    filteredOrder: filteredOrder,
-    fullOrder: fullOrder,
-    to_email: 'stassser@gmail.com'
-  });
+  document.getElementById("fullOrder").value = full;
+  document.getElementById("filteredOrder").value = filtered;
 
-  const popup = document.getElementById('popup');
-  popup.textContent = clientMessage;
-  popup.style.display = 'block';
+  // Отправляем форму
+  const endpoint = "https://formspree.io/f/mbjwjekq";
+  f.setAttribute("action", endpoint);
+  f.setAttribute("method", "POST");
+
+  try {
+    const res = await fetch(endpoint, { method: "POST", body: new FormData(f) });
+    if(res.ok){
+      const popup = document.getElementById("popup");
+      popup.textContent = "Заявка отправлена!\n\n" + filtered;
+      popup.style.display = "block";
+      setTimeout(() => popup.style.display = "none", 8000);
+      f.reset();
+    } else {
+      alert("Ошибка отправки. Проверьте форму.");
+    }
+  } catch(err) {
+    alert("Ошибка сети. Повторите позже.");
+    console.error(err);
+  }
 });
