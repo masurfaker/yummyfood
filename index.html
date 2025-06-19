@@ -1,35 +1,81 @@
-<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Форма заказа еды</title><link rel="stylesheet" href="styles.css"></head><body>
-<form id="orderForm" action="https://formspree.io/f/mbjwjekq" method="POST">
-  <h2>Форма заказа еды</h2>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Yummy Food</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Yummy Logo" class="logo" />
+    <h1>Форма заказа</h1>
+    <form id="orderForm" method="POST">
+      <div class="input-group"><label>Имя</label><input type="text" name="name" required /></div>
+      <div class="input-group"><label>Email</label><input type="email" name="email" required /></div>
+      <div class="input-group"><label>Контакт</label><input type="text" name="contact" required /></div>
 
-  <label>Имя:
-    <input type="text" name="name" required>
-  </label>
-  <label>Email:
-    <input type="email" name="email" required>
-  </label>
-  <label>Тип контакта:
-    <select name="contact_type"><option>Telegram</option><option>WhatsApp</option><option>Zalo</option></select>
-  </label>
-  <label>Контакт (ник/номер):
-    <input type="text" name="contact_value" required>
-  </label>
+      <div class="menu-section">
+        <h2>Завтрак</h2>
+        <div class="menu-item"><span>Блины кура овощи</span><input type="number" name="Блины кура овощи" min="0" /></div>
+        <div class="menu-item"><span>Блины кура сливки</span><input type="number" name="Блины кура сливки" min="0" /></div>
+        <div class="menu-item"><span>Блины с йогуртом и медом</span><input type="number" name="Блины с йогуртом и медом" min="0" /></div>
+        <div class="menu-item"><span>Блины с сыром и ветчиной</span><input type="number" name="Блины с сыром и ветчиной" min="0" /></div>
+        <div class="menu-item"><span>Блины с творогом и йогуртом</span><input type="number" name="Блины с творогом и йогуртом" min="0" /></div>
+        <div class="menu-item"><span>Драники с йогуртом</span><input type="number" name="Драники с йогуртом" min="0" /></div>
+        <div class="menu-item"><span>Йогурт с гранолой и тыквенными семечками</span><input type="number" name="Йогурт с гранолой и тыквенными семечками" min="0" /></div>
+        <div class="menu-item"><span>Омлет с вялеными томатами</span><input type="number" name="Омлет с вялеными томатами" min="0" /></div>
+        <div class="menu-item"><span>Пенкейки с кленовым сиропом и йогуртом</span><input type="number" name="Пенкейки с кленовым сиропом и йогуртом" min="0" /></div>
+        <div class="menu-item"><span>Сырники</span><input type="number" name="Сырники" min="0" /></div>
+      </div>
 
-  <div class="menu-section"><div class="section-title">Завтрак</div><div id="breakfast"></div></div>
-  <div class="menu-section"><div class="section-title">Суп</div><div id="soups"></div></div>
-  <div class="menu-section"><div class="section-title">Основное блюдо</div><div id="mains"></div></div>
+      <div class="menu-section">
+        <h2>Суп</h2>
+        <div class="menu-item"><span>Брокколи кремсуп</span><input type="number" name="Брокколи кремсуп" min="0" /></div>
+        <div class="menu-item"><span>Грибной кремсуп</span><input type="number" name="Грибной кремсуп" min="0" /></div>
+        <div class="menu-item"><span>Кресуп цветная капуста</span><input type="number" name="Кресуп цветная капуста" min="0" /></div>
+        <div class="menu-item"><span>Куриный кремсуп</span><input type="number" name="Куриный кремсуп" min="0" /></div>
+        <div class="menu-item"><span>Овощной кремсуп</span><input type="number" name="Овощной кремсуп" min="0" /></div>
+        <div class="menu-item"><span>Томатный кремсуп</span><input type="number" name="Томатный кремсуп" min="0" /></div>
+        <div class="menu-item"><span>Тыквенный кремсуп</span><input type="number" name="Тыквенный кремсуп" min="0" /></div>
+        <div class="menu-item"><span>Чечевичный кремсуп</span><input type="number" name="Чечевичный кремсуп" min="0" /></div>
+      </div>
 
-  <label>Комментарий:
-    <textarea name="comment"></textarea>
-  </label>
+      <div class="menu-section">
+        <h2>Основное блюдо</h2>
+        <div class="menu-item"><span>Бифстроганов с пюре и маринованными огурцами</span><input type="number" name="Бифстроганов" min="0" /></div>
+        <div class="menu-item"><span>Греча с овощами и говядиной</span><input type="number" name="Греча с овощами и говядиной" min="0" /></div>
+        <div class="menu-item"><span>Жульен с пюре</span><input type="number" name="Жульен с пюре" min="0" /></div>
+        <div class="menu-item"><span>Креветки с цуккини и рисом</span><input type="number" name="Креветки с цуккини и рисом" min="0" /></div>
+        <div class="menu-item"><span>Куриная грудка с пюре</span><input type="number" name="Куриная грудка с пюре" min="0" /></div>
+        <div class="menu-item"><span>Куриные котлеты с перцами</span><input type="number" name="Куриные котлеты с перцами" min="0" /></div>
+        <div class="menu-item"><span>Миньон стейк с пюре</span><input type="number" name="Миньон стейк с пюре" min="0" /></div>
+        <div class="menu-item"><span>Овощи запеченые с мясом</span><input type="number" name="Овощи запеченые с мясом" min="0" /></div>
+        <div class="menu-item"><span>Паста карбонара</span><input type="number" name="Паста карбонара" min="0" /></div>
+        <div class="menu-item"><span>Паста с креветками в сливочном песто</span><input type="number" name="Паста с креветками" min="0" /></div>
+        <div class="menu-item"><span>Паста с курой в сливочном соусе песто</span><input type="number" name="Паста с курой" min="0" /></div>
+        <div class="menu-item"><span>Паста с уткой</span><input type="number" name="Паста с уткой" min="0" /></div>
+        <div class="menu-item"><span>Печень в сметанном соусе с пюре</span><input type="number" name="Печень с пюре" min="0" /></div>
+        <div class="menu-item"><span>Рататуй</span><input type="number" name="Рататуй" min="0" /></div>
+        <div class="menu-item"><span>Свинина в барбекю с пюре</span><input type="number" name="Свинина барбекю" min="0" /></div>
+        <div class="menu-item"><span>Свинина в кислосладком соусе с овощами</span><input type="number" name="Свинина в кислосладком" min="0" /></div>
+        <div class="menu-item"><span>Сибас на пару с цукини и чесночным соусом</span><input type="number" name="Сибас на пару" min="0" /></div>
+        <div class="menu-item"><span>Форель стейк с цитроне и брокколи</span><input type="number" name="Форель стейк" min="0" /></div>
+      </div>
 
-  <input type="hidden" name="stassser_email" value="stassser@gmail.com">
-  <input type="hidden" name="fullOrder" id="fullOrder">
-  <input type="hidden" name="filteredOrder" id="filteredOrder">
+      <div class="input-group"><label>Комментарий</label><textarea name="comment" rows="3"></textarea></div>
 
-  <button type="submit">Отправить заявку</button>
-</form>
+      <input type="hidden" name="access_key" value="14d92358-9b7a-4e16-b2a7-35e9ed71de43">
+      <button type="submit">Отправить заявку</button>
+    </form>
 
-<div id="popup"></div>
-<script src="script.js"></script>
-</body></html>
+    <div id="resultModal" class="modal hidden">
+      <div class="modal-content">
+        <p id="resultText"></p>
+        <button id="closeModal">Ок</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
