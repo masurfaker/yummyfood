@@ -1,61 +1,108 @@
+/* --- базовая серо-белая палитра --- */
+body{
+  font-family:system-ui,Arial,sans-serif;
+  background:#ececec;
+  margin:0;
+  padding:20px;
+  display:flex;
+  justify-content:center;
+}
+#orderForm{
+  background:#ffffff;
+  border-radius:12px;
+  padding:25px 20px;
+  box-shadow:0 2px 8px rgba(0,0,0,.08);
+  width:100%;
+  max-width:520px;
+}
+h2{margin-top:0;text-align:center;}
 
-body {
-  font-family: sans-serif;
-  background-color: #ffffff;
-  padding: 20px;
-  color: #333;
+label{
+  display:block;
+  margin-bottom:14px;
+  font-weight:600;
+}
+label input[type="text"],
+label input[type="email"],
+label select,
+label textarea{
+  display:block;
+  width:100%;
+  margin-top:6px;
+  padding:8px 10px;
+  border:1px solid #ccc;
+  border-radius:6px;
+  background:#fafafa;
+  font-weight:400;
+}
+label textarea{resize:vertical;min-height:80px;}
+
+button{
+  margin-top:15px;
+  width:100%;
+  padding:12px;
+  background:#555;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
+}
+button:hover{background:#404040}
+
+/* --- секции меню --- */
+.menu-section{
+  background:#f4f4f4;
+  border-radius:10px;
+  padding:12px 14px 8px;
+  margin:18px 0;
+}
+.section-title{
+  background:#d8d8d8;
+  padding:6px 10px;
+  border-radius:6px;
+  text-align:center;
+  font-weight:700;
+  margin:-12px -14px 10px;
+}
+.menu-section label{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:6px 0;
+  font-weight:400;
+}
+.menu-section span{
+  flex:1 1 auto;
+  padding-right:10px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+/* поле количества – маленькое, но font-size ≥16 px, чтобы iOS не зумировал */
+.menu-section input[type="number"]{
+  width:65px;
+  padding:5px;
+  font-size:16px;
+  border:1px solid #bbb;
+  border-radius:6px;
+  background:#fff;
 }
 
-.form-block, .dish {
-  margin-bottom: 10px;
-}
-
-input, select, textarea {
-  background: #f5f0e6;
-  border: none;
-  padding: 8px;
-  border-radius: 5px;
-  width: 100%;
-}
-
-.menu-section {
-  background: #f9f5ef;
-  padding: 15px;
-  border-radius: 10px;
-  margin: 20px 0;
-}
-
-.section-title {
-  font-weight: bold;
-  background: #e8dcc7;
-  padding: 10px;
-  border-radius: 7px;
-  margin-bottom: 10px;
-}
-
-.dish {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-button {
-  background: #d8bfa3;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#popup {
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #fff4e3;
-  padding: 20px;
-  border: 2px solid #d1c1ae;
-  border-radius: 10px;
-  display: none;
+/* --- всплывающее окно чек-аут --- */
+#popup{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#fbfbfb;
+  border:2px solid #ccc;
+  border-radius:12px;
+  padding:20px;
+  max-width:400px;
+  box-shadow:0 2px 12px rgba(0,0,0,.2);
+  display:none;
+  white-space:pre-line;
+  line-height:1.4;
+  z-index:1000;
 }
