@@ -1,105 +1,104 @@
+/* базовая серо-белая палитра */
+body{
+  font-family:system-ui,Arial,sans-serif;
+  background:#f2f2f2;
+  margin:0;
+  padding:20px;
+  display:flex;
+  justify-content:center;
+}
+#orderForm{
+  background:#ffffff;
+  border-radius:12px;
+  padding:25px 20px;
+  box-shadow:0 2px 8px rgba(0,0,0,.1);
+  width:100%;
+  max-width:520px;
+}
+h2{margin-top:0;text-align:center;}
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
-  margin: 0;
-  padding: 20px;
-  color: #333;
+label{
+  display:block;
+  margin-bottom:14px;
+  font-weight:600;
+}
+label input[type="text"],
+label input[type="email"],
+label select,
+label textarea{
+  display:block;
+  width:100%;
+  margin-top:6px;
+  padding:8px 10px;
+  border:1px solid #ccc;
+  border-radius:6px;
+  background:#fafafa;
+  font-weight:400;
+}
+label textarea{resize:vertical;min-height:80px;}
+
+button{
+  margin-top:15px;
+  width:100%;
+  padding:12px;
+  background:#6b6b6b;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
+}
+button:hover{background:#555;}
+
+.menu-section{
+  background:#ededed;
+  border-radius:10px;
+  padding:12px 14px 8px;
+  margin:18px 0;
+}
+.section-title{
+  background:#d3d3d3;
+  padding:6px 10px;
+  border-radius:6px;
+  text-align:center;
+  font-weight:700;
+  margin:-12px -14px 10px;
+}
+.menu-section label{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:6px 0;
+  font-weight:400;
+}
+.menu-section span{
+  flex:1 1 auto;
+  padding-right:10px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.menu-section input[type="number"]{
+  width:60px;
+  padding:5px;
+  border:1px solid #bbb;
+  border-radius:6px;
+  background:#ffffff;
 }
 
-form {
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-input[type="text"],
-input[type="email"],
-textarea,
-select {
-  width: 100%;
-  padding: 8px;
-  margin-bottom: 15px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  background-color: #fdfaf6;
-}
-
-.menu-section {
-  background-color: #f6f0e6;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 25px;
-}
-
-.section-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  background-color: #ede1cf;
-  padding: 10px;
-  border-radius: 8px;
-}
-
-.dish {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-  padding: 6px 0;
-  border-bottom: 1px dashed #ccc;
-}
-
-.dish:last-child {
-  border-bottom: none;
-}
-
-.dish label {
-  flex: 1;
-  font-weight: normal;
-  margin: 0;
-}
-
-.dish input[type="number"] {
-  width: 60px;
-  padding: 5px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-}
-
-textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-button {
-  padding: 12px 20px;
-  background-color: #d4b48c;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  cursor: pointer;
-  color: white;
-}
-
-button:hover {
-  background-color: #b99870;
-}
-
-#popup {
-  display: none;
-  background-color: #f8f1e6;
-  border: 1px solid #d6c4a4;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-  white-space: pre-line;
-  font-size: 16px;
+/* всплывающее окно */
+#popup{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:#fbfbfb;
+  border:2px solid #ccc;
+  border-radius:12px;
+  padding:20px;
+  max-width:400px;
+  box-shadow:0 2px 12px rgba(0,0,0,.2);
+  display:none;
+  white-space:pre-line;
+  z-index:1000;
 }
