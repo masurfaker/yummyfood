@@ -1,61 +1,117 @@
-
 body {
-  font-family: sans-serif;
-  background-color: #ffffff;
+  font-family: Arial, sans-serif;
+  background: #ececec;
+  margin: 0;
   padding: 20px;
-  color: #333;
+  display: flex;
+  justify-content: center;
 }
 
-.form-block, .dish {
-  margin-bottom: 10px;
-}
-
-input, select, textarea {
-  background: #f5f0e6;
-  border: none;
-  padding: 8px;
-  border-radius: 5px;
+form {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
   width: 100%;
+  max-width: 560px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  box-sizing: border-box;
+}
+
+h2 {
+  text-align: center;
+  margin-top: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 14px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+label input,
+label select,
+label textarea {
+  font-size: 16px;
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px 10px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background: #fafafa;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
 .menu-section {
-  background: #f9f5ef;
-  padding: 15px;
+  background: #f4f4f4;
   border-radius: 10px;
-  margin: 20px 0;
+  padding: 14px;
+  margin: 22px 0;
 }
 
 .section-title {
-  font-weight: bold;
-  background: #e8dcc7;
-  padding: 10px;
-  border-radius: 7px;
-  margin-bottom: 10px;
+  background: #d8d8d8;
+  padding: 6px;
+  margin: -14px;
+  text-align: center;
+  font-weight: 700;
+  border-radius: 6px;
 }
 
 .dish {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 70px;
+  column-gap: 10px;
   align-items: center;
+  margin: 6px 0;
+  font-weight: 400;
+}
+
+.dish span {
+  font-size: 14px;
+  word-break: break-word;
+}
+
+.dish input[type=number] {
+  width: 70px;
+  font-size: 16px;
+  padding: 5px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background: #fff;
 }
 
 button {
-  background: #d8bfa3;
-  color: white;
-  padding: 10px 20px;
+  font-size: 16px;
+  width: 100%;
+  padding: 12px;
+  background: #555;
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
+}
+
+button:hover {
+  background: #404040;
 }
 
 #popup {
   position: fixed;
-  top: 20%;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  background: #fff4e3;
+  transform: translate(-50%, -50%);
+  background: #fbfbfb;
   padding: 20px;
-  border: 2px solid #d1c1ae;
   border-radius: 10px;
+  max-width: 420px;
+  white-space: pre-line;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
   display: none;
+  z-index: 1000;
 }
