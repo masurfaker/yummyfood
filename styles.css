@@ -1,132 +1,18 @@
-body {
-  margin: 0;
-  font-family: "Segoe UI", sans-serif;
-  background: #f3f3f3;
-  color: #333;
-  overflow-x: hidden;
-}
-
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.logo {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 0 auto 20px auto;
-}
-
-form {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
-}
-
-.input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-input[type="text"],
-textarea,
-select {
-  font-size: 16px;
-  padding: 10px;
-  border: 1px solid #aaa;
-  border-radius: 8px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-select {
-  color: #333;
-  background: white;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-.section {
-  margin-bottom: 30px;
-}
-
-.section-title {
-  font-weight: bold;
-  background: #e1e1e1;
-  padding: 8px 12px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-}
-
-.dish-list label {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 4px 0;
-  font-size: 14px;
-}
-
-.dish-list input[type="number"] {
-  width: 60px;
-  padding: 4px;
-  text-align: center;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-  background: white;
-}
-
-textarea {
-  resize: vertical;
-  min-height: 60px;
-}
-
-button[type="submit"] {
-  margin-top: 15px;
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  background: #666;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-}
-
-.popup-content {
-  background: white;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  max-width: 90%;
-}
-
-.popup-content button {
-  margin-top: 15px;
-  padding: 8px 20px;
-  background: #666;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 14px;
-  cursor: pointer;
-}
+body{font-family:Arial,sans-serif;background:#f5f5f5;margin:0;padding:20px}
+.container{max-width:720px;margin:auto;background:#fff;border-radius:10px;padding:20px;box-shadow:0 0 10px rgba(0,0,0,.1)}
+h1{text-align:center;margin:12px 0 24px;color:#444}
+.logo{max-width:140px;display:block;margin:0 auto 18px}
+.menu-section{margin-bottom:24px;padding:14px;background:#ececec;border-radius:10px}
+.section-title{background:#d0d0d0;padding:6px 10px;border-radius:6px;font-weight:700;text-align:center;margin:-14px -14px 12px}
+.menu-item{display:flex;justify-content:space-between;align-items:center;margin:6px 0;font-size:15px}
+.menu-item input[type=number]{width:48px;font-size:16px;padding:4px}
+.input-group{margin-bottom:16px}
+.input-group label{display:block;margin-bottom:5px;font-weight:500}
+.input-group input,.input-group select,.input-group textarea{width:100%;font-size:16px;padding:8px;box-sizing:border-box}
+select{border:1px solid #ccc;border-radius:4px;background:#fff;color:#333;font-family:inherit;appearance:none}
+button{width:100%;background:#444;color:#fff;padding:12px;font-size:17px;border:none;border-radius:6px;cursor:pointer}
+button:hover{background:#222}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;justify-content:center;align-items:center}
+.modal.hidden{display:none}
+.modal-content{background:#fff;padding:22px;text-align:center;border-radius:8px}
+.modal-content pre{text-align:left;white-space:pre-line;margin:15px 0;font-size:15px;line-height:1.3}
