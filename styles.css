@@ -1,108 +1,97 @@
-/* --- базовая серо-белая палитра --- */
-body{
-  font-family:system-ui,Arial,sans-serif;
-  background:#ececec;
-  margin:0;
-  padding:20px;
-  display:flex;
-  justify-content:center;
+body {
+  font-family: Arial, sans-serif;
+  background: #ececec;
+  margin: 0;
+  padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
 }
-#orderForm{
-  background:#ffffff;
-  border-radius:12px;
-  padding:25px 20px;
-  box-shadow:0 2px 8px rgba(0,0,0,.08);
-  width:100%;
-  max-width:520px;
+form {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.1);
 }
-h2{margin-top:0;text-align:center;}
-
-label{
-  display:block;
-  margin-bottom:14px;
-  font-weight:600;
+h2 {
+  text-align: center;
+  margin-top: 0;
 }
-label input[type="text"],
-label input[type="email"],
+label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+label input,
 label select,
-label textarea{
-  display:block;
-  width:100%;
-  margin-top:6px;
-  padding:8px 10px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  background:#fafafa;
-  font-weight:400;
+label textarea {
+  font-size: 16px;
+  width: 100%;
+  margin-top: 6px;
+  padding: 8px;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  background: #fafafa;
 }
-label textarea{resize:vertical;min-height:80px;}
-
-button{
-  margin-top:15px;
-  width:100%;
-  padding:12px;
-  background:#555;
-  color:#fff;
-  border:none;
-  border-radius:8px;
-  font-size:16px;
-  cursor:pointer;
+textarea {
+  resize: vertical;
+  min-height: 80px;
 }
-button:hover{background:#404040}
-
-/* --- секции меню --- */
-.menu-section{
-  background:#f4f4f4;
-  border-radius:10px;
-  padding:12px 14px 8px;
-  margin:18px 0;
+button {
+  font-size: 16px;
+  width: 100%;
+  padding: 12px;
+  background: #555;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
 }
-.section-title{
-  background:#d8d8d8;
-  padding:6px 10px;
-  border-radius:6px;
-  text-align:center;
-  font-weight:700;
-  margin:-12px -14px 10px;
+button:hover {
+  background: #444;
 }
-.menu-section label{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:6px 0;
-  font-weight:400;
+.menu-section {
+  margin: 20px 0;
+  background: #f4f4f4;
+  padding: 12px;
+  border-radius: 8px;
 }
-.menu-section span{
-  flex:1 1 auto;
-  padding-right:10px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+.section-title {
+  background: #d8d8d8;
+  text-align: center;
+  padding: 6px;
+  border-radius: 6px;
+  margin: -12px -12px 12px;
 }
-/* поле количества – маленькое, но font-size ≥16 px, чтобы iOS не зумировал */
-.menu-section input[type="number"]{
-  width:65px;
-  padding:5px;
-  font-size:16px;
-  border:1px solid #bbb;
-  border-radius:6px;
-  background:#fff;
+.menu-section label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
 }
-
-/* --- всплывающее окно чек-аут --- */
-#popup{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:#fbfbfb;
-  border:2px solid #ccc;
-  border-radius:12px;
-  padding:20px;
-  max-width:400px;
-  box-shadow:0 2px 12px rgba(0,0,0,.2);
-  display:none;
-  white-space:pre-line;
-  line-height:1.4;
-  z-index:1000;
+.menu-section span {
+  flex: 1;
+  margin-right: 10px;
+  word-break: break-word;
+}
+.menu-section input[type="number"] {
+  width: 65px;
+  font-size: 16px;
+  padding: 5px;
+}
+#popup {
+  display: none;
+  position: fixed;
+  background: #f9f9f9;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: pre-line;
+  max-width: 90%;
+  z-index: 1000;
 }
