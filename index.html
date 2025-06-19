@@ -2,54 +2,64 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Форма заказа — Yummy</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+  <title>Yummy Food — заказ</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
-    <img class="logo" src="logo.PNG" alt="Yummy logo" />
-
-    <h1 class="form-title">Форма заказа</h1>
-
+    <img src="logo.PNG" alt="YUMMY Logo" class="logo" />
     <form id="orderForm">
-      <div class="form-group">
-        <label for="name">Имя:</label>
-        <input type="text" id="name" name="name" required minlength="1" />
+      <!-- Имя -->
+      <div class="input-group">
+        <label for="name">Имя</label>
+        <input id="name" name="name" required />
       </div>
 
-      <div class="form-group">
-        <label for="contactMethod">Выберите социальную сеть:</label>
-        <select id="contactMethod" name="contactMethod" required>
-          <option value="" disabled selected hidden>Выберите</option>
+      <!-- Социальная сеть -->
+      <div class="input-group">
+        <label for="contact_type">Социальная сеть</label>
+        <select id="contact_type" name="contact_type">
           <option value="Telegram">Telegram</option>
-          <option value="Zalo">Zalo</option>
           <option value="WhatsApp">WhatsApp</option>
+          <option value="Zalo">Zalo</option>
         </select>
       </div>
 
-      <div class="form-group">
-        <label for="contactHandle">Контакт (ник/номер):</label>
-        <input type="text" id="contactHandle" name="contactHandle" required />
+      <!-- Ник / номер -->
+      <div class="input-group">
+        <input id="contact_value" name="contact_value" placeholder="Ник или номер" required />
       </div>
 
-      <!-- Разделы с блюдами будут вставлены сюда через JS -->
-      <div id="menuSections"></div>
+      <!-- блоки меню заполняет script.js -->
+      <div class="menu-section"><div class="section-title">Завтрак</div><div id="breakfast"></div></div>
+      <div class="menu-section"><div class="section-title">Суп</div><div id="soups"></div></div>
+      <div class="menu-section"><div class="section-title">Основное блюдо</div><div id="mains"></div></div>
 
-      <div class="form-group">
-        <label for="comment">Комментарий:</label>
+      <!-- комментарий -->
+      <div class="input-group">
+        <label for="comment">Комментарий</label>
         <textarea id="comment" name="comment" rows="3"></textarea>
       </div>
 
+      <!-- Web3Forms -->
+      <input type="hidden" name="access_key"  value="14d92358-9b7a-4e16-b2a7-35e9ed71de43" />
+      <input type="hidden" name="filteredOrder" id="filteredOrder" />
+      <input type="hidden" name="subject" value="Новая заявка Yummy" />
+      <input type="hidden" name="to"      value="stassser@gmail.com" />
+
       <button type="submit">Отправить заявку</button>
     </form>
-  </div>
 
-  <div id="popup" class="popup">
-    <div class="popup-content">
-      <p id="popupMessage"></p>
-      <button onclick="closePopup()">Закрыть</button>
+    <!-- всплывающее окно -->
+    <div id="resultModal" class="modal hidden">
+      <div class="modal-content">
+        <h3 id="thankYou"></h3>
+        <pre id="resultText"></pre>
+        <button id="closeModal">Закрыть</button>
+      </div>
     </div>
+
   </div>
 
   <script src="script.js"></script>
