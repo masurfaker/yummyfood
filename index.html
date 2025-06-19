@@ -9,23 +9,8 @@
 <body>
   <div class="container">
 
-    <!-- встроенный логотип -->
-    <img class="logo" alt="Yummy logo"
-         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAI4AAADICAIAAABti9MXAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAI
-         JUlEQVR4nO3cXZMkSxKA4f//XewWqT7qWxFOdF1z5PcyN+1kDSsbwcHHEk+L98zm77fTfn7ftf23
-         8xcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQOm51QHMbOFtxVAvWr8MvqfgWblnFvQBWrGI
-         2/h7xicx9hZ1hE3fvKm+uX2qKwXdp0n+XCv32oac0evh/UR629Mm7ZfGLkOubd6S+zdf2lnd6lBN
-         1nmUOune7D3Z28SNRwcV93xeybaV7YY6mzFOnN8V8/2OdyJcS4RS+orB82nOvRdz473sr6jv4TZD
-         IG6YBkow3pry8vHh3RfN+8HlEKSQq0kW0mUYqRCpEKkQqRCpEKkQqRCpEKkQqRCpEKkQqRCpELk
-         9P2kz+0yvquu26bjRdC1lGuXkCvF8fA6Dn9Z9+sl69xVnvufE8aX5vrmjX98WcWUcZGM27pHyfJP
-         j2wlawpiu2dT/WqcT/7n/xkFBl3W4pNXDx/xZBSXvl3jPBVE/Lmz5GadXVn6orkROwYnemImBN2+
-         +H+yL+2vlJpqpOjvY5R2kyrF9mB2GlPIzuzwbP4TWXpYCr9Qd98x0GxUFw8fWx6okIiSDrxiVdt
-         yskh4cKe+C1DN3aC9or3F9HjK+1Z2s+S/nhQz3sdG+v7uH6e57pi+Td4M5HD6xuq7jImsr8x6eY
-         MSi7Aybf3zJ2jKa4I4myIrMOUVzFGnqfD+AdF9lRF6z0ubG+8zkXyGrkODbGp1mhZx4h4aTPvFH
-         25iRy2wbEN/b1FdZcz7yh/FHdXpQEAqiQqRCpEKkQqRCpEKkQqTCuS8zW/NhTwi0/Ji1mc53e3vp
-         5dV7n2/HeEx6yRhjq6k3Tjrf9hSe2cQ/qyqXdc5l1mlWdabwyiWyFUXZSs244Rxm6uJmLj19Efzk
-         Spf0rQpD/Lvl0/5S+D6n+BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHwX/gDml0XD+N0hdgAA
-         AABJRU5ErkJggg==" />
+    <!-- обычный файл logo.png -->
+    <img class="logo" src="logo.png" alt="Yummy logo" />
 
     <h1>Форма заказа</h1>
 
@@ -51,7 +36,7 @@
         <input id="contact_value" name="contact_value" placeholder="Ник или номер" required />
       </div>
 
-      <!-- меню (заполняется script.js) -->
+      <!-- блоки меню заполняет script.js -->
       <div class="menu-section"><div class="section-title">Завтрак</div><div id="breakfast"></div></div>
       <div class="menu-section"><div class="section-title">Суп</div><div id="soups"></div></div>
       <div class="menu-section"><div class="section-title">Основное блюдо</div><div id="mains"></div></div>
@@ -71,7 +56,7 @@
       <button type="submit">Отправить заявку</button>
     </form>
 
-    <!-- всплывашка -->
+    <!-- всплывающее окно -->
     <div id="resultModal" class="modal hidden">
       <div class="modal-content">
         <h3 id="thankYou"></h3>
