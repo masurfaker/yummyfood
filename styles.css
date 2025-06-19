@@ -1,7 +1,0 @@
-/* ... остальные стили сохранены без изменений ... */
-
-.menu-section span {
-  font-size: 14px;
-  word-break: break-word; /* позволяет переносу */
-  white-space: normal;    /* отключаем обрезки */
-}
