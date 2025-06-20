@@ -4,8 +4,15 @@ html,body{margin:0;padding:0;overflow-x:hidden;font-family:Arial,sans-serif;back
 /* ===== карточка формы */
 .container{max-width:700px;margin:20px auto;background:#fff;border-radius:12px;padding:20px;box-shadow:0 0 6px rgba(0,0,0,.1)}
 
-/* ===== логотип (ширина 100 % контейнера) */
-.logo{width:100%;height:auto;border-radius:8px;display:block;margin:0 auto 24px}
+/* логотип — ровно по ширине контейнера, но не шире его */
+.logo{
+  width:100%;          /* растянуть на всю ширину родительского блока */
+  max-width:100%;      /* страхуемся от переполнения */
+  height:auto;         /* сохраняем пропорции */
+  display:block;       /* чтобы margin-ы работали по центру */
+  margin:0 auto 24px;  /* нижний отступ = 24 px, можно менять */
+  border-radius:8px;   /* если нужны скругления, убери, если нет */
+}
 
 /* ===== элементы формы */
 .input-block{margin-bottom:16px}
