@@ -26,19 +26,20 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  // формируем текст с выравниванием по левому краю через <pre>
-  const messageText = `
-${name}!
-Ваша заявка отправлена!
+  const orderListHTML = orderItems
+    .map((item, i) => `<div style="text-align:left;">${i + 1}. ${item}</div>`)
+    .join("");
 
-Ваш заказ:
-${orderItems.map((item, i) => `${i + 1}. ${item}`).join("\n")}
+  popupMessage.innerHTML = `
+    <div style="font-family: Arial, sans-serif; font-size: 16px;">
+      <div>${name}!</div>
+      <div style="margin-top: 6px;">Ваша заявка отправлена!</div>
+      <div style="margin: 14px 0 6px;">Ваш заказ:</div>
+      ${orderListHTML}
+      <div style="margin-top: 16px;">В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
+    </div>
+  `;
 
-В ближайшее время с вами свяжутся.
-Благодарим, что выбрали YUMMY!
-`;
-
-  popupMessage.innerHTML = `<pre>${messageText}</pre>`;
   popup.classList.remove("hidden");
 
   const emailBody = `
