@@ -121,7 +121,7 @@ button:hover {
   padding: 20px;
   border-radius: 12px;
   max-width: 90%;
-  text-align: center;
+  text-align: left;
 }
 
 .popup-content pre {
