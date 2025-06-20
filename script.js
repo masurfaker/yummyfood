@@ -1,56 +1,50 @@
-function closePopup(){document.getElementById("popup").classList.add("hidden");}
+const form = document.getElementById('orderForm');
+const popup = document.getElementById('popup');
+const popupMessage = document.getElementById('popup-message');
 
-document.getElementById("orderForm").addEventListener("submit",async function(e){
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  /* данные клиента */
-  const name   = this.name.value.trim();
-  const method = this.contactMethod.value;
-  const handle = this.contactHandle.value.trim();
-  const comment= this.comment.value.trim();
+  const formData = new FormData(form);
+  const name = formData.get('name');
+  const contactMethod = formData.get('contactMethod');
+  const contactHandle = formData.get('contactHandle');
+  const comment = formData.get('comment');
 
-  /* собираем только выбранные блюда (>0) */
-  const dishInputs = this.querySelectorAll(".dish input[type='number']");
-  const ordered=[];
-  dishInputs.forEach(inp=>{
-    const q=parseInt(inp.value)||0;
-    if(q>0) ordered.push(`${inp.name} — ${q}`);
+  let fullOrder = '';
+  form.querySelectorAll('input[type="number"]').forEach(input => {
+    const quantity = parseInt(input.value);
+    if (quantity > 0) {
+      fullOrder += `${input.name} — ${quantity}\n`;
+    }
   });
 
-  if(!ordered.length){alert("Выберите хотя бы одно блюдо.");return;}
+  if (!fullOrder.trim()) {
+    alert('Пожалуйста, выберите хотя бы одно блюдо.');
+    return;
+  }
 
-  /* формируем текст заказа */
-  const orderList = ordered.map((x,i)=>`${i+1}. ${x}`).join("\n");
-  const emailText = `
-Имя: ${name}
-Контакт: ${method} — ${handle}
-Комментарий: ${comment || "-"}
-Состав заказа:
-${orderList}`.trim();
+  const message = `${name}! Ваша заявка отправлена!\n\nВаш заказ:\n${fullOrder}\nВ ближайшее время с вами свяжутся.\nБлагодарим, что выбрали YUMMY!`;
+  popupMessage.innerText = message;
+  popup.classList.remove('hidden');
 
-  /* показываем всплывашку */
-  document.getElementById("popup-message").innerText =
-    `${name}! Ваша заявка отправлена!\n\nВаш заказ:\n${orderList}\n\n`+
-    `В ближайшее время с вами свяжутся.\nБлагодарим, что выбрали YUMMY!`;
-  document.getElementById("popup").classList.remove("hidden");
+  // Отправка письма через Formspree или Web3Forms
+  await fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      access_key: '14d92358-9b7a-4e16-b2a7-35e9ed71de43',
+      name,
+      contactMethod,
+      contactHandle,
+      comment,
+      fullOrder
+    })
+  });
 
-  /* отправка через Web3Forms */
-  const payload = {
-    access_key:"14d92358-9b7a-4e16-b2a7-35e9ed71de43",
-    subject   :"Новая заявка Yummy",
-    name      : name,
-    email     : "stassser@gmail.com",   /* куда отправить */
-    message   : emailText
-  };
-
-  try{
-    const res = await fetch("https://api.web3forms.com/submit",{
-      method:"POST",
-      headers:{"Content-Type":"application/json"},
-      body:JSON.stringify(payload)
-    }).then(r=>r.json());
-
-    if(!res.success) alert("Ошибка отправки: "+res.message);
-    this.reset();
-  }catch(err){alert("Ошибка сети.");console.error(err);}
+  form.reset();
 });
+
+function closePopup() {
+  popup.classList.add('hidden');
+}
