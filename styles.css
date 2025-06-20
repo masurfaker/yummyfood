@@ -1,16 +1,16 @@
-/* --- базовое оформление не менялось --- */
-html, body {margin:0;padding:0;overflow-x:hidden;font-family:Arial,sans-serif;background:#f5f5f5;}
+html, body{margin:0;padding:0;overflow-x:hidden;font-family:Arial,sans-serif;background:#f5f5f5;}
 .container{max-width:700px;margin:20px auto;background:#fff;border-radius:12px;padding:20px;box-shadow:0 0 6px rgba(0,0,0,.1);}
 .logo{width:100%;height:auto;border-radius:8px;display:block;margin:0 auto 32px;}
+
 .input-block{margin-bottom:16px}
 label{display:block;margin-bottom:6px;font-weight:500;font-size:16px}
 input,select,textarea{width:100%;padding:12px;font-size:16px;border:1px solid #ccc;border-radius:6px;box-sizing:border-box;color:#333}
-select{appearance:none;background:#fff}
-#contactHandle{margin-top:12px}          /* ← отступ между соцсетями и ником */
+select{appearance:none;background:#fff;margin-bottom:12px;border-radius:4px}
+#contactHandle{margin-top:12px} /* отступ между соцсетями и ником */
+textarea{resize:vertical;min-height:80px}
 
 .menu-section{margin:20px 0;padding:16px;background:#f3f1ed;border-radius:12px}
 .section-title{background:#e1ded9;padding:6px 10px;border-radius:8px;font-weight:700;font-size:18px;margin-bottom:12px}
-
 .dish{display:flex;justify-content:space-between;align-items:center;margin:6px 0;font-size:15px}
 .dish select.qty{width:60px;padding:6px;font-size:16px;text-align:center;border:1px solid #ccc;border-radius:6px;color:#333;background:#fff}
 
