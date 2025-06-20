@@ -1,4 +1,4 @@
-html,body {
+html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -12,12 +12,11 @@ html,body {
   background: #fff;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 0 6px rgba(0,0,0,.1);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
   width: 100%;
-  max-width: 100%;
   height: auto;
   border-radius: 8px;
   display: block;
@@ -35,7 +34,11 @@ label {
   font-size: 16px;
 }
 
-input[type="text"], input[type="number"], select, textarea, input:not([type="number"]):not([type="submit"]) {
+input[type="text"],
+input[type="number"],
+select,
+textarea,
+input:not([type="number"]):not([type="submit"]) {
   width: 100%;
   padding: 12px;
   font-size: 16px;
@@ -49,6 +52,7 @@ select {
   background: #fff;
   color: #333;
   margin-bottom: 12px;
+  border-radius: 6px;
 }
 
 textarea {
@@ -106,7 +110,7 @@ button:hover {
 .popup {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -121,7 +125,7 @@ button:hover {
   padding: 20px;
   border-radius: 12px;
   max-width: 90%;
-  text-align: left;
+  text-align: left; /* ← теперь по левому краю */
 }
 
 .popup-content pre {
