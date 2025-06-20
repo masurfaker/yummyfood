@@ -11,7 +11,6 @@ form.addEventListener("submit", async (e) => {
   const contactHandle = formData.get("contactHandle");
   const comment = formData.get("comment");
 
-  // собрать заказанные блюда
   const orderItems = [];
   form.querySelectorAll(".dish").forEach((dish) => {
     const input = dish.querySelector("input[type='number']");
@@ -27,11 +26,19 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  const messageText = `${name}! Ваша заявка отправлена!\n\nВаш заказ:\n` +
-    orderItems.map((item, index) => `${index + 1}. ${item}`).join("\n") +
-    `\n\nВ ближайшее время с вами свяжутся.\nБлагодарим, что выбрали YUMMY!`;
+  // формируем текст с выравниванием по левому краю через <pre>
+  const messageText = `
+${name}!
+Ваша заявка отправлена!
 
-  popupMessage.textContent = messageText;
+Ваш заказ:
+${orderItems.map((item, i) => `${i + 1}. ${item}`).join("\n")}
+
+В ближайшее время с вами свяжутся.
+Благодарим, что выбрали YUMMY!
+`;
+
+  popupMessage.innerHTML = `<pre>${messageText}</pre>`;
   popup.classList.remove("hidden");
 
   const emailBody = `
