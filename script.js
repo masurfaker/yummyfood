@@ -1,14 +1,14 @@
 const form   = document.getElementById("orderForm");
 const popup  = document.getElementById("popup");
-const pMsg   = document.getElementById("popup-message");
+const msgBox = document.getElementById("popup-message");
 
 /* заполняем все select.qty вариантами  – ,0…6 */
 document.querySelectorAll("select.qty").forEach(sel=>{
-  sel.innerHTML = '<option value="" selected hidden>–</option>' +
+  sel.innerHTML = '<option value="" selected hidden></option>' +
                   [...Array(7).keys()].map(n=>`<option value="${n}">${n}</option>`).join("");
 });
 
-form.addEventListener("submit", async e=>{
+form.addEventListener("submit",async e=>{
   e.preventDefault();
 
   const fd   = new FormData(form);
@@ -17,35 +17,34 @@ form.addEventListener("submit", async e=>{
   const hand = fd.get("contactHandle");
   const comm = fd.get("comment");
 
-  /* собрать блюда */
-  const order=[];
+  /* собираем блюда */
+  const items=[];
   document.querySelectorAll("select.qty").forEach(sel=>{
     const q = parseInt(sel.value)||0;
-    if(q>0) order.push(`${sel.name} — ${q}`);
+    if(q>0) items.push(`${sel.name} — ${q}`);
   });
-  if(!order.length){alert("Выберите хотя бы одно блюдо.");return;}
+  if(!items.length){alert("Выберите хотя бы одно блюдо.");return;}
 
-  /* текст popup */
-  const list = order.map((x,i)=>`${i+1}. ${x}`).join("\n");
-  pMsg.innerHTML =
-    `<pre style="text-align:center;font-family:Arial;">
+  /* popup сообщение */
+  msgBox.innerHTML = `
+<pre style="font-family:Arial;font-size:16px;white-space:pre-line;">
 ${name}!
 Ваша заявка отправлена!
 
 Ваш заказ:
-${order.map((x,i)=>`${i+1}. ${x}`).join("\n")}
+${items.map((x,i)=>`${i+1}. ${x}`).join("\n")}
 
 В ближайшее время с вами свяжутся.
 Благодарим, что выбрали YUMMY!
-</pre>`;
+</pre>`.trim();
   popup.classList.remove("hidden");
 
   /* письмо через Web3Forms */
-  const payload={
+  const payload = {
     access_key:"14d92358-9b7a-4e16-b2a7-35e9ed71de43",
     subject:"Новый заказ Yummy",
     from_name:"Yummy Form",
-    message:`Имя: ${name}\nКонтакт: ${meth} - ${hand}\n\n${list}\n\nКомментарий: ${comm}`,
+    message:`Имя: ${name}\nКонтакт: ${meth} - ${hand}\nКомментарий: ${comm}\n\nЗаказ:\n${items.join("\n")}`,
     name:name
   };
   try{
