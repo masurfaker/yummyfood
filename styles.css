@@ -1,4 +1,3 @@
-/* базовые настройки */
 html, body {
   margin: 0;
   padding: 0;
@@ -7,7 +6,6 @@ html, body {
   background: #f5f5f5;
 }
 
-/* карточка формы */
 .container {
   max-width: 700px;
   margin: 20px auto;
@@ -17,7 +15,6 @@ html, body {
   box-shadow: 0 0 6px rgba(0,0,0,.1);
 }
 
-/* логотип */
 .logo {
   width: 100%;
   height: auto;
@@ -26,8 +23,9 @@ html, body {
   margin: 0 auto 32px;
 }
 
-/* блоки ввода */
-.input-block { margin-bottom: 16px; }
+.input-block {
+  margin-bottom: 16px;
+}
 
 label {
   display: block;
@@ -36,32 +34,34 @@ label {
   font-size: 16px;
 }
 
-input, select, textarea {
+input[type="text"],
+textarea,
+input:not([type="number"]):not([type="submit"]) {
   width: 100%;
   padding: 12px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
-  color: #333;
+}
+
+#contactHandle {
+  margin-top: 12px;
 }
 
 select {
   appearance: none;
   background: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  width: 100%;
   margin-bottom: 12px;
-  border-radius: 4px;
 }
 
-/* отступ между соцсетью и ником */
-#contactHandle { margin-top: 12px; }
-
-textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-/* меню */
 .menu-section {
   margin: 20px 0;
   padding: 16px;
@@ -86,22 +86,32 @@ textarea {
   font-size: 15px;
 }
 
-/* ▼ выпадающий список количества */
+/* Окошко выбора количества — финальные правки */
 .dish select.qty {
-  width: 60px;            /* единая ширина */
+  width: 60px;
   min-width: 60px;
+  max-width: 60px;
   padding: 6px;
   font-size: 16px;
-  text-align: center;     /* центр текста в списке */
-  text-align-last: center;/* центр выбранного значения */
   border: 1px solid #ccc;
   border-radius: 6px;
   background: #fff;
   color: #333;
+  text-align: center;
+  text-align-last: center;
 }
 
-/* кнопка отправки */
-button[type="submit"] {
+/* Центрирование текста и стрелки */
+.dish select.qty option {
+  text-align: center;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+button {
   width: 100%;
   background: #555;
   color: #fff;
@@ -111,9 +121,11 @@ button[type="submit"] {
   border-radius: 8px;
   cursor: pointer;
 }
-button[type="submit"]:hover { background: #222; }
 
-/* popup */
+button:hover {
+  background: #222;
+}
+
 .popup {
   position: fixed;
   inset: 0;
@@ -122,7 +134,10 @@ button[type="submit"]:hover { background: #222; }
   justify-content: center;
   align-items: center;
 }
-.popup.hidden { display: none; }
+
+.popup.hidden {
+  display: none;
+}
 
 .popup-content {
   background: #fff;
