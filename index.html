@@ -1,3 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
+  <title>Yummy — заказ еды</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <img src="logo.png" alt="Yummy logo" class="logo" />
+
+    <form id="orderForm">
+      <!-- имя -->
+      <div class="input-block">
+        <label for="name">Имя</label>
+        <input id="name" name="name" required />
+      </div>
+
+      <!-- соцсеть + ник -->
+      <div class="input-block">
+        <label for="contactMethod">Выберите социальную сеть</label>
+        <select id="contactMethod" name="contactMethod" required>
+          <option value="" disabled selected hidden>Выберите</option>
+          <option value="Telegram">Telegram</option>
+          <option value="WhatsApp">WhatsApp</option>
+          <option value="Zalo">Zalo</option>
+        </select>
+        <input id="contactHandle" name="contactHandle"
+               placeholder="Ник или номер" required />
+      </div>
+
+      
       <!-- ===== СУП ===== -->
       <div class="menu-section">
         <div class="section-title">СУП</div>
