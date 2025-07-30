@@ -87,6 +87,27 @@ select {
   font-size: 15px;
 }
 
+.kbju {
+  font-size: 50%; /* 50% от размера названия блюда */
+  line-height: 1.2;
+  color: #555;
+  margin-top: 2px;
+}
+
+#kbju-summary {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffffee;
+  padding: 8px 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  font-weight: bold;
+  font-size: 16px;
+  z-index: 9999;
+}
+
 /* Окошко выбора количества — финальные правки */
 .dish select.qty {
   width: 60px;
@@ -154,23 +175,4 @@ button:hover {
   font-size: 15px;
   line-height: 1.3;
   margin: 15px 0;
-}
-.kbju {
-  font-size: 14px;
-  color: #777;
-  margin-top: 4px;
-}
-
-#kbju-summary {
-  position: fixed;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ffffffee;
-  padding: 8px 16px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  font-weight: bold;
-  font-size: 16px;
-  z-index: 9999;
 }
