@@ -88,17 +88,9 @@ select {
   flex-wrap: wrap;
 }
 
-.dish-name-block {
-  display: flex;
-  flex-direction: column;
-  max-width: 70%;
-}
-
-.kbju {
-  font-size: 40%;
-  line-height: 1.2;
-  color: #555;
-  margin-top: 2px;
+.dish-name {
+  width: calc(100% - 80px);
+  font-size: 15px;
 }
 
 .dish select.qty {
@@ -168,26 +160,23 @@ button:hover {
   margin: 15px 0;
 }
 
-/* === Плашка общего КБЖУ === */
-#kbjuBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: #ffe7ba;
-  padding: 10px 15px;
-  font-size: 14px;
-  color: #333;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  z-index: 1000;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+/* ===== ДОБАВЛЕНО ===== */
+.kbju {
+  font-size: 40%;
+  line-height: 1.2;
+  color: #555;
+  margin-top: 2px;
 }
 
-#kbjuBar span {
-  min-width: 60px;
-  display: inline-block;
+/* Верхняя плашка с суммой КБЖУ */
+.kbju-summary {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 8px 12px;
   text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  z-index: 10;
 }
