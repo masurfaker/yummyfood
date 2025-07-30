@@ -73,3 +73,29 @@ ${orderItems.map((x,i)=>`${i+1}. ${x}`).join("\n")}
 });
 
 function closePopup(){ popup.classList.add("hidden"); }
+function updateKbjuSummary() {
+  let k = 0, b = 0, j = 0, u = 0;
+
+  document.querySelectorAll(".dish").forEach(dish => {
+    const select = dish.querySelector("select");
+    const val = parseInt(select.value);
+    const kbjuDiv = dish.querySelector(".kbju");
+    const data = kbjuDiv?.dataset.kbju;
+
+    if (data && val > 0) {
+      const [kkal, prot, fat, carb] = data.split("/").map(Number);
+      k += kkal * val;
+      b += prot * val;
+      j += fat * val;
+      u += carb * val;
+    }
+  });
+
+  const summary = document.getElementById("kbju-summary");
+  summary.textContent = `К/Б/Ж/У: ${k}/${b}/${j}/${u}`;
+}
+
+// привязка обработчиков ко всем select
+document.querySelectorAll(".qty").forEach(select => {
+  select.addEventListener("change", updateKbjuSummary);
+});
