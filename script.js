@@ -72,8 +72,6 @@ document.querySelectorAll(".dish").forEach((dish) => {
     if (kbjuData[name]) {
     const [k, b, j, u] = kbjuData[name];
     kbjuBox.textContent = `К/Б/Ж/У: ${k}/${b}/${j}/${u}`;
-  } else {
-    kbjuBox.textContent = "КБЖУ: нет данных";
   }
 
   dish.insertBefore(kbjuBox, select);
