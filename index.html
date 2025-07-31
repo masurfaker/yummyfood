@@ -1,102 +1,125 @@
+Html 1
+
+
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0" />
   <title>Yummy — заказ еды</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="container">
-    <img src="Logo.PNG" alt="Yummy logo" class="logo">
+    <img src="logo.png" alt="Yummy logo" class="logo" />
 
     <form id="orderForm">
-
-      <!-- Пример одной категории -->
-      <div class="menu-section">
-        <div class="section-title">Блины</div>
-
-        <!-- Блюдо 1 -->
-        <div class="dish">
-          <div>
-            <div>Блины с курой и овощами</div>
-            <div style="font-size: 13px; color: #777;">854 ккал / Б:22 / Ж:87 / У:26</div>
-          </div>
-          <select class="qty" name="Блины с курой и овощами"></select>
-        </div>
-
-        <!-- Блюдо 2 -->
-        <div class="dish">
-          <div>
-            <div>Блины с курой в сливках</div>
-            <div style="font-size: 13px; color: #777;">854 ккал / Б:20 / Ж:86 / У:23</div>
-          </div>
-          <select class="qty" name="Блины с курой в сливках"></select>
-        </div>
-
-        <!-- Блюдо 3 -->
-        <div class="dish">
-          <div>
-            <div>Блины с йогуртом и мёдом</div>
-            <div style="font-size: 13px; color: #777;">582 ккал / Б:20 / Ж:26 / У:69</div>
-          </div>
-          <select class="qty" name="Блины с йогуртом и мёдом"></select>
-        </div>
-
-        <!-- Блюдо 4 -->
-        <div class="dish">
-          <div>
-            <div>Блины с сыром и ветчиной</div>
-            <div style="font-size: 13px; color: #777;">517 ккал / Б:36 / Ж:35 / У:16</div>
-          </div>
-          <select class="qty" name="Блины с сыром и ветчиной"></select>
-        </div>
-
-        <!-- Блюдо 5 -->
-        <div class="dish">
-          <div>
-            <div>Блины с творогом с йогуртом</div>
-            <div style="font-size: 13px; color: #777;">476 ккал / Б:27 / Ж:28 / У:хх</div>
-          </div>
-          <select class="qty" name="Блины с творогом с йогуртом"></select>
-        </div>
+      <!-- имя -->
+      <div class="input-block">
+        <label for="name">Имя</label>
+        <input id="name" name="name" required />
       </div>
 
-      <!-- Контактные данные -->
+      <!-- соцсеть + ник -->
       <div class="input-block">
-        <label for="name">Ваше имя</label>
-        <input type="text" name="name" id="name" required />
-      </div>
-
-      <div class="input-block">
-        <label for="contactHandle">Контакты</label>
-        <input type="text" name="contactHandle" id="contactHandle" required />
-      </div>
-
-      <div class="input-block">
-        <label for="contactMethod">Способ связи</label>
-        <select name="contactMethod" id="contactMethod" required>
-          <option value="">Выберите способ связи</option>
-          <option value="Телефон">Телефон</option>
+        <label for="contactMethod">Выберите социальную сеть</label>
+        <select id="contactMethod" name="contactMethod" required>
+          <option value="" disabled selected hidden>Выберите</option>
           <option value="Telegram">Telegram</option>
           <option value="WhatsApp">WhatsApp</option>
+          <option value="Zalo">Zalo</option>
         </select>
+        <input id="contactHandle" name="contactHandle"
+               placeholder="Ник или номер" required />
       </div>
+
+      <!-- ===== ЗАВТРАК ===== -->
+      <div class="menu-section">
+        <div class="section-title">ЗАВТРАК</div>
+        <div class="dish"><span>Блины кура овощи</span><select name="Блины кура овощи" class="qty"></select></div>
+        <div class="dish"><span>Блины кура сливки</span><select name="Блины кура сливки" class="qty"></select></div>
+        <div class="dish"><span>Блины с йогуртом и медом</span><select name="Блины с йогуртом и медом" class="qty"></select></div>
+        <div class="dish"><span>Блины с сыром и ветчиной</span><select name="Блины с сыром и ветчиной" class="qty"></select></div>
+        <div class="dish"><span>Блины с творогом и йогуртом</span><select name="Блины с творогом и йогуртом" class="qty"></select></div>
+        <div class="dish"><span>Драники с йогуртом</span><select name="Драники с йогуртом" class="qty"></select></div>
+        <div class="dish"><span>Йогурт с гранолой и тыквенными семечками</span><select name="Йогурт с гранолой и тыквенными семечками" class="qty"></select></div>
+        <div class="dish"><span>Омлет с брокколи</span><select name="Омлет с брокколи" class="qty"></select></div>
+        <div class="dish"><span>Омлет с вялеными томатами</span><select name="Омлет с вялеными томатами" class="qty"></select></div>
+        <div class="dish"><span>Пенкейки с кленовым сиропом и йогуртом</span><select name="Пенкейки с кленовым сиропом и йогуртом" class="qty"></select></div>
+        <div class="dish"><span>Сырники</span><select name="Сырники" class="qty"></select></div>
+      </div>
+
+      <!-- ===== СУП ===== -->
+      <div class="menu-section">
+        <div class="section-title">СУП</div>
+        <div class="dish"><span>Крем-суп из брокколи</span><select name="Крем-суп из брокколи" class="qty"></select></div>
+        <div class="dish"><span>Крем-суп грибной</span><select name="Крем-суп грибной" class="qty"></select></div>
+        <div class="dish"><span>Крем-суп из цветной капусты</span><select name="Крем-суп из цветной капусты" class="qty"></select></div>
+        <div class="dish"><span>Крем-суп куриный</span><select name="Крем-суп куриный" class="qty"></select></div>
+        <div class="dish"><span>Крем-суп овощной</span><select name="Крем-суп овощной" class="qty"></select></div>
+        <div class="dish"><span>Крем-суп томатный</span><select name="Крем-суп томатный" class="qty"></select></div>
+        <div class="dish"><span>Крем-суп тыквенный</span><select name="Крем-суп тыквенный" class="qty"></select></div>
+        <div class="dish"><span>Крем-суп чечевичный</span><select name="Крем-суп чечевичный" class="qty"></select></div>
+      </div>
+
+      <!-- ===== ОСНОВНОЕ БЛЮДО ===== -->
+      <div class="menu-section">
+        <div class="section-title">ОСНОВНОЕ БЛЮДО</div>
+        <div class="dish"><span>Бефстроганов с пюре</span><select name="Бефстроганов с пюре" class="qty"></select></div>
+        <div class="dish"><span>Греча с овощами и говядиной</span><select name="Греча с овощами и говядиной" class="qty"></select></div>
+        <div class="dish"><span>Жульен с пюре</span><select name="Жульен с пюре" class="qty"></select></div>
+        <div class="dish"><span>Котлеты из форели с фасолью</span><select name="Котлеты из форели с фасолью" class="qty"></select></div>
+        <div class="dish"><span>Котлеты куриные с запеченным перцем</span><select name="Котлеты куриные с запеченным перцем" class="qty"></select></div>
+        <div class="dish"><span>Креветки с цукини и рисом</span><select name="Креветки с цукини и рисом" class="qty"></select></div>
+        <div class="dish"><span>Куриная грудка с пюре</span><select name="Куриная грудка с пюре" class="qty"></select></div>
+        <div class="dish"><span>Паста карбонара</span><select name="Паста карбонара" class="qty"></select></div>
+        <div class="dish"><span>Паста с креветками в сливочном соусе песто</span><select name="Паста с креветками в сливочном соусе песто" class="qty"></select></div>
+        <div class="dish"><span>Паста с курой в сливочном соусе песто</span><select name="Паста с курой в сливочном соусе песто" class="qty"></select></div>
+        <div class="dish"><span>Паста с уткой</span><select name="Паста с уткой" class="qty"></select></div>
+        <div class="dish"><span>Печень в сметанном соусе с пюре</span><select name="Печень в сметанном соусе с пюре" class="qty"></select></div>
+        <div class="dish"><span>Свинина в барбекю с пюре</span><select name="Свинина в барбекю с пюре" class="qty"></select></div>
+        <div class="dish"><span>Свинина в кислосладком соусе с овощами</span><select name="Свинина в кислосладком соусе с овощами" class="qty"></select></div>
+        <div class="dish"><span>Сибас на пару с цукини и чесночным соусом</span><select name="Сибас на пару с цукини и чесночным соусом" class="qty"></select></div>
+        <div class="dish"><span>Стейк из форели с брокколи</span><select name="Стейк из форели с брокколи" class="qty"></select></div>
+        <div class="dish"><span>Стейк филе миньон с пюре</span><select name="Стейк филе миньон с пюре" class="qty"></select></div>
+      </div>
+
+      <!-- ===== ГАРНИР / СОУС ===== -->
+      <div class="menu-section">
+        <div class="section-title">ГАРНИР / СОУС</div>
+        <div class="dish"><span>Булгур</span><select name="Булгур" class="qty"></select></div>
+        <div class="dish"><span>Запеченный баклажан с соусом</span><select name="Запеченный баклажан с соусом" class="qty"></select></div>
+        <div class="dish"><span>Запеченный цукини с соусом</span><select name="Запеченный цукини с соусом" class="qty"></select></div>
+        <div class="dish"><span>Пюре картофельное</span><select name="Пюре картофельное" class="qty"></select></div>
+        <div class="dish"><span>Пюре цветная капуста</span><select name="Пюре цветная капуста" class="qty"></select></div>
+      </div>
+
+<!-- ===== КАЛЬКУЛЯТОР КБЖУ ===== -->
+<div class="input-block" id="nutrition-summary">
+  <label>Итоговое КБЖУ:</label>
+  <div class="kbju-values">
+    <span>Ккал: <span id="total-kcal">0</span></span> /
+    <span>Б: <span id="total-protein">0</span> г</span> /
+    <span>Ж: <span id="total-fat">0</span> г</span> /
+    <span>У: <span id="total-carbs">0</span> г</span>
+  </div>
+</div>
 
       <div class="input-block">
         <label for="comment">Комментарий</label>
-        <textarea name="comment" id="comment" placeholder="Комментарий к заказу"></textarea>
+        <textarea id="comment" name="comment" rows="3"></textarea>
       </div>
 
-      <button type="submit">Отправить заказ</button>
+      <button type="submit">Отправить заявку</button>
     </form>
+  </div>
 
-    <!-- Попап -->
-    <div id="popup" class="popup hidden">
-      <div class="popup-content">
-        <div id="popup-message"></div>
-        <button onclick="closePopup()">Закрыть</button>
-      </div>
+  <div id="popup" class="popup hidden">
+    <div class="popup-content">
+      <p id="popup-message"></p>
+      <button onclick="closePopup()">Закрыть</button>
     </div>
   </div>
 
