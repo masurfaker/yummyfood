@@ -23,6 +23,7 @@ html, body {
   margin: 0 auto 32px;
 }
 
+/* --- Вводные поля --- */
 .input-block {
   margin-bottom: 16px;
 }
@@ -45,29 +46,23 @@ input:not([type="number"]):not([type="submit"]) {
   box-sizing: border-box;
 }
 
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
 #contactHandle {
   margin-top: 12px;
 }
 
-select {
-  appearance: none;
-  background: #fff;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 12px;
-  font-size: 16px;
-  box-sizing: border-box;
-  width: 100%;
-  margin-bottom: 12px;
-}
-
+/* --- Меню и секции --- */
 .menu-section {
   margin: 20px 0;
   padding: 16px;
   background: #f3f1ed;
   border-radius: 12px;
 }
+
 .section-title {
   background: #e1ded9;
   padding: 6px 10px;
@@ -78,15 +73,33 @@ select {
   text-align: center;
 }
 
+/* --- Блюда --- */
 .dish {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin: 6px 0;
   font-size: 15px;
 }
 
-/* Окошко выбора количества — финальные правки */
+.dish-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.dish-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.kbju {
+  font-size: 14px;
+  color: #666;
+  margin-top: 2px;
+}
+
+/* --- Select количества --- */
 .dish select.qty {
   width: 60px;
   min-width: 60px;
@@ -101,16 +114,11 @@ select {
   text-align-last: center;
 }
 
-/* Центрирование текста и стрелки */
 .dish select.qty option {
   text-align: center;
 }
 
-textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
+/* --- Кнопка отправки --- */
 button {
   width: 100%;
   background: #555;
@@ -126,6 +134,7 @@ button:hover {
   background: #222;
 }
 
+/* --- Popup (всплывающее окно после отправки) --- */
 .popup {
   position: fixed;
   inset: 0;
@@ -133,6 +142,7 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 
 .popup.hidden {
@@ -153,38 +163,4 @@ button:hover {
   font-size: 15px;
   line-height: 1.3;
   margin: 15px 0;
-}
-.dish {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin: 6px 0;
-  font-size: 15px;
-}
-
-.dish-info {
-  flex-grow: 1;
-}
-
-.dish-name {
-  font-weight: 500;
-  margin-bottom: 4px;
-}
-
-.kbju-box {
-  padding: 12px;
-  background: #f3f1ed;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  color: #333;
-  margin-top: 6px;
-  text-align: center;
-}
-
-.kbju {
-  font-size: 14px;
-  color: #666;
-  margin-top: 2px;
 }
