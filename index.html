@@ -2,111 +2,271 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yummy - Заказ еды</title>
-  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yummy – Завтраки</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 40px auto;
+      background: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+
+    .dish {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .dish-name {
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .kbju {
+      font-size: 13px;
+      color: #555;
+      margin-top: 3px;
+    }
+
+    select {
+      padding: 4px 8px;
+      font-size: 14px;
+    }
+
+    .kbju-summary {
+      position: sticky;
+      top: 0;
+      background: #fff8dc;
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 6px;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <h1>Yummy</h1>
-    <form id="orderForm">
-      <!-- Контактные данные -->
-      <label for="name">Имя</label>
-      <input type="text" id="name" required />
+    <h1>Завтраки</h1>
 
-      <label for="platform">Соцсеть</label>
-      <select id="platform" required>
-        <option value="">Выберите...</option>
-        <option value="Telegram">Telegram</option>
-        <option value="Zalo">Zalo</option>
-      </select>
-
-      <label for="contact">Ник или номер</label>
-      <input type="text" id="contact" required />
-
-      <!-- Завтраки -->
-      <h2>Завтраки</h2>
-
-      <div class="dish">
-        <div class="dish-name">
-          Каша овсяная на молоке
-          <div class="kbju">КБЖУ: 112/3.6/4.2/15.2</div>
-        </div>
-        <select class="qty" data-kbju="112,3.6,4.2,15.2">
-          <option value="0">-</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      </div>
-
-      <div class="dish">
-        <div class="dish-name">
-          Рисовая каша с тыквой
-          <div class="kbju">КБЖУ: 91/2.0/2.3/14.6</div>
-        </div>
-        <select class="qty" data-kbju="91,2.0,2.3,14.6">
-          <option value="0">-</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      </div>
-
-      <div class="dish">
-        <div class="dish-name">
-          Ленивые сырники
-          <div class="kbju">КБЖУ: 179/10.1/5.8/21.4</div>
-        </div>
-        <select class="qty" data-kbju="179,10.1,5.8,21.4">
-          <option value="0">-</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      </div>
-
-      <div class="dish">
-        <div class="dish-name">
-          Омлет с овощами
-          <div class="kbju">КБЖУ: 132/7.8/10.2/2.3</div>
-        </div>
-        <select class="qty" data-kbju="132,7.8,10.2,2.3">
-          <option value="0">-</option>
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-        </select>
-      </div>
-
-      <!-- Итоговое КБЖУ -->
-      <div id="kbju-total">Итого КБЖУ: 0 / 0 / 0 / 0</div>
-
-      <!-- Комментарий -->
-      <label for="comments">Комментарий к заказу</label>
-      <textarea id="comments" rows="4"></textarea>
-
-      <button type="submit">Оформить заказ</button>
-    </form>
-
-    <!-- Уведомление -->
-    <div id="popup" style="display: none;">
-      <p id="popup-message"></p>
+    <div class="kbju-summary" id="kbju-summary">
+      КБЖУ: 0 / 0 / 0 / 0
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <form id="orderForm">
+      <div class="dish">
+        <div>
+          <p class="dish-name">Блины с курой и овощами</p>
+          <div class="kbju">854/22/87/26</div>
+        </div>
+        <select name="Блины с курой и овощами">
+          <option value="0">-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+
+      <div class="dish">
+        <div>
+          <p class="dish-name">Блины с курой в сливках</p>
+          <div class="kbju">854/20/86/23</div>
+        </div>
+        <select name="Блины с курой в сливках">
+          <option value="0">-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+
+      <div class="dish">
+        <div>
+          <p class="dish-name">Блины с йогуртом и медом</p>
+          <div class="kbju">582/20/26/69</div>
+        </div>
+        <select name="Блины с йогуртом и медом">
+          <option value="0">-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+
+      <div class="dish">
+        <div>
+          <p class="dish-name">Блины с сыром и ветчиной</p>
+          <div class="kbju">517/36/35/16</div>
+        </div>
+        <select name="Блины с сыром и ветчиной">
+          <option value="0">-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+
+      <div class="dish">
+        <div>
+          <p class="dish-name">Блины с творогом с йогуртом</p>
+          <div class="kbju">476/27/28/32</div>
+        </div>
+        <select name="Блины с творогом с йогуртом">
+          <option value="0">-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+
+      <div class="dish">
+        <div>
+          <p class="dish-name">Драники из цукини с йогуртом</p>
+          <div class="kbju">451/17/24/42</div>
+        </div>
+        <select name="Драники из цукини с йогуртом">
+          <option value="0">-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+
+      <div class="dish">
+        <div>
+          <p class="dish-name">Драники из картофеля с йогуртом</p>
+          <div class="kbju">464/18/25/43</div>
+        </div>
+        <select name="Драники из картофеля с йогуртом">
+          <option value="0">-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+
+      <div class="dish">
+        <div>
+          <p class="dish-name">Йогурт с гранолой и тыквенными семечками</p>
+          <div class="kbju">424/15/15/62</div>
+        </div>
+        <select name="Йогурт с гранолой и тыквенными семечками">
+          <option value="0">-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+
+      <div class="dish">
+        <div>
+          <p class="dish-name">Омлет с брокколи</p>
+          <div class="kbju">76/5/4/8</div>
+        </div>
+        <select name="Омлет с брокколи">
+          <option value="0">-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+
+      <div class="dish">
+        <div>
+          <p class="dish-name">Омлет с вялеными томатами</p>
+          <div class="kbju">2014/11/187/76</div>
+        </div>
+        <select name="Омлет с вялеными томатами">
+          <option value="0">-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+
+      <div class="dish">
+        <div>
+          <p class="dish-name">Пенкейки с кленовым сиропом и йогуртом</p>
+          <div class="kbju">818/17/32/117</div>
+        </div>
+        <select name="Пенкейки с кленовым сиропом и йогуртом">
+          <option value="0">-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+
+      <div class="dish">
+        <div>
+          <p class="dish-name">Сырники с йогуртом</p>
+          <div class="kbju">382/24/18/32</div>
+        </div>
+        <select name="Сырники с йогуртом">
+          <option value="0">-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+        </select>
+      </div>
+
+    </form>
+  </div>
 </body>
 </html>
