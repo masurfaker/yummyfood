@@ -167,13 +167,16 @@ button:hover {
 
 .dish-name {
   font-weight: bold;
-  max-width: 70%;
+  max-width: 80%;
+}
+
+.dish-qty {
+  width: 60px;
+  padding: 4px;
 }
 
 .kbju {
   font-size: 0.9em;
   color: #666;
-  text-align: right;
-  margin-top: 2px;
-  margin-right: 5px;
+  margin-top: 3px;
 }
