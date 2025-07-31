@@ -1,37 +1,135 @@
-.dish {
-  margin-bottom: 20px;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  margin: 0;
+  padding: 0;
+  color: #333;
 }
 
-.dish-name-wrapper {
+.container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.section h2 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+  font-size: 22px;
+  color: #222;
+}
+
+.dish {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 20px; /* как раньше */
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.dish-name-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+}
+
+.dish-name {
+  font-size: 16px;
   font-weight: bold;
   color: #000;
 }
 
-.dish select.qty {
-  font-size: 16px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
 .kbju {
-  font-size: 14px; /* 70% от названия */
+  font-size: 11px;
   color: #666;
-  margin-top: 4px;
-  padding-left: 2px;
+  margin-top: 2px;
 }
 
-#kbju-summary {
-  margin: 30px 0 15px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  background: #f9f9f9;
-  font-size: 16px;
-  font-weight: 500;
+.dish select.qty {
+  padding: 4px;
+  font-size: 14px;
+}
+
+#kbju-summary-box {
+  background-color: #f8f8f8;
+  padding: 10px 14px;
+  margin: 30px 0 40px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
   color: #222;
+  display: inline-block;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+button {
+  margin-top: 16px;
+  padding: 10px 18px;
+  background-color: #000;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #444;
+}
+
+#popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#popup .popup-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
 }
