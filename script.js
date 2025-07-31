@@ -69,15 +69,11 @@ document.querySelectorAll(".dish").forEach((dish) => {
   const kbjuBox = document.createElement("div");
   kbjuBox.className = "kbju-box";
 
-  if (kbjuData[name]) {
+    if (kbjuData[name]) {
     const [k, b, j, u] = kbjuData[name];
     kbjuBox.textContent = `К/Б/Ж/У: ${k}/${b}/${j}/${u}`;
-  } else {
-    kbjuBox.textContent = "КБЖУ: нет данных";
+    dish.insertBefore(kbjuBox, select);
   }
-
-  dish.insertBefore(kbjuBox, select);
-});
 
 // Обработка формы
 form.addEventListener("submit", function (e) {
