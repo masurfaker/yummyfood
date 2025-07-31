@@ -4,151 +4,240 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Yummy</title>
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f7f5f0;
+      color: #222;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .field {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    .section-title {
+      margin-top: 40px;
+      font-size: 22px;
+      font-weight: bold;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 8px;
+    }
+
+    .dish {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .dish-info {
+      max-width: 75%;
+    }
+
+    .dish-title {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .dish-kbju {
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 5px;
+    }
+
+    .dish select {
+      width: 55px;
+      height: 34px;
+      font-size: 16px;
+      border-radius: 8px;
+    }
+
+    .summary {
+      margin: 30px 0;
+      padding: 15px 20px;
+      background-color: #f0e9dd;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    button {
+      background: #000;
+      color: #fff;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #333;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
-    <img src="logo.png" alt="Yummy Logo" class="logo" />
+    <h1>Yummy</h1>
 
     <form id="orderForm">
-      <div class="contact-info">
-        <label>Имя: <input type="text" name="name" required /></label>
-        <label>Телефон: <input type="tel" name="phone" required /></label>
+      <div class="field">
+        <label for="network">Соцсеть</label>
+        <select id="network" name="network">
+          <option value="Telegram">Telegram</option>
+          <option value="Zalo">Zalo</option>
+        </select>
       </div>
 
-      <!-- Блок Завтраки -->
-      <h2>Завтраки</h2>
-
-      <div class="dish">
-        <span class="dish-name">Блины с курой и овощами</span>
-        <select name="Блины с курой и овощами">
-          <option>-</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6</option>
-        </select>
-        <div class="kbju">854 ккал / Б 22 / Ж 87 / У 26</div>
+      <div class="field">
+        <label for="contact">Ник или номер</label>
+        <input type="text" id="contact" name="contact" required />
       </div>
 
-      <div class="dish">
-        <span class="dish-name">Блины с курой в сливках</span>
-        <select name="Блины с курой в сливках">
-          <option>-</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6</option>
-        </select>
-        <div class="kbju">854 ккал / Б 20 / Ж 86 / У 23</div>
+      <div class="field">
+        <label for="name">Имя</label>
+        <input type="text" id="name" name="name" required />
       </div>
 
-      <div class="dish">
-        <span class="dish-name">Блины с йогуртом и медом</span>
-        <select name="Блины с йогуртом и медом">
-          <option>-</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6</option>
-        </select>
-        <div class="kbju">582 ккал / Б 20 / Ж 26 / У 69</div>
-      </div>
+      <div class="section-title">Завтраки</div>
 
       <div class="dish">
-        <span class="dish-name">Блины с сыром и ветчиной</span>
-        <select name="Блины с сыром и ветчиной">
-          <option>-</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6</option>
+        <div class="dish-info">
+          <div class="dish-title">Скрэмбл с овощами</div>
+          <div class="dish-kbju">К/Б/Ж/У – 164/9/13/4</div>
+        </div>
+        <select name="scramble">
+          <option>-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
         </select>
-        <div class="kbju">517 ккал / Б 36 / Ж 35 / У 16</div>
       </div>
 
       <div class="dish">
-        <span class="dish-name">Блины с творогом с йогуртом</span>
-        <select name="Блины с творогом с йогуртом">
-          <option>-</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6</option>
+        <div class="dish-info">
+          <div class="dish-title">Каша рисовая с кокосовым молоком</div>
+          <div class="dish-kbju">К/Б/Ж/У – 216/3/9/31</div>
+        </div>
+        <select name="rice_porridge">
+          <option>-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
         </select>
-        <div class="kbju">476 ккал / Б 27 / Ж 28 / У 32</div>
       </div>
 
       <div class="dish">
-        <span class="dish-name">Драники из цукини с йогуртом</span>
-        <select name="Драники из цукини с йогуртом">
-          <option>-</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6</option>
+        <div class="dish-info">
+          <div class="dish-title">Сырники с соусом</div>
+          <div class="dish-kbju">К/Б/Ж/У – 342/19/16/29</div>
+        </div>
+        <select name="syrniki">
+          <option>-</option>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
         </select>
-        <div class="kbju">451 ккал / Б 17 / Ж 24 / У 42</div>
       </div>
 
-      <div class="dish">
-        <span class="dish-name">Драники из картофеля с йогуртом</span>
-        <select name="Драники из картофеля с йогуртом">
-          <option>-</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6</option>
-        </select>
-        <div class="kbju">464 ккал / Б 18 / Ж 25 / У 43</div>
-      </div>
+      <div id="kbjuSummary" class="summary">Итого: 0 ккал / 0 Б / 0 Ж / 0 У</div>
 
-      <div class="dish">
-        <span class="dish-name">Йогурт с гранолой и тыквенными семечками</span>
-        <select name="Йогурт с гранолой и тыквенными семечками">
-          <option>-</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6</option>
-        </select>
-        <div class="kbju">424 ккал / Б 15 / Ж 15 / У 62</div>
+      <div class="field">
+        <label for="comment">Комментарий</label>
+        <textarea id="comment" name="comment" rows="3" placeholder="Без лука, соус отдельно и т.п."></textarea>
       </div>
-
-      <div class="dish">
-        <span class="dish-name">Омлет с брокколи</span>
-        <select name="Омлет с брокколи">
-          <option>-</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6</option>
-        </select>
-        <div class="kbju">76 ккал / Б 5 / Ж 4 / У 8</div>
-      </div>
-
-      <div class="dish">
-        <span class="dish-name">Омлет с вялеными томатами</span>
-        <select name="Омлет с вялеными томатами">
-          <option>-</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6</option>
-        </select>
-        <div class="kbju">2014 ккал / Б 11 / Ж 187 / У 76</div>
-      </div>
-
-      <div class="dish">
-        <span class="dish-name">Пенкейки с кленовым сиропом и йогуртом</span>
-        <select name="Пенкейки с кленовым сиропом и йогуртом">
-          <option>-</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6</option>
-        </select>
-        <div class="kbju">818 ккал / Б 17 / Ж 32 / У 117</div>
-      </div>
-
-      <div class="dish">
-        <span class="dish-name">Сырники с йогуртом</span>
-        <select name="Сырники с йогуртом">
-          <option>-</option><option>1</option><option>2</option><option>3</option>
-          <option>4</option><option>5</option><option>6</option>
-        </select>
-        <div class="kbju">382 ккал / Б 24 / Ж 18 / У 32</div>
-      </div>
-
-      <!-- Итоговое КБЖУ -->
-      <div id="total-kbju-box">
-        <strong>Итого:</strong>
-        <span id="total-kcal">0</span> ккал / 
-        Б: <span id="total-protein">0</span> / 
-        Ж: <span id="total-fat">0</span> / 
-        У: <span id="total-carb">0</span>
-      </div>
-
-      <!-- Комментарии -->
-      <label>Комментарий:<br />
-        <textarea name="comment"></textarea>
-      </label>
 
       <button type="submit">Отправить заказ</button>
     </form>
-
-    <div id="popup" style="display: none;">
-      <div id="popup-message"></div>
-    </div>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const kbjuData = {
+      "scramble": [164, 9, 13, 4],
+      "rice_porridge": [216, 3, 9, 31],
+      "syrniki": [342, 19, 16, 29]
+    };
+
+    const form = document.getElementById("orderForm");
+    const kbjuSummary = document.getElementById("kbjuSummary");
+
+    form.addEventListener("change", () => {
+      let total = [0, 0, 0, 0];
+      for (let key in kbjuData) {
+        const select = form.querySelector(`select[name="${key}"]`);
+        const count = parseInt(select.value) || 0;
+        for (let i = 0; i < 4; i++) {
+          total[i] += kbjuData[key][i] * count;
+        }
+      }
+      kbjuSummary.textContent = `Итого: ${total[0]} ккал / ${total[1]} Б / ${total[2]} Ж / ${total[3]} У`;
+    });
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Array.from(formData.entries())
+        .map(([key, value]) => `${key}: ${value}`)
+        .join("\n");
+
+      const totalText = kbjuSummary.textContent;
+
+      const message = `Новый заказ:\n\n${data}\n\n${totalText}`;
+
+      // Отправка в Telegram
+      await fetch(`https://api.telegram.org/bot8472899454:AAGiebKRLt6VMei4toaiW11bR2tIACuSFeo/sendMessage`, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({
+          chat_id: "@yummyfood7",
+          text: message
+        })
+      });
+
+      alert("Заказ отправлен!");
+      form.reset();
+      kbjuSummary.textContent = "Итого: 0 ккал / 0 Б / 0 Ж / 0 У";
+    });
+  </script>
 </body>
 </html>
