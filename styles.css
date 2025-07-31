@@ -1,117 +1,37 @@
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
-}
-
-.container {
-  max-width: 700px;
-  margin: 20px auto;
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.logo {
-  width: 180px;
+.dish {
   margin-bottom: 20px;
 }
 
-.contact-section input {
-  display: block;
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
-  font-size: 16px;
-}
-
-.menu-section h2 {
-  margin-top: 30px;
-  font-size: 22px;
-}
-
-.menu-item {
+.dish-name-wrapper {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
-  margin: 12px 0;
-  flex-wrap: wrap;
+  align-items: center;
+  font-size: 20px; /* как раньше */
+  font-weight: bold;
+  color: #000;
 }
 
-.item-name {
-  font-size: 18px;
-  flex: 1;
-}
-
-.quantity {
-  margin-left: 10px;
+.dish select.qty {
   font-size: 16px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
 .kbju {
-  width: 100%;
-  font-size: 12px;
-  margin-top: 4px;
-  color: #666;
-}
-
-.total-kbju-box {
-  background: #ffefc2;
-  border-radius: 10px;
-  padding: 10px 14px;
-  margin: 30px 0 10px;
-  font-size: 15px;
-  color: #333;
-}
-
-textarea {
-  width: 100%;
-  height: 100px;
-  margin-top: 10px;
-  padding: 10px;
-  font-size: 16px;
-  resize: none;
-}
-
-.submit-button {
-  display: block;
-  margin: 20px auto 0;
-  padding: 12px 24px;
-  font-size: 18px;
-  background: #333;
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-.popup {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #eee;
-  padding: 12px 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
-}
-
-/* КБЖУ под блюдами */
-.kbju {
-  font-size: 70%;
+  font-size: 14px; /* 70% от названия */
   color: #666;
   margin-top: 4px;
+  padding-left: 2px;
 }
 
-/* Итоговый блок КБЖУ перед комментарием */
 #kbju-summary {
-  margin: 6px 0 12px;
-  font-size: 14px;
-  color: #333;
-  background-color: #f5f5f5;
-  padding: 8px 12px;
-  border-radius: 6px;
-  line-height: 1.5;
+  margin: 30px 0 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: #f9f9f9;
+  font-size: 16px;
   font-weight: 500;
+  color: #222;
 }
