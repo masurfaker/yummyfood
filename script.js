@@ -2,44 +2,27 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("orderForm");
   const popup = document.getElementById("popup");
   const popupMessage = document.getElementById("popup-message");
-
   const kbjuTotal = document.getElementById("kbju-total");
+
   const telegramToken = "8472899454:AAGiebKRLt6VMei4toaiW11bR2tIACuSFeo";
   const telegramChatID = "7408180116";
 
-  document.querySelectorAll(".dish").forEach(dish => {
-    const select = dish.querySelector("select.qty");
-
-    if (!select) return;
-
-    select.innerHTML = "";
-    for (let i = 0; i <= 5; i++) {
-      const option = document.createElement("option");
-      option.value = i;
-      option.textContent = i;
-      select.appendChild(option);
-    }
-  });
+  function parseKBJU(text) {
+    const match = text.match(/(\d+)\s*\/\s*(\d+)\s*\/\s*(\d+)\s*\/\s*(\d+)/);
+    if (!match) return [0, 0, 0, 0];
+    return match.slice(1).map(Number);
+  }
 
   function calculateTotalKBJU() {
     let total = [0, 0, 0, 0];
-
     document.querySelectorAll(".dish").forEach(dish => {
       const qty = +dish.querySelector("select.qty").value;
-      const kbjuText = dish.querySelector(".kbju-box")?.textContent;
-
-      if (qty > 0 && kbjuText) {
-        const match = kbjuText.match(/(\d+)\s*\/\s*(\d+)\s*\/\s*(\d+)\s*\/\s*(\d+)/);
-        if (match) {
-          const [_, k, b, j, u] = match.map(Number);
-          total[0] += k * qty;
-          total[1] += b * qty;
-          total[2] += j * qty;
-          total[3] += u * qty;
-        }
+      const kbjuBox = dish.querySelector(".kbju-box");
+      if (qty > 0 && kbjuBox) {
+        const values = parseKBJU(kbjuBox.textContent);
+        total = total.map((val, i) => val + values[i] * qty);
       }
     });
-
     kbjuTotal.value = `К/Б/Ж/У: ${total[0]}/${total[1]}/${total[2]}/${total[3]}`;
   }
 
@@ -77,7 +60,7 @@ ${selectedDishes.join("\n")}
 💬 Комментарий: ${comment}
     `.trim();
 
-    // Telegram
+    // Отправка в Telegram
     await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -87,15 +70,23 @@ ${selectedDishes.join("\n")}
       }),
     });
 
-    // Web3Forms
+    // Отправка в Web3Forms
+    const web3Data = new FormData(form);
+    web3Data.append("access_key", "2c3c09c4-d450-4f5c-8183-6aef94cf3655");
+    web3Data.append("КБЖУ", kbju);
+
+    selectedDishes.forEach((dish, index) => {
+      web3Data.append(`Блюдо ${index + 1}`, dish);
+    });
+
     await fetch("https://api.web3forms.com/submit", {
       method: "POST",
-      body: new FormData(form),
+      body: web3Data,
     });
 
     form.reset();
     kbjuTotal.value = "";
-    popupMessage.textContent = "Спасибо! Заказ отправлен.";
+    popupMessage.textContent = "Спасибо! Заявка принята.";
     popup.style.display = "flex";
   });
 
