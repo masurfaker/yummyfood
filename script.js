@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function calculateTotalKBJU() {
     let total = [0, 0, 0, 0];
     document.querySelectorAll(".dish").forEach(dish => {
-      const name = dish.querySelector(".name").textContent.trim();
+      const name = dish.querySelector(".dish-name").textContent.trim();
       const qty = +dish.querySelector("select.qty").value;
       if (kbjuData[name] && qty > 0) {
         const [k, b, j, u] = kbjuData[name];
