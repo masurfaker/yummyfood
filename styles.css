@@ -155,9 +155,8 @@ button:hover {
   margin: 15px 0;
 }
 
-#kbju-total {
-  border: 1px solid #ccc;
-  padding: 5px;
+.kbju-total {
   font-weight: bold;
-  background: #f9f9f9;
+  font-size: 1.1em;
+  margin-top: 10px;
 }
