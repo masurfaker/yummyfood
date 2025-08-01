@@ -190,8 +190,3 @@ button:hover {
   font-size: 16px;
   margin-bottom: 12px;
 }
-
-.kbju {
-  font-size: 0.85em; /* или 13px, если хочешь точно */
-  color: #555;
-}
