@@ -14,17 +14,25 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function calculateTotalKBJU() {
-    let total = [0, 0, 0, 0];
-    document.querySelectorAll(".dish").forEach(dish => {
-      const qty = +dish.querySelector("select.qty").value;
-      const kbjuBox = dish.querySelector(".kbju-box");
-      if (qty > 0 && kbjuBox) {
-        const values = parseKBJU(kbjuBox.textContent);
-        total = total.map((val, i) => val + values[i] * qty);
-      }
-    });
-    kbjuTotal.value = `К/Б/Ж/У: ${total[0]}/${total[1]}/${total[2]}/${total[3]}`;
+  let total = [0, 0, 0, 0];
+
+  document.querySelectorAll(".dish").forEach(dish => {
+    const qty = +dish.querySelector("select.qty").value;
+    const kbjuBox = dish.querySelector(".kbju-box");
+    if (qty > 0 && kbjuBox) {
+      const values = parseKBJU(kbjuBox.textContent);
+      total = total.map((val, i) => val + values[i] * qty);
+    }
+  });
+
+  const resultText = `К/Б/Ж/У: ${total[0]}/${total[1]}/${total[2]}/${total[3]}`;
+  kbjuTotal.value = resultText;
+
+  const kbjuBox = document.getElementById("kbju-total-box");
+  if (kbjuBox) {
+    kbjuBox.textContent = resultText;
   }
+}
 
   document.querySelectorAll("select.qty").forEach(select => {
     select.addEventListener("change", calculateTotalKBJU);
