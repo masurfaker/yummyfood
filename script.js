@@ -64,6 +64,8 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("<br>")}
 
 // === ЗАКРЫТИЕ POPUP ===
 function closePopup() {
+  popup.classList.add("hidden");
+}
 
   // === ОТПРАВКА EMAIL ===
   try {
@@ -117,5 +119,3 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
   }
 
   
-  popup.classList.add("hidden");
-}
