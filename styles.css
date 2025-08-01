@@ -1,44 +1,49 @@
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  overflow-x: hidden;
   font-family: Arial, sans-serif;
-  background-color: #e9e9e9;
+  background: #f5f5f5;
 }
 
 .container {
-  max-width: 600px;
-  margin: 30px auto;
-  background-color: #fff;
-  padding: 30px;
+  max-width: 700px;
+  margin: 20px auto;
+  background: #fff;
   border-radius: 12px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  box-shadow: 0 0 6px rgba(0,0,0,.1);
 }
 
 .logo {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
   display: block;
-  margin: 0 auto 20px;
-  max-width: 200px;
+  margin: 0 auto 32px;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
+/* --- Вводные поля --- */
+.input-block {
+  margin-bottom: 16px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 input[type="text"],
-input[type="tel"],
-select[name="contact"],
-textarea {
+textarea,
+input:not([type="number"]):not([type="submit"]) {
   width: 100%;
-  padding: 10px 14px;
-  margin-bottom: 20px;
+  padding: 12px;
+  font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  font-size: 16px;
   box-sizing: border-box;
-}
-
-select[name="contact"] {
-  font-size: 16px;
 }
 
 textarea {
@@ -46,92 +51,137 @@ textarea {
   min-height: 80px;
 }
 
-button[type="submit"] {
-  width: 100%;
-  padding: 12px;
-  font-size: 18px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+#contactHandle {
+  margin-top: 12px;
 }
 
-button[type="submit"]:hover {
-  background-color: #45a049;
-}
-
+/* --- Меню и секции --- */
 .menu-section {
-  margin-bottom: 30px;
+  margin: 20px 0;
+  padding: 16px;
+  background: #f3f1ed;
+  border-radius: 12px;
 }
 
 .section-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 20px 0 10px;
-  border-bottom: 2px solid #ccc;
-  padding-bottom: 5px;
+  background: #e1ded9;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 12px;
+  text-align: center;
 }
 
+/* --- Блюда --- */
 .dish {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin: 6px 0;
-  padding: 10px 0;
-  border-bottom: 1px dashed #ccc;
+  font-size: 15px;
+}
+
+.dish-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
 
 .dish-name {
-  flex: 1;
-  font-size: 16px;
   font-weight: 500;
+  margin-bottom: 4px;
 }
 
 .kbju {
-  font-size: 13px;
+  font-size: 14px;
   color: #666;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
-select.qty {
+/* --- Select количества --- */
+.dish select.qty {
   width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+  padding: 6px;
   font-size: 16px;
-  padding: 4px;
-  border-radius: 4px;
-  border: 1px solid #aaa;
-}
-
-#total-kbju {
-  background-color: #f9f9f9;
-  border: 2px solid #ccc;
-  padding: 10px 15px;
-  font-weight: bold;
-  border-radius: 5px;
-  display: inline-block;
-  margin-top: 10px;
-  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
   color: #333;
+  text-align: center;
+  text-align-last: center;
 }
 
+.dish select.qty option {
+  text-align: center;
+}
+
+/* --- Кнопка отправки --- */
+button {
+  width: 100%;
+  background: #555;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #222;
+}
+
+/* --- Popup (всплывающее окно после отправки) --- */
 .popup {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.5);
-  display: none;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
+}
+
+.popup.hidden {
+  display: none;
 }
 
 .popup-content {
-  background-color: white;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 400px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 90%;
   text-align: center;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.popup-content pre {
+  white-space: pre-line;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.3;
+  margin: 15px 0;
+}
+select.qty {
+  width: 50px;
+  padding: 2px;
+}
+
+#social {
+  font-size: 16px;
+  padding: 6px;
+  min-width: 120px;
+}
+
+#kbju-total {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  font-weight: bold;
+  background: #f9f9f9;
 }
