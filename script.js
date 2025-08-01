@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const selectedDishes = [];
     document.querySelectorAll(".dish").forEach(dish => {
-      const dishName = dish.querySelector(".name").textContent.trim();
+      const dishName = dish.querySelector(".dish-name").textContent.trim();
       const qty = +dish.querySelector("select.qty").value;
       if (qty > 0) {
         selectedDishes.push(`${dishName} x${qty}`);
