@@ -1,71 +1,56 @@
-<script>
-document.addEventListener("DOMContentLoaded", () => {
 const form = document.getElementById("orderForm");
 const popup = document.getElementById("popup");
 const popupMessage = document.getElementById("popup-message");
 
-/* Заполняем выпадающие списки: "-", "1…6" */
-document.querySelectorAll("select.qty").forEach(sel => {
-  sel.innerHTML = '<option value="" selected>-</option>' +
-    [1, 2, 3, 4, 5, 6].map(n => `<option value="${n}">${n}</option>`).join("");
-});
-
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit", async function (e) {
   e.preventDefault();
 
-  const fd = new FormData(form);
-  const name = fd.get("name");
-  const contactMethod = fd.get("contactMethod");
-  const contactHandle = fd.get("contactHandle");
-  const comment = fd.get("comment");
+  const name = form.name.value.trim();
+  const contactMethod = form.contactMethod.value.trim();
+  const contactHandle = form.contactHandle.value.trim();
+  const comment = form.comment.value.trim();
+
+  if (!name || !contactMethod || !contactHandle) {
+    alert("Пожалуйста, заполните все контактные поля");
+    return;
+  }
 
   const orderItems = [];
-  document.querySelectorAll(".dish select.qty").forEach(sel => {
-    const qty = parseInt(sel.value);
-    if (qty) {
-      orderItems.push(`${sel.name} — ${qty}`);
+  const kbjuTotal = [0, 0, 0, 0]; // К / Б / Ж / У
+
+  const dishes = form.querySelectorAll(".dish");
+  dishes.forEach((dish) => {
+    const qty = parseInt(dish.querySelector("select.qty").value);
+    if (qty > 0) {
+      const title = dish.querySelector(".dish-name").textContent.trim();
+      const kbjuString = dish.querySelector(".kbju").dataset.kbju;
+      const [k, b, j, u] = kbjuString.split("/").map(Number);
+      orderItems.push(`${title} — ${qty} порц.`);
+
+      kbjuTotal[0] += k * qty;
+      kbjuTotal[1] += b * qty;
+      kbjuTotal[2] += j * qty;
+      kbjuTotal[3] += u * qty;
     }
   });
 
-  if (!orderItems.length) {
+  if (orderItems.length === 0) {
     alert("Выберите хотя бы одно блюдо.");
     return;
   }
 
-  const orderHTML = orderItems
-    .map((item, i) => `<div style="text-align:left;">${i + 1}. ${item}</div>`).join("");
-
-  popupMessage.innerHTML = `
-    <div style="font-family:Arial;font-size:16px;">
-      <div>${name}!</div>
-      <div style="margin-top:6px;">Ваша заявка отправлена!</div>
-      <div style="margin:14px 0 6px;">Ваш заказ:</div>
-      ${orderHTML}
-      <div style="margin-top:16px;">В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
-    </div>
-  `;
-  popup.classList.remove("hidden");
-
   const emailBody = `
-Имя: ${name}
+Новый заказ от ${name}
 Контакт: ${contactMethod} - ${contactHandle}
 Комментарий: ${comment}
 
 Заказ:
 ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
-`;
 
-  const telegramMessage = `
-<b>Новый заказ YUMMY</b>
-👤 Имя: ${name}
-📬 Контакт: ${contactMethod} - ${contactHandle}
-📝 Комментарий: ${comment || "–"}
+К/Б/Ж/У: ${kbjuTotal.join(" / ")}
+  `;
 
-🍽 Заказ:
-${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
-`;
-
-  // Отправка на почту
+  // === ОТПРАВКА EMAIL ===
   try {
     const res = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -80,36 +65,55 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
       })
     }).then(r => r.json());
 
-    if (!res.success) alert("Ошибка отправки на почту. Проверьте форму.");
+    if (!res.success) {
+      alert("Ошибка отправки. Проверьте форму.");
+      return;
+    } else {
+      form.reset();
+    }
   } catch (err) {
-    alert("Ошибка при отправке на почту: " + err.message);
+    alert("Ошибка отправки (email): " + err.message);
+    return;
   }
 
-  // Отправка в Telegram
+  // === ОТПРАВКА В TELEGRAM ===
+  const tgMessage = `
+Новый заказ от ${name}
+Контакт: ${contactMethod} - ${contactHandle}
+Комментарий: ${comment}
+
+Заказ:
+${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
+
+К/Б/Ж/У: ${kbjuTotal.join(" / ")}
+  `;
+
   try {
     await fetch("https://api.telegram.org/bot8472899454:AAGiebKRLt6VMei4toaiW11bR2tIACuSFeo/sendMessage", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        chat_id: "495064227", // @yummyfood7
-        text: telegramMessage,
-        parse_mode: "HTML"
+        chat_id: 7408180116,
+        text: tgMessage
       })
     });
   } catch (err) {
-    alert("Ошибка при отправке в Telegram: " + err.message);
+    console.error("Ошибка отправки в Telegram: ", err.message);
   }
 
-  form.reset();
+  // === ПОКАЗ POPUP ===
+  popupMessage.innerHTML = `
+<strong>Спасибо за заказ!</strong><br>
+Контакт: ${contactMethod} - ${contactHandle}<br><br>
+<strong>Заказ:</strong><br>
+${orderItems.map((x, i) => `${i + 1}. ${x}`).join("<br>")}
+<br><br>
+<b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
+  `;
+  popup.classList.remove("hidden");
 });
 
+// === ЗАКРЫТИЕ POPUP ===
 function closePopup() {
   popup.classList.add("hidden");
 }
-
-
-
-
-
-
-
