@@ -50,6 +50,21 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
 К/Б/Ж/У: ${kbjuTotal.join(" / ")}
   `;
 
+// === ПОКАЗ POPUP ===
+  popupMessage.innerHTML = `
+<strong>Спасибо за заказ!</strong><br>
+Контакт: ${contactMethod} - ${contactHandle}<br><br>
+<strong>Заказ:</strong><br>
+${orderItems.map((x, i) => `${i + 1}. ${x}`).join("<br>")}
+<br><br>
+<b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
+  `;
+  popup.classList.remove("hidden");
+});
+
+// === ЗАКРЫТИЕ POPUP ===
+function closePopup() {
+
   // === ОТПРАВКА EMAIL ===
   try {
     const res = await fetch("https://api.web3forms.com/submit", {
@@ -101,19 +116,6 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
     console.error("Ошибка отправки в Telegram: ", err.message);
   }
 
-  // === ПОКАЗ POPUP ===
-  popupMessage.innerHTML = `
-<strong>Спасибо за заказ!</strong><br>
-Контакт: ${contactMethod} - ${contactHandle}<br><br>
-<strong>Заказ:</strong><br>
-${orderItems.map((x, i) => `${i + 1}. ${x}`).join("<br>")}
-<br><br>
-<b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
-  `;
-  popup.classList.remove("hidden");
-});
-
-// === ЗАКРЫТИЕ POPUP ===
-function closePopup() {
+  
   popup.classList.add("hidden");
 }
