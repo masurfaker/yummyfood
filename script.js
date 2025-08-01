@@ -118,4 +118,54 @@ function closePopup() {
   popup.classList.add("hidden");
 }
 
+
+<script>
+  function parseKbju(str) {
+    return str.split('/').map(Number); // К/Б/Ж/У → [ккал, белки, жиры, углеводы]
+  }
+
+  function updateKbjuTotal() {
+    let total = [0, 0, 0, 0]; // [Ккал, Б, Ж, У]
+
+    document.querySelectorAll('.dish').forEach(dish => {
+      const qty = parseInt(dish.querySelector('select.qty')?.value) || 0;
+      const kbjuStr = dish.querySelector('.kbju')?.dataset.kbju;
+
+      if (!kbjuStr || qty === 0) return;
+
+      const kbju = parseKbju(kbjuStr);
+      for (let i = 0; i < 4; i++) {
+        total[i] += kbju[i] * qty;
+      }
+    });
+
+    document.getElementById('total-kcal').textContent = total[0];
+    document.getElementById('total-protein').textContent = total[1];
+    document.getElementById('total-fat').textContent = total[2];
+    document.getElementById('total-carbs').textContent = total[3];
+  }
+
+  // Заполнение select'ов 0-6
+  document.querySelectorAll('select.qty').forEach(select => {
+    for (let i = 0; i <= 6; i++) {
+      const option = document.createElement('option');
+      option.value = i;
+      option.textContent = i;
+      select.appendChild(option);
+    }
+    select.addEventListener('change', updateKbjuTotal);
+  });
+
+  updateKbjuTotal(); // при загрузке
+</script>
+
+<div id="popup" class="popup hidden">
+  <div class="popup-content">
+    <div id="popup-message" style="margin-bottom:15px;"></div>
+    <button id="popup-close">Закрыть</button>
+  </div>
+</div>
+  
+  <script src="script.js" defer></script>
+  
   
