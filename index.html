@@ -468,5 +468,22 @@
   </div>
 
   <script src="script.js"></script>
+  
+  <!-- Твой HTML-контент выше -->
+
+<script>
+  document.querySelectorAll('select.qty').forEach(select => {
+    for (let i = 0; i <= 6; i++) {
+      const option = document.createElement('option');
+      option.value = i;
+      option.textContent = i;
+      select.appendChild(option);
+    }
+  });
+</script>
+
+</body>
+</html>
+  
 </body>
 </html>
