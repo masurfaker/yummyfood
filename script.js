@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   document.querySelectorAll(".dish").forEach(dish => {
-    const name = dish.querySelector(".name").textContent.trim();
+    const name = dish.querySelector(".dish-name").textContent.trim();
     const select = dish.querySelector("select.qty");
 
     if (!select) return;
