@@ -474,17 +474,6 @@
   <!-- Твой HTML-контент выше -->
 
 <script>
-  document.querySelectorAll('select.qty').forEach(select => {
-    for (let i = 0; i <= 6; i++) {
-      const option = document.createElement('option');
-      option.value = i;
-      option.textContent = i;
-      select.appendChild(option);
-    }
-  });
-</script>
-
-<script>
   function parseKbju(str) {
     return str.split('/').map(Number); // К/Б/Ж/У → [ккал, белки, жиры, углеводы]
   }
