@@ -81,21 +81,18 @@ select {
 
 .dish {
   display: flex;
-  align-items: flex-start;
   justify-content: space-between;
-  gap: 10px;
+  align-items: center;
   margin: 6px 0;
   font-size: 15px;
-  width: 100%;
+  width: 100%; /* гарантирует одинаковую ширину */
 }
 
 .dish-info {
-  flex-grow: 1;
-  flex-shrink: 0;
-  width: calc(100% - 70px); /* учёт select */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  word-break: break-word;
+  min-width: 0;
 }
 
 .kbju-box {
