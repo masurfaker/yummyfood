@@ -208,3 +208,35 @@ select {
   text-align: center;
   text-align-last: center;
 }
+
+.dish {
+  width: 100%;
+  max-width: 300px; /* одинаковая ширина для всех */
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: left;
+}
+
+.dish-name,
+.kbju,
+.qty {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+.kbju {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+select.qty {
+  padding: 5px;
+  font-size: 14px;
+}
+
