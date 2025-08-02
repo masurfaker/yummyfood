@@ -79,33 +79,36 @@ select {
   text-align: center;
 }
 
+/* ОБНОВЛЕНО: оформление блока блюда */
 .dish {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
   margin: 6px 0;
-  font-size: 15px;
-  width: 100%; /* гарантирует одинаковую ширину */
+  width: 100%;
+  gap: 10px;
 }
 
-.dish-info {
+.dish-name {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
+  text-align: left;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.2;
 }
 
-.kbju-box {
-  font-size: 14px;
-  color: #333;
-  margin-top: 2px;
+.kbju {
+  flex: 1;
+  text-align: left;
+  font-size: 13px;
+  color: #555;
   line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  margin-top: 2px;
 }
 
 .dish select.qty {
+  text-align: center;
+  text-align-last: center;
   width: 60px;
   min-width: 60px;
   max-width: 60px;
@@ -115,9 +118,8 @@ select {
   border-radius: 6px;
   background: #fff;
   color: #333;
-  text-align: center;
-  text-align-last: center;
   flex-shrink: 0;
+  align-self: center;
 }
 
 .dish select.qty option {
@@ -189,3 +191,4 @@ button:hover {
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 12px;
+}
