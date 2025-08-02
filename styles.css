@@ -1,3 +1,4 @@
+/* Общие стили страницы */
 html, body {
   margin: 0;
   padding: 0;
@@ -12,7 +13,7 @@ html, body {
   background: #fff;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 0 6px rgba(0,0,0,.1);
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
 }
 
 .logo {
@@ -62,6 +63,7 @@ select {
   margin-bottom: 12px;
 }
 
+/* Секция меню */
 .menu-section {
   margin: 20px 0;
   padding: 16px;
@@ -79,32 +81,37 @@ select {
   text-align: center;
 }
 
-/* === dish блок: название, КБЖУ, выбор === */
+/* Блок блюда */
 .dish {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin: 6px 0;
   font-size: 15px;
   width: 100%;
 }
 
+/* Название блюда */
 .dish > .dish-name {
   font-weight: bold;
   margin-right: 12px;
   white-space: nowrap;
+  text-align: left;
 }
 
+/* Строка с КБЖУ */
 .dish > .kbju {
   font-size: 14px;
   color: #333;
   margin-left: 12px;
-  margin-right: auto;
+  margin-right: auto; /* позволяет “оттеснить” селектор вправо */
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: left;
 }
 
+/* Селектор количества */
 .dish select.qty {
   width: 60px;
   min-width: 60px;
@@ -124,7 +131,7 @@ select {
   text-align: center;
 }
 
-/* === остальное === */
+/* Остальные элементы формы */
 textarea {
   resize: vertical;
   min-height: 80px;
@@ -145,10 +152,11 @@ button:hover {
   background: #222;
 }
 
+/* Popup окно */
 .popup {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.5);
+  background: rgba(0,0,0,0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -167,6 +175,13 @@ button:hover {
   text-align: center;
 }
 
+/* Если обернуть список блюд в popup в элемент с классом .order-items,
+   его можно выровнять по левому краю */
+#popup-message .order-items {
+  text-align: left;
+}
+
+/* Дополнительные стили */
 .popup-content pre {
   white-space: pre-line;
   text-align: left;
