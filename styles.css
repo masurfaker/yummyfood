@@ -85,21 +85,23 @@ select {
   align-items: center;
   margin: 6px 0;
   font-size: 15px;
-  width: 100%; /* гарантирует одинаковую ширину */
+  width: 100%;
+  gap: 12px;
 }
 
-.dish-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
+.dish-name,
+.kbju {
+  display: block;
+  font-size: 15px;
+  line-height: 1.3;
+  text-align: left;
   min-width: 0;
 }
 
-.kbju-box {
+.kbju {
   font-size: 14px;
-  color: #333;
+  color: #555;
   margin-top: 2px;
-  line-height: 1.2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -118,30 +120,25 @@ select {
   text-align: center;
   text-align-last: center;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .dish select.qty option {
   text-align: center;
 }
 
-textarea {
-  resize: vertical;
-  min-height: 80px;
+/* Попап: список по левому краю */
+.popup-content pre {
+  white-space: pre-line;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.3;
+  margin: 15px 0;
 }
 
-button {
-  width: 100%;
-  background: #555;
-  color: #fff;
-  border: none;
-  padding: 14px;
-  font-size: 18px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #222;
+/* Попап: заголовки и остальное по центру */
+.popup-content {
+  text-align: center;
 }
 
 .popup {
