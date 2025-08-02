@@ -79,27 +79,27 @@ select {
   text-align: center;
 }
 
+/* === dish блок: название, КБЖУ, выбор === */
 .dish {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 6px 0;
   font-size: 15px;
-  width: 100%; /* гарантирует одинаковую ширину */
+  width: 100%;
 }
 
-.dish-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
+.dish > .dish-name {
+  font-weight: bold;
+  margin-right: 12px;
+  white-space: nowrap;
 }
 
-.kbju-box {
+.dish > .kbju {
   font-size: 14px;
   color: #333;
-  margin-top: 2px;
-  line-height: 1.2;
+  margin-left: 12px;
+  margin-right: auto;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -124,6 +124,7 @@ select {
   text-align: center;
 }
 
+/* === остальное === */
 textarea {
   resize: vertical;
   min-height: 80px;
@@ -189,3 +190,4 @@ button:hover {
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 12px;
+}
