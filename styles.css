@@ -82,50 +82,40 @@ select {
 
 /* Блюда */
 .dish {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin: 8px 0;
-  gap: 12px;
+  width: 100%;
+  max-width: 300px;
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-align: left;
 }
 
 .dish-name,
-.kbju {
+.kbju,
+.qty {
   display: block;
-  font-size: 15px;
-  line-height: 1.3;
+  width: 100%;
   text-align: left;
-  flex-grow: 1;
-  min-width: 0;
 }
 
 .kbju {
+  margin: 5px 0;
   font-size: 14px;
   color: #555;
-  margin-top: 2px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.dish select.qty {
-  width: 60px;
-  min-width: 60px;
-  max-width: 60px;
-  padding: 6px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: #fff;
-  color: #333;
-  text-align: center;
-  text-align-last: center;
-  flex-shrink: 0;
-  margin-left: auto;
-}
-
-.dish select.qty option {
-  text-align: center;
+select.qty {
+  padding: 5px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* Попап */
@@ -177,66 +167,3 @@ select {
   font-size: 16px;
   margin-bottom: 12px;
 }
-
-.dish {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.dish-name {
-  width: 40%;
-  min-width: 0;
-  flex-shrink: 0;
-  text-align: left;
-}
-
-.kbju {
-  width: 35%;
-  min-width: 0;
-  flex-shrink: 0;
-  text-align: left;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.dish select.qty {
-  width: 60px;
-  flex-shrink: 0;
-  text-align: center;
-  text-align-last: center;
-}
-
-.dish {
-  width: 100%;
-  max-width: 300px; /* одинаковая ширина для всех */
-  box-sizing: border-box;
-  display: inline-block;
-  vertical-align: top;
-  margin: 10px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  text-align: left;
-}
-
-.dish-name,
-.kbju,
-.qty {
-  display: block;
-  width: 100%;
-  text-align: left;
-}
-
-.kbju {
-  margin: 5px 0;
-  font-size: 14px;
-}
-
-select.qty {
-  padding: 5px;
-  font-size: 14px;
-}
-
