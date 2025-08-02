@@ -177,3 +177,34 @@ select {
   font-size: 16px;
   margin-bottom: 12px;
 }
+
+.dish {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.dish-name {
+  width: 40%;
+  min-width: 0;
+  flex-shrink: 0;
+  text-align: left;
+}
+
+.kbju {
+  width: 35%;
+  min-width: 0;
+  flex-shrink: 0;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dish select.qty {
+  width: 60px;
+  flex-shrink: 0;
+  text-align: center;
+  text-align-last: center;
+}
