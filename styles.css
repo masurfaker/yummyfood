@@ -1,4 +1,7 @@
-/* Общие стили страницы */
+Я с телефона. 
+
+Вот ксс:
+
 html, body {
   margin: 0;
   padding: 0;
@@ -13,7 +16,7 @@ html, body {
   background: #fff;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  box-shadow: 0 0 6px rgba(0,0,0,.1);
 }
 
 .logo {
@@ -63,7 +66,6 @@ select {
   margin-bottom: 12px;
 }
 
-/* Секция меню */
 .menu-section {
   margin: 20px 0;
   padding: 16px;
@@ -81,37 +83,32 @@ select {
   text-align: center;
 }
 
-/* Блок блюда */
 .dish {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   margin: 6px 0;
   font-size: 15px;
-  width: 100%;
+  width: 100%; /* гарантирует одинаковую ширину */
 }
 
-/* Название блюда */
-.dish > .dish-name {
-  font-weight: bold;
-  margin-right: 12px;
-  white-space: nowrap;
-  text-align: left;
+.dish-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
-/* Строка с КБЖУ */
-.dish > .kbju {
+.kbju-box {
   font-size: 14px;
   color: #333;
-  margin-left: 12px;
-  margin-right: auto; /* позволяет “оттеснить” селектор вправо */
+  margin-top: 2px;
+  line-height: 1.2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  text-align: left;
 }
 
-/* Селектор количества */
 .dish select.qty {
   width: 60px;
   min-width: 60px;
@@ -131,7 +128,6 @@ select {
   text-align: center;
 }
 
-/* Остальные элементы формы */
 textarea {
   resize: vertical;
   min-height: 80px;
@@ -152,11 +148,10 @@ button:hover {
   background: #222;
 }
 
-/* Popup окно */
 .popup {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -175,13 +170,6 @@ button:hover {
   text-align: center;
 }
 
-/* Если обернуть список блюд в popup в элемент с классом .order-items,
-   его можно выровнять по левому краю */
-#popup-message .order-items {
-  text-align: left;
-}
-
-/* Дополнительные стили */
 .popup-content pre {
   white-space: pre-line;
   text-align: left;
@@ -205,4 +193,3 @@ button:hover {
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 12px;
-}
