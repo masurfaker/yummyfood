@@ -12,7 +12,7 @@ html, body {
   background: #fff;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 6px rgba(0,0,0,.1);
 }
 
 .logo {
@@ -23,46 +23,7 @@ html, body {
   margin: 0 auto 32px;
 }
 
-.input-block {
-  margin-bottom: 16px;
-}
-
-label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: 500;
-  font-size: 16px;
-}
-
-input[type="text"],
-textarea,
-input:not([type="number"]):not([type="submit"]) {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  box-sizing: border-box;
-}
-
-#contactHandle {
-  margin-top: 12px;
-}
-
-select {
-  appearance: none;
-  background: #fff;
-  color: #333;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  padding: 12px;
-  font-size: 16px;
-  box-sizing: border-box;
-  width: 100%;
-  margin-bottom: 12px;
-}
-
-/* Секция меню */
+/* Меню секции */
 .menu-section {
   margin: 20px 0;
   padding: 16px;
@@ -70,10 +31,9 @@ select {
   border-radius: 12px;
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
-/* Название секции */
 .section-title {
   background: #e1ded9;
   padding: 6px 10px;
@@ -82,31 +42,35 @@ select {
   font-size: 18px;
   margin-bottom: 12px;
   text-align: center;
+  width: 100%;
 }
 
-/* Блюдо */
+/* Блоки блюд */
 .dish {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
   width: 100%;
   max-width: 320px;
-  padding: 10px 0;
-  box-sizing: border-box;
-  text-align: left;
-  background: transparent;
+  border: none;
+  background: #fdfdfd;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
-/* Левая часть: название и КБЖУ */
 .dish-text {
   flex: 1;
-  margin-right: 10px;
+  margin-right: 12px;
 }
 
 .dish-name {
-  font-weight: 600;
+  font-weight: bold;
   font-size: 16px;
   margin-bottom: 4px;
+  text-align: left;
 }
 
 .kbju {
@@ -115,22 +79,25 @@ select {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  text-align: left;
 }
 
-/* Правая часть: селект */
+/* Селектор */
 select.qty {
-  width: 60px;
+  width: 70px;
   padding: 6px;
   font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
   box-sizing: border-box;
-  margin-top: 2px;
+  background: #fff;
 }
 
 /* Попап */
 .popup {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0,0,0,.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -158,7 +125,7 @@ select.qty {
   margin: 15px 0;
 }
 
-/* Итого КБЖУ */
+/* КБЖУ итог */
 .kbju-total {
   font-weight: bold;
   font-size: 1.1em;
