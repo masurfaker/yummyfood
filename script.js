@@ -92,18 +92,24 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
 К/Б/Ж/У: ${kbjuTotal.join(" / ")}
   `;
 
+    // Генерация HTML заказа
+  const orderHTML = `
+    <ul style="margin: 0; padding-left: 18px;">
+      ${orderItems.map(x => `<li>${x}</li>`).join("")}
+    </ul>
+    <br>
+    <b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
+  `;
+
+  // Отображение popup
   popupMessage.innerHTML = `
     <div style="font-family:Arial;font-size:16px;">
-      <div>${name}!</div>
+      <div><b>${name}</b>!</div>
       <div style="margin-top:6px;">Ваша заявка отправлена!</div>
       <div style="margin:14px 0 6px;">Ваш заказ:</div>
       ${orderHTML}
       <div style="margin-top:16px;">В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
     </div>
-  `;
-  {orderItems.map((x, i) => `${i + 1}. ${x}`).join("<br>")}
-<br><br>
-<b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
   `;
   popup.classList.remove("hidden");
 
