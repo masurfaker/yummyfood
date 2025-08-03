@@ -91,16 +91,6 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
 К/Б/Ж/У: ${kbjuTotal.join(" / ")}
     `;
 
-    const orderHTML = `
-  <ul style="margin: 0; padding-left: 18px;">
-    ${orderItems.map((item, index) =>
-      `<li>${index + 1}. ${item.name} — ${item.qty} шт.</li>`
-    ).join("")}
-  </ul>
-  <br>
-  <b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
-`;
-
 popupMessage.innerHTML = `
   <div style="font-family:Arial;font-size:16px;">
     <div><b>${name}</b>!</div>
