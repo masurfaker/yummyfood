@@ -1,104 +1,161 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const form = document.getElementById("orderForm");
-  const popup = document.getElementById("popup");
-  const popupMessage = document.getElementById("popup-message");
-  const kbjuTotal = document.getElementById("kbju-total");
+const form = document.getElementById("orderForm");
+const popup = document.getElementById("popup");
+const popupMessage = document.getElementById("popup-message");
 
-  const telegramToken = "8472899454:AAGiebKRLt6VMei4toaiW11bR2tIACuSFeo";
-  const telegramChatID = "7408180116";
+function parseKbju(str) {
+  return str.split('/').map(Number); // К/Б/Ж/У → [ккал, белки, жиры, углеводы]
+}
 
-  function parseKBJU(text) {
-    const match = text.match(/(\d+)\s*\/\s*(\d+)\s*\/\s*(\d+)\s*\/\s*(\d+)/);
-    if (!match) return [0, 0, 0, 0];
-    return match.slice(1).map(Number);
-  }
+function updateKbjuTotal() {
+  let total = [0, 0, 0, 0]; // [Ккал, Б, Ж, У]
 
-  function calculateTotalKBJU() {
-  let total = [0, 0, 0, 0];
+  document.querySelectorAll('.dish').forEach(dish => {
+    const qty = parseInt(dish.querySelector('select.qty')?.value) || 0;
+    const kbjuStr = dish.querySelector('.kbju')?.dataset.kbju;
 
-  document.querySelectorAll(".dish").forEach(dish => {
-    const qty = +dish.querySelector("select.qty").value;
-    const kbjuBox = dish.querySelector(".kbju-box");
-    if (qty > 0 && kbjuBox) {
-      const values = parseKBJU(kbjuBox.textContent);
-      total = total.map((val, i) => val + values[i] * qty);
+    if (!kbjuStr || qty === 0) return;
+
+    const kbju = parseKbju(kbjuStr);
+    for (let i = 0; i < 4; i++) {
+      total[i] += kbju[i] * qty;
     }
   });
 
-  const resultText = `К/Б/Ж/У: ${total[0]}/${total[1]}/${total[2]}/${total[3]}`;
-  kbjuTotal.value = resultText;
-
-  const kbjuBox = document.getElementById("kbju-total-box");
-  if (kbjuBox) {
-    kbjuBox.textContent = resultText;
-  }
+  document.getElementById('total-kcal').textContent = total[0];
+  document.getElementById('total-protein').textContent = total[1];
+  document.getElementById('total-fat').textContent = total[2];
+  document.getElementById('total-carbs').textContent = total[3];
 }
 
-  document.querySelectorAll("select.qty").forEach(select => {
-    select.addEventListener("change", calculateTotalKBJU);
+document.addEventListener('DOMContentLoaded', () => {
+  // Заполнение select'ов 0–6
+  document.querySelectorAll('select.qty').forEach(select => {
+    if (select.options.length === 0) {
+      for (let i = 0; i <= 6; i++) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = i;
+        select.appendChild(option);
+      }
+    }
+    select.addEventListener('change', updateKbjuTotal);
   });
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    calculateTotalKBJU();
+  updateKbjuTotal();
+});
 
-    const formData = new FormData(form);
-    const name = formData.get("name") || "Имя не указано";
-    const contact = formData.get("social") || "Контакт не указан";
-    const comment = formData.get("comment") || "-";
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
 
-    const selectedDishes = [];
-    document.querySelectorAll(".dish").forEach(dish => {
-      const dishName = dish.querySelector(".dish-name").textContent.trim();
-      const qty = +dish.querySelector("select.qty").value;
-      if (qty > 0) {
-        selectedDishes.push(`${dishName} x${qty}`);
-      }
-    });
+  const name = form.name.value.trim();
+  const contactMethod = form.contactMethod.value.trim();
+  const contactHandle = form.contactHandle.value.trim();
+  const comment = form.comment.value.trim();
 
-    const kbju = kbjuTotal.value;
+  if (!name || !contactMethod || !contactHandle) {
+    alert("Пожалуйста, заполните все контактные поля");
+    return;
+  }
 
-    const message = `
-🍽️ Новый заказ:
-👤 Имя: ${name}
-📱 Контакт: ${contact}
-🥗 Блюда:
-${selectedDishes.join("\n")}
-🧮 ${kbju}
-💬 Комментарий: ${comment}
-    `.trim();
+  const orderItems = [];
+  const kbjuTotal = [0, 0, 0, 0]; // К / Б / Ж / У
 
-    // Отправка в Telegram
-    await fetch(`https://api.telegram.org/bot${telegramToken}/sendMessage`, {
+  const dishes = form.querySelectorAll(".dish");
+  dishes.forEach((dish) => {
+    const qty = parseInt(dish.querySelector("select.qty").value);
+    if (qty > 0) {
+      const title = dish.querySelector(".dish-name").textContent.trim();
+      const kbjuString = dish.querySelector(".kbju").dataset.kbju;
+      const [k, b, j, u] = kbjuString.split("/").map(Number);
+      orderItems.push(`${title} — ${qty} порц.`);
+
+      kbjuTotal[0] += k * qty;
+      kbjuTotal[1] += b * qty;
+      kbjuTotal[2] += j * qty;
+      kbjuTotal[3] += u * qty;
+    }
+  });
+
+  if (orderItems.length === 0) {
+    alert("Выберите хотя бы одно блюдо.");
+    return;
+  }
+
+  const emailBody = `
+Новый заказ от ${name}
+Контакт: ${contactMethod} - ${contactHandle}
+Комментарий: ${comment}
+
+Заказ:
+${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
+
+К/Б/Ж/У: ${kbjuTotal.join(" / ")}
+  `;
+
+  // === ОТПРАВКА EMAIL ===
+  try {
+    const res = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        chat_id: telegramChatID,
-        text: message,
-      }),
-    });
+        access_key: "14d92358-9b7a-4e16-b2a7-35e9ed71de43",
+        subject: "Новый заказ Yummy",
+        from_name: "Yummy Food Form",
+        message: emailBody,
+        reply_to: contactHandle,
+        name: name
+      })
+    }).then(r => r.json());
 
-    // Отправка в Web3Forms
-    const web3Data = new FormData(form);
-    web3Data.append("access_key", "2c3c09c4-d450-4f5c-8183-6aef94cf3655");
-    web3Data.append("КБЖУ", kbju);
+    if (!res.success) {
+      alert("Ошибка отправки. Проверьте форму.");
+      return;
+    } else {
+      form.reset();
+    }
+  } catch (err) {
+    alert("Ошибка отправки (email): " + err.message);
+    return;
+  }
 
-    selectedDishes.forEach((dish, index) => {
-      web3Data.append(`Блюдо ${index + 1}`, dish);
-    });
+  // === ОТПРАВКА В TELEGRAM ===
+  const tgMessage = `
+Новый заказ от ${name}
+Контакт: ${contactMethod} - ${contactHandle}
+Комментарий: ${comment}
 
-    await fetch("https://api.web3forms.com/submit", {
+Заказ:
+${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
+
+К/Б/Ж/У: ${kbjuTotal.join(" / ")}
+  `;
+
+  try {
+    await fetch("https://api.telegram.org/bot8472899454:AAGiebKRLt6VMei4toaiW11bR2tIACuSFeo/sendMessage", {
       method: "POST",
-      body: web3Data,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: 7408180116,
+        text: tgMessage
+      })
     });
+  } catch (err) {
+    console.error("Ошибка отправки в Telegram: ", err.message);
+  }
 
-    form.reset();
-    kbjuTotal.value = "";
-    popupMessage.textContent = "Спасибо! Заявка принята.";
-    popup.style.display = "flex";
-  });
-
-  document.getElementById("popup-close").addEventListener("click", () => {
-    popup.style.display = "none";
-  });
+  // === ПОКАЗ POPUP ===
+  popupMessage.innerHTML = `
+<strong>Спасибо за заказ!</strong><br>
+Контакт: ${contactMethod} - ${contactHandle}<br><br>
+<strong>Заказ:</strong><br>
+${orderItems.map((x, i) => `${i + 1}. ${x}`).join("<br>")}
+<br><br>
+<b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
+  `;
+  popup.classList.remove("hidden");
 });
+
+// Закрытие popup
+function closePopup() {
+  popup.classList.add("hidden");
+}
