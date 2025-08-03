@@ -12,112 +12,171 @@ html, body {
   background: #fff;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 6px rgba(0,0,0,.1);
 }
 
 .logo {
-  max-width: 180px;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
   display: block;
-  margin: 0 auto 10px auto;
+  margin: 0 auto 32px;
 }
 
-h2 {
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 5px;
-}
-
-form {
-  margin-top: 30px;
+.input-block {
+  margin-bottom: 16px;
 }
 
 label {
   display: block;
-  margin: 12px 0 4px 0;
+  margin-bottom: 6px;
+  font-weight: 500;
   font-size: 16px;
 }
 
 input[type="text"],
-input[type="tel"],
-input[type="email"] {
+textarea,
+input:not([type="number"]):not([type="submit"]) {
   width: 100%;
-  padding: 10px 12px;
+  padding: 12px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
 }
 
-button[type="submit"] {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  font-size: 18px;
-  background-color: #009578;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  margin-top: 20px;
-  cursor: pointer;
+#contactHandle {
+  margin-top: 12px;
 }
 
-button[type="submit"]:hover {
-  background-color: #007f67;
+select {
+  appearance: none;
+  background: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 12px;
+  font-size: 16px;
+  box-sizing: border-box;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.menu-section {
+  margin: 20px 0;
+  padding: 16px;
+  background: #f3f1ed;
+  border-radius: 12px;
+}
+
+.section-title {
+  background: #e1ded9;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 12px;
+  text-align: center;
 }
 
 .dish {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
   justify-content: space-between;
-  margin-bottom: 15px;
-  padding: 0 0 10px 0;
+  align-items: center;
+  margin: 6px 0;
+  font-size: 15px;
+  flex-wrap: wrap;
 }
 
 .dish-name {
-  flex: 1 1 auto;
-  font-weight: normal;
-  font-size: 16px;
+  width: calc(100% - 80px);
+  font-size: 15px;
 }
 
-.kbju {
+.dish select.qty {
+  width: 60px;
+  min-width: 60px;
+  max-width: 60px;
+  padding: 6px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  text-align: center;
+  text-align-last: center;
+}
+
+.dish select.qty option {
+  text-align: center;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+button {
   width: 100%;
-  font-size: 14px;
-  margin-top: 2px;
-  color: #444;
+  background: #555;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.qty {
-  flex: 0 0 60px;
-  margin-left: 10px;
-  font-size: 16px;
+button:hover {
+  background: #222;
 }
 
-#popup {
+.popup {
   position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #ffffff;
-  border: 2px solid #009578;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  z-index: 1000;
-  max-width: 90%;
-  font-size: 16px;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup.hidden {
   display: none;
 }
 
-#popup.show {
-  display: block;
-  animation: fadeIn 0.4s ease-in-out;
+.popup-content {
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  max-width: 90%;
+  text-align: center;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translate(-50%, -10px); }
-  to   { opacity: 1; transform: translate(-50%, 0); }
+.popup-content pre {
+  white-space: pre-line;
+  text-align: left;
+  font-size: 15px;
+  line-height: 1.3;
+  margin: 15px 0;
+}
+
+/* ===== ДОБАВЛЕНО ===== */
+.kbju {
+  font-size: 40%;
+  line-height: 1.2;
+  color: #555;
+  margin-top: 2px;
+}
+
+/* Верхняя плашка с суммой КБЖУ */
+.kbju-summary {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  padding: 8px 12px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  z-index: 10;
 }
