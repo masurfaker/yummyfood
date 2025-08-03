@@ -92,19 +92,20 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
 К/Б/Ж/У: ${kbjuTotal.join(" / ")}
   `;
 
-// Показываем попап сразу
-popupMessage.innerHTML = `
-  <strong>Спасибо за заказ!</strong><br>
-  Контакт: ${contactMethod} - ${contactHandle}<br><br>
-  <strong>Заказ:</strong><br>
-  ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("<br>")}
-  <br><br>
-  <b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
-`;
-popup.classList.remove("hidden");
-popup.style.display = "block";
-popup.offsetHeight;
-popup.style.opacity = "1";
+  popupMessage.innerHTML = `
+    <div style="font-family:Arial;font-size:16px;">
+      <div>${name}!</div>
+      <div style="margin-top:6px;">Ваша заявка отправлена!</div>
+      <div style="margin:14px 0 6px;">Ваш заказ:</div>
+      ${orderHTML}
+      <div style="margin-top:16px;">В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
+    </div>
+  `;
+  {orderItems.map((x, i) => `${i + 1}. ${x}`).join("<br>")}
+<br><br>
+<b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
+  `;
+  popup.classList.remove("hidden");
 
   // === ОТПРАВКА EMAIL ===
   try {
@@ -156,18 +157,6 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
   } catch (err) {
     console.error("Ошибка отправки в Telegram: ", err.message);
   }
-
-  // === ПОКАЗ POPUP ===
-  popupMessage.innerHTML = `
-<strong>Спасибо за заказ!</strong><br>
-Контакт: ${contactMethod} - ${contactHandle}<br><br>
-<strong>Заказ:</strong><br>
-${orderItems.map((x, i) => `${i + 1}. ${x}`).join("<br>")}
-<br><br>
-<b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
-  `;
-  popup.classList.remove("hidden");
-});
 
 // Закрытие popup
 function closePopup() {
