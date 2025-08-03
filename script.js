@@ -1,9 +1,12 @@
 const form = document.getElementById("orderForm");
+const nameInput = document.getElementById("name");
+const contactInput = document.getElementById("contact");
+const contactMethodSelect = document.getElementById("contactMethod");
+const commentInput = document.getElementById("comment");
 const popup = document.getElementById("popup");
 const popupMessage = document.getElementById("popup-message");
-const popupClose = document.getElementById("popup-close");
 
-// === ЗАПОЛНЕНИЕ СЕЛЕКТОРОВ КОЛИЧЕСТВА ===
+// Заполнение селекторов от 0 до 6
 document.querySelectorAll("select.qty").forEach(select => {
   for (let i = 0; i <= 6; i++) {
     const option = document.createElement("option");
@@ -13,125 +16,77 @@ document.querySelectorAll("select.qty").forEach(select => {
   }
 });
 
-// === ПОКАЗАТЬ ПОПАП ===
-function showPopup(message) {
-  popupMessage.innerHTML = message;
-  popup.classList.remove("hidden");
-}
-
-// === ЗАКРЫТЬ ПОПАП ===
-popupClose.addEventListener("click", () => {
-  popup.classList.add("hidden");
-});
-
-// === ОБРАБОТКА ФОРМЫ ===
-form.addEventListener("submit", async (e) => {
+form.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const name = form.elements["name"].value.trim();
-  const contactMethod = form.elements["contact-method"].value;
-  const contactHandle = form.elements["contact"].value.trim();
-  const comment = form.elements["comment"].value.trim();
+  const name = nameInput.value.trim();
+  const contact = contactInput.value.trim();
+  const contactMethod = contactMethodSelect.value;
+  const comment = commentInput.value.trim();
 
-  if (!name || !contactHandle) {
-    alert("Пожалуйста, заполните имя и контакт.");
+  if (!name || !contact) {
+    alert("Пожалуйста, заполните имя и контактные данные.");
     return;
   }
 
-  const orderItems = [];
-  let kbjuTotal = [0, 0, 0, 0]; // К/Б/Ж/У
+  let orderList = "";
+  let totalCalories = 0, totalProteins = 0, totalFats = 0, totalCarbs = 0;
 
-  document.querySelectorAll(".dish").forEach((dish) => {
-    const qty = parseInt(dish.querySelector("select.qty").value);
+  document.querySelectorAll(".dish").forEach(dish => {
+    const qty = parseInt(dish.querySelector(".qty").value);
     if (qty > 0) {
-      const name = dish.querySelector(".dish-name").textContent.trim();
-      const kbjuString = dish.querySelector(".kbju").dataset.kbju; // например: 500/30/20/40
-      const [k, b, j, u] = kbjuString.split("/").map(Number);
+      const dishName = dish.querySelector(".dish-name").textContent.trim();
+      const [k, b, j, u] = dish.querySelector(".kbju").dataset.kbju.split("/").map(Number);
 
-      orderItems.push(`${name} — ${qty} шт.`);
+      totalCalories += k * qty;
+      totalProteins += b * qty;
+      totalFats += j * qty;
+      totalCarbs += u * qty;
 
-      kbjuTotal[0] += k * qty;
-      kbjuTotal[1] += b * qty;
-      kbjuTotal[2] += j * qty;
-      kbjuTotal[3] += u * qty;
+      orderList += `• ${dishName} — ${qty} шт\n`;
     }
   });
 
-  if (orderItems.length === 0) {
-    alert("Выберите хотя бы одно блюдо.");
+  if (!orderList) {
+    alert("Вы не выбрали ни одного блюда.");
     return;
   }
 
-  const orderHTML = `
-    <strong>Имя:</strong> ${name}<br>
-    <strong>Контакт:</strong> ${contactMethod} — ${contactHandle}<br>
-    <strong>Комментарий:</strong> ${comment}<br><br>
-    <strong>Заказ:</strong><br>${orderItems.map(x => "- " + x).join("<br>")}<br><br>
-    <strong>К/Б/Ж/У:</strong> ${kbjuTotal.join(" / ")}
-  `;
+  const kbju = `Калорий: ${totalCalories}\nБелки: ${totalProteins} г\nЖиры: ${totalFats} г\nУглеводы: ${totalCarbs} г`;
+  const fullMessage = `Новый заказ:\n\nИмя: ${name}\nКонтакт: ${contact} (${contactMethod})\n\nЗаказ:\n${orderList}\n${kbju}\n\nКомментарий: ${comment}`;
 
-  const emailBody = `
-Имя: ${name}
-Контакт: ${contactMethod} - ${contactHandle}
-Комментарий: ${comment}
+  // Показываем попап сразу
+  popupMessage.innerText = `Спасибо! Ваш заказ отправлен.\n\n${orderList}\n${kbju}`;
+  popup.classList.remove("hidden");
 
-Заказ:
-${orderItems.map(x => "- " + x).join("\n")}
-
-К/Б/Ж/У: ${kbjuTotal.join(" / ")}
-  `;
-
-  // === ОТПРАВКА EMAIL ===
-  try {
-    const res = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        access_key: "14d92358-9b7a-4e16-b2a7-35e9ed71de43",
-        subject: "Новый заказ Yummy",
-        from_name: "Yummy Food Form",
-        message: emailBody,
-        reply_to: contactHandle,
-        name: name
-      })
-    }).then(r => r.json());
-
-    if (!res.success) {
-      alert("Ошибка отправки. Проверьте форму.");
-      return;
-    } else {
-      form.reset();
+  // Асинхронная отправка в Telegram и Web3Forms
+  (async () => {
+    try {
+      await fetch("https://api.telegram.org/bot8472899454:AAGiebKRLt6VMei4toaiW11bR2tIACuSFeo/sendMessage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: "7408180116",
+          text: fullMessage
+        }),
+      });
+    } catch (error) {
+      console.error("Ошибка отправки в Telegram:", error);
     }
-  } catch (err) {
-    alert("Ошибка отправки (email): " + err.message);
-    return;
-  }
 
-  // === ОТПРАВКА В TELEGRAM ===
-  const tgMessage = `
-Новый заказ от ${name}
-Контакт: ${contactMethod} - ${contactHandle}
-Комментарий: ${comment}
-
-Заказ:
-${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
-
-К/Б/Ж/У: ${kbjuTotal.join(" / ")}
-  `;
-
-  try {
-    await fetch("https://api.telegram.org/bot8472899454:AAGiebKRLt6VMei4toaiW11bR2tIACuSFeo/sendMessage", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: 7408180116,
-        text: tgMessage
-      })
-    });
-  } catch (err) {
-    console.error("Ошибка отправки в Telegram: ", err.message);
-  }
-
-  // === ПОКАЗАТЬ ПОПАП ПОСЛЕ ОТПРАВКИ ===
-  showPopup(orderHTML);
+    try {
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: "14d92358-9b7a-4e16-b2a7-35e9ed71de43",
+          name: name,
+          contact: contact,
+          message: fullMessage
+        }),
+      });
+    } catch (error) {
+      console.error("Ошибка отправки в Web3Forms:", error);
+    }
+  })();
 });
