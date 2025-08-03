@@ -80,6 +80,28 @@ form.addEventListener("submit", async function (e) {
     alert("Выберите хотя бы одно блюдо.");
     return;
   }
+  
+  // === ПОКАЗ POPUP ===
+popupMessage.innerHTML = `
+    <div style="font-family:Arial;font-size:16px;">
+      <div>${name}!</div>
+      <div style="margin-top:6px;">Ваша заявка отправлена!</div>
+      <div style="margin:14px 0 6px;">Ваш заказ:</div>
+      ${orderHTML}
+      <b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
+      <div style="margin-top:16px;">В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
+    </div>
+  `;
+  popup.classList.remove("hidden");
+
+  const emailBody = `
+Имя: ${name}
+Контакт: ${contactMethod} - ${contactHandle}
+Комментарий: ${comment}
+
+
+
+
 
   const emailBody = `
 Новый заказ от ${name}
@@ -142,18 +164,6 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
   } catch (err) {
     console.error("Ошибка отправки в Telegram: ", err.message);
   }
-
-  // === ПОКАЗ POPUP ===
-  popupMessage.innerHTML = `
-<strong>Спасибо за заявку!</strong><br>
-Контакт: ${contactMethod} - ${contactHandle}<br><br>
-<strong>Состав заявки:</strong><br>
-${orderItems.map((x, i) => `${i + 1}. ${x}`).join("<br>")}
-<br><br>
-<b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
-  `;
-  popup.classList.remove("hidden");
-});
 
 // Закрытие popup
 function closePopup() {
