@@ -1,135 +1,123 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #ffffff;
+html, body {
   margin: 0;
   padding: 0;
-  color: #333;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
 }
 
 .container {
-  max-width: 800px;
-  margin: 40px auto;
+  max-width: 700px;
+  margin: 20px auto;
+  background: #fff;
+  border-radius: 12px;
   padding: 20px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
-  text-align: center;
-  font-size: 28px;
-  margin-bottom: 30px;
+.logo {
+  max-width: 180px;
+  display: block;
+  margin: 0 auto 10px auto;
 }
 
-.section {
-  margin-bottom: 40px;
-}
-
-.section h2 {
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 6px;
-  margin-bottom: 16px;
-  font-size: 22px;
-  color: #222;
-}
-
-.dish {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
-}
-
-.dish-name-container {
-  display: flex;
-  flex-direction: column;
-  max-width: 75%;
-}
-
-.dish-name {
-  font-size: 16px;
+h2 {
+  font-size: 20px;
   font-weight: bold;
-  color: #000;
-}
-
-.kbju {
-  font-size: 11px;
-  color: #666;
-  margin-top: 2px;
-}
-
-.dish select.qty {
-  padding: 4px;
-  font-size: 14px;
-}
-
-#kbju-summary-box {
-  background-color: #f8f8f8;
-  padding: 10px 14px;
-  margin: 30px 0 40px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: bold;
-  color: #222;
-  display: inline-block;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 5px;
 }
 
 form {
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 label {
   display: block;
-  margin-top: 12px;
-  font-weight: bold;
+  margin: 12px 0 4px 0;
+  font-size: 16px;
 }
 
-input, select, textarea {
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
   width: 100%;
-  padding: 8px;
-  font-size: 14px;
-  margin-top: 4px;
+  padding: 10px 12px;
+  font-size: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 6px;
   box-sizing: border-box;
 }
 
-button {
-  margin-top: 16px;
-  padding: 10px 18px;
-  background-color: #000;
-  color: #fff;
-  font-size: 16px;
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 18px;
+  background-color: #009578;
+  color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  margin-top: 20px;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #444;
+button[type="submit"]:hover {
+  background-color: #007f67;
+}
+
+.dish {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  padding: 0 0 10px 0;
+}
+
+.dish-name {
+  flex: 1 1 auto;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.kbju {
+  width: 100%;
+  font-size: 14px;
+  margin-top: 2px;
+  color: #444;
+}
+
+.qty {
+  flex: 0 0 60px;
+  margin-left: 10px;
+  font-size: 16px;
 }
 
 #popup {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#popup .popup-content {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-}
-
-.hidden {
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border: 2px solid #009578;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  max-width: 90%;
+  font-size: 16px;
   display: none;
+}
+
+#popup.show {
+  display: block;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-50%, -10px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
 }
