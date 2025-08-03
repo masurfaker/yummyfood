@@ -88,7 +88,7 @@ popupMessage.innerHTML = `
     <div>${name}!</div>
     <div style="margin-top:6px;">Ваша заявка отправлена!</div>
     <div style="margin:14px 0 6px;">Ваш заказ:</div>
-    ${orderHTML}
+    <ul style="margin:0;padding-left:20px;">${orderItems.map(item => `<li>${item}</li>`).join('')}</ul>
     <div style="margin:10px 0;"><b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}</div>
     <div>В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
   </div>
@@ -158,6 +158,9 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
   }
 
 // Закрытие popup
-function closePopup() {
-  popup.classList.add("hidden");
-}
+// Назначаем обработчик на кнопку закрытия popup
+document.addEventListener("click", function (e) {
+  if (e.target && e.target.id === "closePopupBtn") {
+    popup.classList.add("hidden");
+  }
+});
