@@ -104,7 +104,9 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
         <div><b>${name}</b>!</div>
         <div style="margin-top:6px;">Ваша заявка отправлена!</div>
         <div style="margin:14px 0 6px;">Ваш заказ:</div>
-        ${orderHTML}
+        ${orderItems.map((item, index) =>
+           `${index + 1}. ${item.name} — ${item.qty} шт.`
+        ).join('<br>')}
         <div style="margin-top:16px;">В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
       </div>
     `;
