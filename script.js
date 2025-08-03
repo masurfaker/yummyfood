@@ -145,9 +145,9 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
 
   // === ПОКАЗ POPUP ===
   popupMessage.innerHTML = `
-<strong>Спасибо за заказ!</strong><br>
+<strong>Спасибо за заявку!</strong><br>
 Контакт: ${contactMethod} - ${contactHandle}<br><br>
-<strong>Заказ:</strong><br>
+<strong>Состав заявки:</strong><br>
 ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("<br>")}
 <br><br>
 <b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
