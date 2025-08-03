@@ -92,25 +92,29 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
     `;
 
     const orderHTML = `
-      <ul style="margin: 0; padding-left: 18px;">
-        ${orderItems.map(x => `<li>${x}</li>`).join("")}
-      </ul>
-      <br>
-      <b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
-    `;
+  <ul style="margin: 0; padding-left: 18px;">
+    ${orderItems.map((item, index) =>
+      `<li>${index + 1}. ${item.name} — ${item.qty} шт.</li>`
+    ).join("")}
+  </ul>
+  <br>
+  <b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
+`;
 
-    popupMessage.innerHTML = `
-      <div style="font-family:Arial;font-size:16px;">
-        <div><b>${name}</b>!</div>
-        <div style="margin-top:6px;">Ваша заявка отправлена!</div>
-        <div style="margin:14px 0 6px;">Ваш заказ:</div>
-        ${orderItems.map((item, index) =>
-           `${index + 1}. ${item.name} — ${item.qty} шт.`
-        ).join('<br>')}
-        <div style="margin-top:16px;">В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
-      </div>
-    `;
-    popup.classList.remove("hidden");
+popupMessage.innerHTML = `
+  <div style="font-family:Arial;font-size:16px;">
+    <div><b>${name}</b>!</div>
+    <div style="margin-top:6px;">Ваша заявка отправлена!</div>
+    <div style="margin:14px 0 6px;">Ваш заказ:</div>
+    ${orderHTML}
+    <div style="margin-top:16px;">В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
+    <button id="close-popup" style="margin-top:14px;">Закрыть</button>
+  </div>
+`;
+
+popup.classList.remove("hidden");
+
+document.getElementById("close-popup").addEventListener("click", closePopup);
 
     // === Web3Forms ===
     try {
