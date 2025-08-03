@@ -94,14 +94,6 @@ popupMessage.innerHTML = `
   `;
   popup.classList.remove("hidden");
 
-  const emailBody = `
-Имя: ${name}
-Контакт: ${contactMethod} - ${contactHandle}
-Комментарий: ${comment}
-
-
-
-
 
   const emailBody = `
 Новый заказ от ${name}
