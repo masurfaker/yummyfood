@@ -168,5 +168,7 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
   function closePopup() {
     popup.classList.add("hidden");
   }
+  
+document.getElementById('closePopup').addEventListener('click', closePopup);
 
 });
