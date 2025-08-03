@@ -12,7 +12,7 @@ html, body {
   background: #fff;
   border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 0 6px rgba(0,0,0,.1);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -62,14 +62,18 @@ select {
   margin-bottom: 12px;
 }
 
-/* Меню и секции */
+/* Секция меню */
 .menu-section {
   margin: 20px 0;
   padding: 16px;
   background: #f3f1ed;
   border-radius: 12px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
 }
 
+/* Название секции */
 .section-title {
   background: #e1ded9;
   padding: 6px 10px;
@@ -80,30 +84,32 @@ select {
   text-align: center;
 }
 
-/* Блюда */
+/* Блюдо */
 .dish {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
+  padding: 10px 0;
   box-sizing: border-box;
-  display: inline-block;
-  vertical-align: top;
-  margin: 10px;
-  padding: 10px;
-  border: none; /* убрана рамка */
-  border-radius: 8px;
   text-align: left;
+  background: transparent;
 }
 
-.dish-name,
-.kbju,
-.qty {
-  display: block;
-  width: 100%;
-  text-align: left;
+/* Левая часть: название и КБЖУ */
+.dish-text {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.dish-name {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
 }
 
 .kbju {
-  margin: 5px 0;
   font-size: 14px;
   color: #555;
   white-space: nowrap;
@@ -111,18 +117,20 @@ select {
   text-overflow: ellipsis;
 }
 
+/* Правая часть: селект */
 select.qty {
-  padding: 5px;
+  width: 60px;
+  padding: 6px;
   font-size: 14px;
-  width: 100%;
   box-sizing: border-box;
+  margin-top: 2px;
 }
 
 /* Попап */
 .popup {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.5);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -166,11 +174,4 @@ select.qty {
   font-weight: bold;
   font-size: 16px;
   margin-bottom: 12px;
-}
-
-.menu-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 10px;
 }
