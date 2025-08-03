@@ -83,17 +83,17 @@ form.addEventListener("submit", async function (e) {
   
   // === ПОКАЗ POPUP ===
 popupMessage.innerHTML = `
-    <div style="font-family:Arial;font-size:16px;">
-      <div>${name}!</div>
-      <div style="margin-top:6px;">Ваша заявка отправлена!</div>
-      <div style="margin:14px 0 6px;">Ваш заказ:</div>
-      ${orderHTML}
-      <b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
-      <div style="margin-top:16px;">В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
-    </div>
-  `;
-  popup.classList.remove("hidden");
-
+  <div style="font-family:Arial;font-size:16px;position:relative;">
+    <button id="closePopupBtn" style="position:absolute;top:6px;right:6px;padding:2px 6px;border:none;background:#ccc;border-radius:4px;cursor:pointer;">×</button>
+    <div>${name}!</div>
+    <div style="margin-top:6px;">Ваша заявка отправлена!</div>
+    <div style="margin:14px 0 6px;">Ваш заказ:</div>
+    ${orderHTML}
+    <div style="margin:10px 0;"><b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}</div>
+    <div>В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
+  </div>
+`;
+popup.classList.remove("hidden");
 
   const emailBody = `
 Новый заказ от ${name}
