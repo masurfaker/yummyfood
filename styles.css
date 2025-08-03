@@ -1,129 +1,135 @@
-html, body {
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
+  color: #333;
 }
 
 .container {
-  max-width: 700px;
-  margin: 20px auto;
-  background: #fff;
-  border-radius: 12px;
+  max-width: 800px;
+  margin: 40px auto;
   padding: 20px;
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
-h2 {
-  font-size: 20px;
-  background: #eae9e3;
-  padding: 10px;
-  margin: 30px 0 10px;
+h1 {
   text-align: center;
-  border-radius: 10px;
-  font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.section h2 {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 6px;
+  margin-bottom: 16px;
+  font-size: 22px;
+  color: #222;
 }
 
 .dish {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  background: #f2f1eb;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.dish-name-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
 }
 
 .dish-name {
-  flex: 1;
-  font-weight: normal;
+  font-size: 16px;
+  font-weight: bold;
+  color: #000;
 }
 
 .kbju {
-  flex-basis: 100%;
-  font-size: 12px;
-  color: #555;
-  margin-top: 4px;
+  font-size: 11px;
+  color: #666;
+  margin-top: 2px;
 }
 
-.qty {
-  width: 60px;
-  margin-left: 10px;
-  height: 32px;
-  font-size: 16px;
+.dish select.qty {
   padding: 4px;
-  border-radius: 6px;
+  font-size: 14px;
+}
+
+#kbju-summary-box {
+  background-color: #f8f8f8;
+  padding: 10px 14px;
+  margin: 30px 0 40px;
   border: 1px solid #ccc;
-}
-
-select.qty {
-  margin-top: 0;
-}
-
-/* Упаковка названия и КБЖУ в вертикальную колонку */
-.dish > .dish-name,
-.dish > .kbju {
-  display: block;
-}
-
-/* Попап */
-#popup {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  z-index: 9999;
-  max-width: 90%;
-  width: 400px;
-  display: none;
-  transition: none; /* Убираем задержку появления */
-}
-
-#popup.show {
-  display: block;
-}
-
-#popup-message {
-  margin-bottom: 20px;
-}
-
-#closePopup {
-  padding: 10px 20px;
-  border: none;
-  background: #333;
-  color: white;
   border-radius: 6px;
-  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  color: #222;
+  display: inline-block;
+}
+
+form {
+  margin-top: 20px;
 }
 
 label {
   display: block;
-  margin: 15px 0 5px;
+  margin-top: 12px;
   font-weight: bold;
 }
 
-input[type="text"],
-select {
+input, select, textarea {
   width: 100%;
-  padding: 10px;
-  border-radius: 6px;
+  padding: 8px;
+  font-size: 14px;
+  margin-top: 4px;
   border: 1px solid #ccc;
-  font-size: 16px;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
 
-/* Кнопка отправки */
-button[type="submit"] {
-  margin-top: 20px;
-  padding: 12px 20px;
+button {
+  margin-top: 16px;
+  padding: 10px 18px;
+  background-color: #000;
+  color: #fff;
   font-size: 16px;
-  background: #222;
-  color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #444;
+}
+
+#popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#popup .popup-content {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+}
+
+.hidden {
+  display: none;
 }
