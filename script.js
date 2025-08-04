@@ -110,11 +110,6 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
     `;
     popup.classList.remove("hidden");
 
-    // Обработчик кнопки закрытия
-    document.getElementById('close-popup')?.addEventListener('click', () => {
-      popup.classList.add("hidden");
-    });
-
     // === Web3Forms ===
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
