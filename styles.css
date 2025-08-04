@@ -1,4 +1,4 @@
-html, body {
+да неhtml, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -188,4 +188,18 @@ button:hover {
   z-index: 100;
   letter-spacing: 0.5px;
   word-spacing: 6px;
+}
+
+.dish {
+  min-height: 48px;
+}
+
+.dish-name {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* максимум 2 строки */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.25;
+  max-height: calc(1.25em * 2); /* 2 строки по line-height */
 }
