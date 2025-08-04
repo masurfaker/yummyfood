@@ -1,3 +1,6 @@
+Скрипт в 2
+
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById("orderForm");
   const popup = document.getElementById("popup");
@@ -106,6 +109,7 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
         <div style="margin:14px 0 6px;">Ваш заказ:</div>
         ${orderHTML}
         <div style="margin-top:16px;">В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
+        <button id="close-popup" style="margin-top:14px;">Закрыть</button>
       </div>
     `;
     popup.classList.remove("hidden");
@@ -162,3 +166,9 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
       console.error("Ошибка отправки в Telegram: ", err.message);
     }
   });
+
+  function closePopup() {
+    popup.classList.add("hidden");
+  }
+
+});
