@@ -83,24 +83,27 @@ select {
 
 .dish {
   display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+.dish-row {
+  display: flex;
   justify-content: space-between;
-  align-items: flex-start; /* 👈 фикс: выравнивание по верхнему краю */
-  margin: 6px 0;
-  font-size: 15px;
-  flex-wrap: nowrap; /* 👈 фикс: не переносить строки */
+  align-items: flex-start;
 }
 
 .dish-name {
-  width: calc(100% - 70px); /* 👈 уменьшили на ширину селектора + отступ */
-  font-size: 15px;
+  font-weight: normal;
+  flex: 1;
   margin: 0;
-  line-height: 1.2;
 }
 
 .dish select.qty {
-    width: 60px;
+  width: 60px;
   min-width: 60px;
-  max-width: 60px;
   padding: 6px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -108,8 +111,13 @@ select {
   background: #fff;
   color: #333;
   text-align: center;
-  text-align-last: center;
-  margin-top: 0; /* 👈 убираем возможные сдвиги *.dish select.qty option {text-align: center;
+  margin-left: 10px;
+}
+
+.kbju {
+  font-size: 12px;
+  color: #555;
+  margin-top: 2px;
 }
 
 textarea {
