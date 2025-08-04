@@ -8,14 +8,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateKbjuTotal() {
-    let total = [0, 0, 0, 0]; // [Ккал, Б, Ж, У]
+    let total = [0, 0, 0, 0];
 
     document.querySelectorAll('.dish').forEach(dish => {
       const qty = parseInt(dish.querySelector('select.qty')?.value) || 0;
       const kbjuStr = dish.querySelector('.kbju')?.dataset.kbju;
-
       if (!kbjuStr || qty === 0) return;
-
       const kbju = parseKbju(kbjuStr);
       for (let i = 0; i < 4; i++) {
         total[i] += kbju[i] * qty;
@@ -28,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('total-carbs').textContent = total[3];
   }
 
-  // Заполнение select'ов 0–6 и добавление слушателей
+  // Инициализация селекторов
   document.querySelectorAll('select.qty').forEach(select => {
     if (select.options.length === 0) {
       for (let i = 0; i <= 6; i++) {
@@ -43,14 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateKbjuTotal();
 
-  let popupShown = false; // глобальный флаг
-
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById("orderForm");
-  const popup = document.getElementById("popup");
-  const popupMessage = document.getElementById("popup-message");
-
-  // ...
+  let popupShown = false;
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -66,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const orderItems = [];
-    const kbjuTotal = [0, 0, 0, 0]; // К / Б / Ж / У
+    const kbjuTotal = [0, 0, 0, 0];
 
     const dishes = form.querySelectorAll(".dish");
     dishes.forEach((dish) => {
@@ -108,7 +99,7 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
       <b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
     `;
 
-    // Показываем попап сразу после сбора данных
+    // Показываем попап до отправки
     if (!popupShown) {
       popupMessage.innerHTML = `
         <div style="font-family:Arial;font-size:16px;">
@@ -164,10 +155,10 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
       console.error("Ошибка отправки в Telegram: ", err.message);
     }
   });
-});
 
-// Функция закрытия попапа
-function closePopup() {
-  document.getElementById("popup").classList.add("hidden");
-  popupShown = false;
-}
+  // Закрытие попапа
+  window.closePopup = function () {
+    document.getElementById("popup").classList.add("hidden");
+    popupShown = false;
+  };
+});
