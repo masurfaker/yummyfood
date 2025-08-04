@@ -45,8 +45,9 @@ input:not([type="number"]):not([type="submit"]) {
   box-sizing: border-box;
 }
 
-#contactHandle {
-  margin-top: 12px;
+textarea {
+  resize: vertical;
+  min-height: 80px;
 }
 
 select {
@@ -60,6 +61,21 @@ select {
   box-sizing: border-box;
   width: 100%;
   margin-bottom: 12px;
+}
+
+button {
+  width: 100%;
+  background: #555;
+  color: #fff;
+  border: none;
+  padding: 14px;
+  font-size: 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #222;
 }
 
 .menu-section {
@@ -81,24 +97,32 @@ select {
   text-align: center;
 }
 
+/* === Блок блюда === */
 .dish {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
-  margin: 10px 0;
-  font-size: 15px;
+  margin: 12px 0;
   box-sizing: border-box;
 }
 
 .dish-name {
-  width: calc(100% - 80px);
   font-size: 15px;
+  flex: 1;
+  margin: 0;
+}
+
+.kbju {
+  font-size: 12px;
+  line-height: 1.2;
+  color: #555;
+  margin-top: 2px;
 }
 
 .dish select.qty {
   width: 60px;
   min-width: 60px;
-  max-width: 60px;
   padding: 6px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -107,32 +131,16 @@ select {
   color: #333;
   text-align: center;
   text-align-last: center;
+  margin-left: 12px;
+  margin-top: 0;
+  flex-shrink: 0;
 }
 
 .dish select.qty option {
   text-align: center;
 }
 
-textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-button {
-  width: 100%;
-  background: #555;
-  color: #fff;
-  border: none;
-  padding: 14px;
-  font-size: 18px;
-  border-radius: 8px;
-  cursor: pointer;
-}
-
-button:hover {
-  background: #222;
-}
-
+/* === Попап === */
 .popup {
   position: fixed;
   inset: 0;
@@ -140,6 +148,7 @@ button:hover {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 
 .popup.hidden {
@@ -162,15 +171,7 @@ button:hover {
   margin: 15px 0;
 }
 
-/* ===== ДОБАВЛЕНО ===== */
-.kbju {
-  font-size: 40%;
-  line-height: 1.2;
-  color: #555;
-  margin-top: 2px;
-}
-
-/* Верхняя плашка с суммой КБЖУ */
+/* === КБЖУ в шапке === */
 .kbju-summary {
   position: sticky;
   top: 0;
@@ -181,14 +182,4 @@ button:hover {
   font-weight: 600;
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   z-index: 10;
-}
-
-.menu-section {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  margin: 20px 0;
-  padding: 16px;
-  background: #f3f1ed;
-  border-radius: 12px;
 }
