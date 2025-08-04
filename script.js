@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('total-protein').textContent = total[1];
     document.getElementById('total-fat').textContent = total[2];
     document.getElementById('total-carbs').textContent = total[3];
-    document.getElementById('total-kbju-bar').textContent = `К/Б/Ж/У: ${total[0]}/${total[1]}/${total[2]}/${total[3]}`;
+    document.getElementById('total-kbju-bar').textContent = `ИТОГО К/Б/Ж/У: ${total[0]}/${total[1]}/${total[2]}/${total[3]}`;
   }
 
   // Инициализация селекторов
