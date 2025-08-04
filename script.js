@@ -92,9 +92,9 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
     `;
 
     const orderHTML = `
-      <ul style="margin: 0; padding-left: 18px;">
+      <ol style="margin: 0; padding-left: 18px;text-align: left;">
         ${orderItems.map(x => `<li>${x}</li>`).join("")}
-      </ul>
+      </ol>
       <br>
       <b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
     `;
