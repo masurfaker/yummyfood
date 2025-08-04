@@ -67,6 +67,8 @@ select {
   padding: 16px;
   background: #f3f1ed;
   border-radius: 12px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .section-title {
@@ -81,11 +83,11 @@ select {
 
 .dish {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 6px 0;
+  flex-direction: column;
+  width: 100%;
+  margin: 10px 0;
   font-size: 15px;
-  flex-wrap: wrap;
+  box-sizing: border-box;
 }
 
 .dish-name {
