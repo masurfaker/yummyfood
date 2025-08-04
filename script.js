@@ -1,3 +1,5 @@
+let popupShown = false;
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById("orderForm");
   const popup = document.getElementById("popup");
@@ -28,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('total-carbs').textContent = total[3];
   }
 
-  // Заполнение select'ов 0–6 и добавление слушателей
+  // Заполнение select'ов от 0 до 6 и обработка изменений
   document.querySelectorAll('select.qty').forEach(select => {
     if (select.options.length === 0) {
       for (let i = 0; i <= 6; i++) {
@@ -42,15 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   updateKbjuTotal();
-
-  let popupShown = false; // глобальный флаг
-
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById("orderForm");
-  const popup = document.getElementById("popup");
-  const popupMessage = document.getElementById("popup-message");
-
-  // ...
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
@@ -108,7 +101,7 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
       <b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
     `;
 
-    // Показываем попап сразу после сбора данных
+    // Показываем попап независимо от отправок
     if (!popupShown) {
       popupMessage.innerHTML = `
         <div style="font-family:Arial;font-size:16px;">
@@ -123,7 +116,7 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
       popupShown = true;
     }
 
-    // Отправка на Web3Forms
+    // Web3Forms
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -150,7 +143,7 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
       return;
     }
 
-    // Отправка в Telegram
+    // Telegram
     try {
       await fetch("https://api.telegram.org/bot8472899454:AAGiebKRLt6VMei4toaiW11bR2tIACuSFeo/sendMessage", {
         method: "POST",
@@ -166,7 +159,7 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
   });
 });
 
-// Функция закрытия попапа
+// Кнопка закрытия попапа
 function closePopup() {
   document.getElementById("popup").classList.add("hidden");
   popupShown = false;
