@@ -203,3 +203,10 @@ button:hover {
   line-height: 1.25;
   max-height: calc(1.25em * 2); /* 2 строки по line-height */
 }
+
+.menu-wrapper {
+  background-color: #fffdf9; /* или твой нужный цвет */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
