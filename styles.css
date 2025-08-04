@@ -210,3 +210,19 @@ button:hover {
   padding: 20px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
+
+.menu-wrapper {
+  background-color: #fffdf9; /* основной цвет */
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Убираем лишний белый фон у внутренних блоков */
+section,
+.input-block {
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
