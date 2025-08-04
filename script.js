@@ -162,3 +162,8 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
       console.error("Ошибка отправки в Telegram: ", err.message);
     }
   });
+  
+  function closePopup() {
+  popup.classList.add("hidden");
+}
+  
