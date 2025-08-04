@@ -182,3 +182,23 @@ button:hover {
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   z-index: 10;
 }
+
+.dish {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  gap: 2px;
+}
+
+.dish-name {
+  flex: 1 1 auto;
+  max-width: calc(100% - 70px); /* чтобы не влезал на селектор */
+  word-wrap: break-word;
+}
+
+.dish select.qty {
+  flex: 0 0 60px;
+}
