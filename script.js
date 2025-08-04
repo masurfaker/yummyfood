@@ -31,7 +31,7 @@ if (proteinEl) proteinEl.textContent = total[1];
 if (fatEl) fatEl.textContent = total[2];
 if (carbsEl) carbsEl.textContent = total[3];
 if (barEl) barEl.textContent = `ИТОГО К/Б/Ж/У: ${total[0]}/${total[1]}/${total[2]}/${total[3]}`;
-
+}
   // Инициализация селекторов
   document.querySelectorAll('select.qty').forEach(select => {
     if (select.options.length === 0) {
