@@ -191,11 +191,3 @@ button:hover {
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   z-index: 10;
 }
-
-.dish-name {
-  background: rgba(0, 0, 255, 0.1); /* светло-синий фон для названия */
-}
-
-.kbju {
-  background: rgba(255, 0, 0, 0.1); /* светло-красный фон для КБЖУ */
-}
