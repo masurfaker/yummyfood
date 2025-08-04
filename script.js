@@ -1,6 +1,3 @@
-Скрипт в 2
-
-
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById("orderForm");
   const popup = document.getElementById("popup");
