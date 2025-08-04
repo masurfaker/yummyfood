@@ -65,6 +65,7 @@ select {
 .menu-section {
   margin: 20px 0;
   padding: 16px;
+  box-sizing: border-box;
   background: #f3f1ed;
   border-radius: 12px;
 }
