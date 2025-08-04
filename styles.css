@@ -182,3 +182,13 @@ button:hover {
   box-shadow: 0 2px 4px rgba(0,0,0,0.05);
   z-index: 10;
 }
+
+.menu-section {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 20px 0;
+  padding: 16px;
+  background: #f3f1ed;
+  border-radius: 12px;
+}
