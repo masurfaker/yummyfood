@@ -106,7 +106,7 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
         <div style="margin:14px 0 6px;">Ваш заказ:</div>
         ${orderHTML}
         <div style="margin-top:16px;">В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
-        <button id="close-popup" style="margin-top:14px;">Закрыть</button>
+        <button type="button" id="close-popup">Закрыть</button>
       </div>
     `;
     popup.classList.remove("hidden");
