@@ -64,6 +64,13 @@ select {
 }
 
 .menu-section {
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  margin: 20px 0;
+  background: #f3f1ed;
+  border-radius: 12px;
+}
   margin: 20px 0;
   padding: 16px;
   box-sizing: border-box;
