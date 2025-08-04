@@ -82,6 +82,7 @@ select {
 }
 
 .dish {
+  .dish {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -89,21 +90,21 @@ select {
   box-sizing: border-box;
 }
 
-.dish-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-}
-
 .dish-name {
   font-weight: normal;
-  flex: 1;
-  margin: 0;
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.kbju {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 6px;
 }
 
 .dish select.qty {
   width: 60px;
-  min-width: 60px;
+  align-self: flex-end;
   padding: 6px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -111,13 +112,6 @@ select {
   background: #fff;
   color: #333;
   text-align: center;
-  margin-left: 10px;
-}
-
-.kbju {
-  font-size: 12px;
-  color: #555;
-  margin-top: 2px;
 }
 
 textarea {
