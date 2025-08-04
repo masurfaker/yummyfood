@@ -180,7 +180,7 @@ button:hover {
 }
 
 /* Верхняя плашка с суммой КБЖУ */
-.kbju-summary {
+#total-kbju-bar {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -191,5 +191,5 @@ button:hover {
   font-size: 14px;
   font-weight: 600;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
-  z-index: 1000;
+  z-index: 9999;
 }
