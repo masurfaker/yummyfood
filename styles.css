@@ -82,7 +82,7 @@ select {
 }
 
 /* ===== dish: выравнивание строго по шаблону ===== */
-.dish{
+.dish {
   display: grid;
   grid-template-columns: 1fr auto;
   grid-template-rows: auto auto;
@@ -93,7 +93,7 @@ select {
   row-gap: 2px;
 }
 
-.dish-name{
+.dish-name {
   grid-column: 1 / 2;
   grid-row: 1 / 2;
   font-size: 16px;
@@ -101,20 +101,6 @@ select {
   margin: 0;
   line-height: 1.25;
   word-break: break-word;
-}
-
-.dish select.qty{
-  grid-column: 2 / 3;
-  grid-row: 1 / 2;
-  width: 60px;
-  min-width: 60px;
-  padding: 6px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  background: #fff;
-  color: #333;
-  text-align: center;
 }
 
 .kbju {
@@ -127,6 +113,21 @@ select {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.dish select.qty {
+  grid-column: 2 / 3;
+  grid-row: 1 / 3;
+  align-self: center;
+  width: 60px;
+  min-width: 60px;
+  padding: 6px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  color: #333;
+  text-align: center;
 }
 
 textarea {
