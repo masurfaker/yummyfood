@@ -1,4 +1,4 @@
-да неhtml, body {
+html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
@@ -60,7 +60,7 @@ select {
   font-size: 16px;
   box-sizing: border-box;
   width: 100%;
-  margin-bottom: 12px;
+  margin-bottom: 0px;
 }
 
 .menu-section {
@@ -68,7 +68,7 @@ select {
   padding: 16px;
   box-sizing: border-box;
   background: #f3f1ed;
-  border-radius: 12px;
+  border-radius: 0px;
 }
 
 .section-title {
