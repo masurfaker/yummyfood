@@ -68,7 +68,7 @@ select {
   padding: 16px;
   box-sizing: border-box;
   background: #f3f1ed;
-  border-radius: 0px;
+  border-radius: 12px;
 }
 
 .section-title {
