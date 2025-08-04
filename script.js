@@ -43,6 +43,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   updateKbjuTotal();
 
+  let popupShown = false; // глобальный флаг
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById("orderForm");
+  const popup = document.getElementById("popup");
+  const popupMessage = document.getElementById("popup-message");
+
+  // ...
+
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
 
@@ -99,18 +108,22 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
       <b>К/Б/Ж/У:</b> ${kbjuTotal.join(" / ")}
     `;
 
-    popupMessage.innerHTML = `
-      <div style="font-family:Arial;font-size:16px;">
-        <div><b>${name}</b>!</div>
-        <div style="margin-top:6px;">Ваша заявка отправлена!</div>
-        <div style="margin:14px 0 6px;">Ваш заказ:</div>
-        ${orderHTML}
-        <div style="margin-top:16px;">В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
-      </div>
-    `;
-    popup.classList.remove("hidden");
+    // Показываем попап сразу после сбора данных
+    if (!popupShown) {
+      popupMessage.innerHTML = `
+        <div style="font-family:Arial;font-size:16px;">
+          <div><b>${name}</b>!</div>
+          <div style="margin-top:6px;">Ваша заявка отправлена!</div>
+          <div style="margin:14px 0 6px;">Ваш заказ:</div>
+          ${orderHTML}
+          <div style="margin-top:16px;">В ближайшее время с вами свяжутся.<br>Благодарим, что выбрали YUMMY!</div>
+        </div>
+      `;
+      popup.classList.remove("hidden");
+      popupShown = true;
+    }
 
-    // === Web3Forms ===
+    // Отправка на Web3Forms
     try {
       const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
@@ -137,25 +150,14 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
       return;
     }
 
-    // === Telegram ===
-    const tgMessage = `
-Новый заказ от ${name}
-Контакт: ${contactMethod} - ${contactHandle}
-Комментарий: ${comment}
-
-Заказ:
-${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
-
-К/Б/Ж/У: ${kbjuTotal.join(" / ")}
-    `;
-
+    // Отправка в Telegram
     try {
       await fetch("https://api.telegram.org/bot8472899454:AAGiebKRLt6VMei4toaiW11bR2tIACuSFeo/sendMessage", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           chat_id: 7408180116,
-          text: tgMessage
+          text: emailBody
         })
       });
     } catch (err) {
@@ -164,6 +166,8 @@ ${orderItems.map((x, i) => `${i + 1}. ${x}`).join("\n")}
   });
 });
 
+// Функция закрытия попапа
 function closePopup() {
   document.getElementById("popup").classList.add("hidden");
+  popupShown = false;
 }
