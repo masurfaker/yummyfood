@@ -92,7 +92,6 @@ select {
   align-items: start;
   row-gap: 2px;
 }
-}
 
 .dish-name{
   grid-column: 1 / 2;
