@@ -35,7 +35,7 @@ if (barEl) barEl.textContent = `ИТОГО К/Б/Ж/У: ${total[0]}/${total[1]}/
   // Инициализация селекторов
   document.querySelectorAll('select.qty').forEach(select => {
     if (select.options.length === 0) {
-      for (let i = 0; i <= 6; i++) {
+      for (let i = 0; i <= 8; i++) {
         const option = document.createElement('option');
         option.value = i;
         option.textContent = i;
